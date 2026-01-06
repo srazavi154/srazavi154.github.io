@@ -146,12 +146,17 @@ nav a {
   margin-bottom: 25px;
 }
 
-/* Typewriter Highlight Style */
 .highlight {
-  font-style: italic;
-  font-weight: 700;
-  border-right: 2px solid #000; /* The blinking cursor */
-  padding-right: 5px;
+    font-style: italic;
+    font-weight: 700;
+    border-right: 2px solid #000;
+    padding-right: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: black; }
 }
 
 .resume-btn {
