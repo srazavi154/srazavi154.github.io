@@ -15,6 +15,8 @@ html, body {
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  /* ADD THIS LINE to center the header/footer content globally */
+  align-items: center; 
 }
 
 @media (min-width: 1024px) and (min-height: 850px) {
