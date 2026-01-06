@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About</title>
+  <title>About | Sara Razavi</title>
   <link rel="stylesheet" href="about_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 
   <header>
     <div class="logo">
-      <a href="index.html"><img src="image/logo.png" alt="Logo"></a>
+      <a href="index.html"><img src="image/logo.png" alt="Logo" /></a>
     </div>
 
     <div class="menu-toggle" id="mobile-menu">
@@ -29,45 +29,54 @@
     </nav>
   </header>
 
-  <main class="story-wrapper">
-    <section class="globe-container">
+  <main class="about-main">
+    <section class="globe-section">
       <div id="globeViz"></div>
       
-      <div class="journey-card" id="journey-card">
-        <span class="chapter-num" id="chap-num">01</span>
-        <h2 id="city-title">Baton Rouge, LA</h2>
-        <p id="city-desc">Where the journey began. Louisiana taught me the value of community and the spark of early scientific curiosity.</p>
-        <div class="city-image-box">
-          <img src="image/baton-rouge-mem.jpg" id="city-img" alt="Memory">
+      <div class="journey-card animate-on-scroll">
+        <span class="chapter-label">THE JOURNEY</span>
+        <div class="card-header">
+          <span class="chapter-num" id="chap-num">01</span>
+          <h2 id="city-title">Baton Rouge, LA</h2>
         </div>
-        <button class="next-city-btn" onclick="nextDestination()">Follow the Path <i class="fas fa-arrow-right"></i></button>
+        <p id="city-desc">Where the journey began. Louisiana taught me the value of community and the spark of early scientific curiosity.</p>
+        <button class="next-city-btn" onclick="nextDestination()">
+          FOLLOW THE PATH <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
     </section>
 
-    <section class="story-chapter dual-identity">
-      <div class="split-content">
-        <div class="engineering-side">
-          <h3>The Engineer</h3>
-          <p>My time at Caltech redefined my approach to problem-solving. It wasn't just about formulas; it was about the intersection of mechanics and biology.</p>
+    <section class="story-content">
+      <div class="split-container animate-on-scroll">
+        <div class="split-box">
+          <span class="split-tag">THE ENGINEER</span>
+          <h3>Technical Rigor</h3>
+          <p>My time at Caltech redefined my approach to problem-solving. It wasn't just about formulas; it was about the intersection of mechanics and biology—building systems that mimic life.</p>
         </div>
-        <div class="creative-side">
-          <h3>The Human</h3>
-          <p>Beyond the lab, I find balance in the philosophy of Kintsugi—finding beauty in the broken and strength in the repair.</p>
+        <div class="split-box">
+          <span class="split-tag">THE HUMAN</span>
+          <h3>Creative Philosophy</h3>
+          <p>Beyond the lab, I find balance in the philosophy of Kintsugi—finding beauty in the broken and strength in the repair. I believe our scars make us more resilient and unique.</p>
         </div>
       </div>
-      <div class="center-quote">
-        "The path isn't a straight line; it's a series of intentional turns."
+      
+      <div class="quote-block animate-on-scroll">
+        <blockquote>"The path isn't a straight line; it's a series of intentional turns."</blockquote>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/sara-razavi" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.linkedin.com/in/sara-razavi" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
     </div>
     <p>© 2026 Sara Razavi. All Rights Reserved.</p>
+    <p>Coded by Yours Truly</p>
   </footer>
 
   <script src="globe_script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
