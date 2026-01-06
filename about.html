@@ -3,58 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Story | Sara Razavi</title>
+  <title>About</title>
   <link rel="stylesheet" href="about_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <script src="//unpkg.com/globe.gl"></script>
 </head>
 <body>
 
   <header>
-    <div class="logo"><img src="image/logo.png" alt="Logo"></div>
-    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <div class="logo">
+      <a href="index.html"><img src="image/logo.png" alt="Logo"></a>
+    </div>
+
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+
     <nav class="nav-menu">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="projects.html" class="dropbtn">Projects</a>
+      <a href="projects.html">Projects</a>
       <a href="playground.html">Playground</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <main class="story-wrapper">
-    
-    <section class="story-chapter intro">
-      <div class="chapter-content">
-        <h2 class="chapter-number">01</h2>
-        <h1 class="chapter-title">The <span class="serif-italic">Intersection</span></h1>
-        <p class="big-p">
-          Most people see a machine and a living organism as opposites. I see them as the same language. 
-          As a <strong>Caltech Mechanical Engineer</strong> with a <strong>Biology minor</strong>, 
-          I don't just build parts; I study how nature has already perfected movement over millions of years.
-        </p>
-      </div>
-      <div class="parallax-img-wrapper">
-        <img src="image/about3.png" alt="Sara at Caltech" class="parallax-img">
-      </div>
-    </section>
-
-    <section class="story-chapter migration">
-      <div class="migration-visual">
-         <div class="path-line"></div>
-      </div>
-      <div class="chapter-content">
-        <h2 class="chapter-number">02</h2>
-        <h1 class="chapter-title">The <span class="serif-italic">Odyssey</span></h1>
-        <div class="location-timeline">
-            <div class="loc"><span>Baton Rouge</span><p>Roots in the South</p></div>
-            <div class="loc"><span>Fairfax</span><p>Growth in the East</p></div>
-            <div class="loc"><span>Pasadena</span><p>Innovation at Caltech</p></div>
+    <section class="globe-container">
+      <div id="globeViz"></div>
+      
+      <div class="journey-card" id="journey-card">
+        <span class="chapter-num" id="chap-num">01</span>
+        <h2 id="city-title">Baton Rouge, LA</h2>
+        <p id="city-desc">Where the journey began. Louisiana taught me the value of community and the spark of early scientific curiosity.</p>
+        <div class="city-image-box">
+          <img src="image/baton-rouge-mem.jpg" id="city-img" alt="Memory">
         </div>
-        <p>
-          My journey across the states mirrors my technical journey: a constant migration toward 
-          more complex systems and bigger questions.
-        </p>
+        <button class="next-city-btn" onclick="nextDestination()">Follow the Path <i class="fas fa-arrow-right"></i></button>
       </div>
     </section>
 
@@ -62,18 +48,17 @@
       <div class="split-content">
         <div class="engineering-side">
           <h3>The Engineer</h3>
-          <p>Analyzing stress loads, designing gearboxes, and optimizing snake-robot gaits.</p>
+          <p>My time at Caltech redefined my approach to problem-solving. It wasn't just about formulas; it was about the intersection of mechanics and biology.</p>
         </div>
         <div class="creative-side">
-          <h3>The Storyteller</h3>
-          <p>Painting with oils and writing poetry. Because every great design needs a soul.</p>
+          <h3>The Human</h3>
+          <p>Beyond the lab, I find balance in the philosophy of Kintsugi—finding beauty in the broken and strength in the repair.</p>
         </div>
       </div>
       <div class="center-quote">
-        <blockquote>"Precision is nothing without purpose."</blockquote>
+        "The path isn't a straight line; it's a series of intentional turns."
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -81,10 +66,8 @@
       <a href="https://www.linkedin.com/in/sara-razavi" target="_blank"><i class="fab fa-linkedin"></i></a>
     </div>
     <p>© 2026 Sara Razavi. All Rights Reserved.</p>
-    <p>Coded by Yours Truly</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="globe_script.js"></script>
 </body>
 </html>
-
