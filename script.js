@@ -27,41 +27,65 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     
   });
 
+/* =========================================
+   TYPEWRITER EFFECT
+   ========================================= */
 const words = ["creator", "problem solver", "innovator", "designer", "engineer"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-const typewriterSpan = document.getElementById("typewriter");
+const speed = 150; // Base typing speed
 
 function type() {
-  const currentWord = words[wordIndex];
-  
-  if (isDeleting) {
-    // Remove characters
-    typewriterSpan.textContent = currentWord.substring(0, charIndex - 1);
-    charIndex--;
-  } else {
-    // Add characters
-    typewriterSpan.textContent = currentWord.substring(0, charIndex + 1);
-    charIndex++;
-  }
+    const typewriterSpan = document.getElementById("typewriter");
+    
+    // Safety check: only run if the element exists on this page
+    if (!typewriterSpan) return;
 
-  // Speed logic
-  let typeSpeed = isDeleting ? 100 : 200;
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+        // Remove characters
+        typewriterSpan.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        // Add characters
+        typewriterSpan.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+    }
 
-  if (!isDeleting && charIndex === currentWord.length) {
-    // Pause at the end of a word
-    typeSpeed = 2000;
-    isDeleting = true;
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    wordIndex = (wordIndex + 1) % words.length;
-    typeSpeed = 500;
-  }
+    // Dynamic Speed logic
+    let typeSpeed = isDeleting ? 75 : 150;
 
-  setTimeout(type, typeSpeed);
+    if (!isDeleting && charIndex === currentWord.length) {
+        // Pause at the end of a full word
+        typeSpeed = 2000;
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        // Word is fully erased, move to next
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        typeSpeed = 500;
+    }
+
+    setTimeout(type, typeSpeed);
 }
 
-// Start the effect when the page loads
-document.addEventListener("DOMContentLoaded", type);
-  
+/* =========================================
+   INITIALIZE SCRIPTS
+   ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    // Start Typewriter
+    type();
+
+    // Smooth scrolling for any anchor links (if applicable)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
+});
