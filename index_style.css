@@ -44,6 +44,7 @@ header {
 header .logo img {
   width: 100px;
   height: auto;
+  top: 35px;
 }
 
 .nav-menu {
