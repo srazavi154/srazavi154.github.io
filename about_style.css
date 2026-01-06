@@ -251,16 +251,18 @@ footer {
 footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
 
 /* =========================================
-   6. MOBILE RESPONSIVENESS (AS REQUESTED)
+   6. MOBILE RESPONSIVENESS (Menu Logic)
    ========================================= */
-@media (max-width: 768px) {
-  header { padding: 0 25px; }
-  .menu-toggle { display: block; }
+@media (max-width: 1024px) {
+  .menu-toggle { 
+    display: block; 
+    z-index: 2100; /* Match index page */
+  }
 
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%; /* Hidden by default */
     width: 80%;
     height: 100vh;
     background: #fff;
@@ -268,13 +270,28 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
     justify-content: center;
     transition: 0.4s ease-in-out;
     box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    z-index: 2000; /* Match index page */
   }
 
-  .nav-menu.active { right: 0; }
+  /* When JS toggles .active */
+  .nav-menu.active {
+    right: 0;
+  }
 
+  .nav-menu a { font-size: 1.5rem; }
+
+  /* 3D Slider Mobile Adjustments */
   .content h1 { font-size: 4rem; }
-  .slider { width: 150px; height: 200px; }
-  .slider .item { transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(250px); }
+  .slider { 
+    width: 150px; 
+    height: 200px; 
+    top: 25%; /* Give header more room */
+  }
+  
+  /* Bring the items closer together on small screens */
+  .slider .item { 
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(280px); 
+  }
   
   .intro-block h1 { font-size: 2rem; }
   blockquote { font-size: 1.5rem; }
