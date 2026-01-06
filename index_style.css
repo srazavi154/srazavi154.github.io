@@ -250,12 +250,12 @@ header .logo img {
 .kintsugi-icon { -webkit-mask-image: url('image/kintsugi-bowl.png'); mask-image: url('image/kintsugi-bowl.png'); }
 
 /* Individual Hover Colors */
-.status-item:hover .viking-icon { background-color: #c5a059; transform: scale(1.1); }
+.status-item:hover .viking-icon { background-color: #3688e0; transform: scale(1.1); }
 .status-item:hover .reddit-icon { background-color: #FF4500; transform: scale(1.1); }
 .status-item:hover .kintsugi-icon { background-color: #D4AF37; transform: scale(1.1); }
 
 .status-item:hover .watching-icon {
-  border-color: #c5a059;
+  border-color: #3688e0;
   box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); /* Bronze Glow */
 }
 .status-item:hover .reading-icon {
