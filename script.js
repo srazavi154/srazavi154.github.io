@@ -30,7 +30,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 /* =========================================
    TYPEWRITER EFFECT
    ========================================= */
-const words = ["professional-overthinker", "pixel-perfectionist", "whiteboard-philosopher", "complexity-simplifier"];
+const words = ["builder", "wizard", "wanderer", "tinker", "seeker"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -89,4 +89,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
 
