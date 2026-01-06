@@ -9,7 +9,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color: #000000;
   background-color: #ffffff;
-  padding-top: 60px;
+  padding-top: 0;
   margin-bottom: 10px; /* Adds spacing between list items */
   margin: 10px;
 }
@@ -221,6 +221,7 @@ about-text p {
 html, body {
   height: 100%;
   margin: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -230,16 +231,13 @@ body > *:not(footer) {
   flex: 1;
 }
 
-/* Footer styles */
+/* --- 2. Footer Fix --- */
 footer {
-  text-align: center;
-  padding: 20px 0;
-  background: rgba(255, 255, 255, 1);
-  color: #000000;
-  width: 100%;
-  /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);*/
-  opacity: 0;
-  animation: floatIn 1s forwards;
+  height: 80px;
+  padding: 10px 0;
+  background: #fff;
+  z-index: 10;
+  position: relative;
 }
 
 footer .social-links {
@@ -1045,20 +1043,26 @@ iframe {
   height: 100%;
 }
 
-/* Hero Section Setup */
+.home-main {
+  flex: 1; /* Pushes the footer to the very bottom */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .hero-section {
-  position: relative;
-  height: 85vh;
+  height: calc(100vh - 120px); /* Subtracts header and footer height */
+  padding: 0; /* Remove the massive 100px padding from your general section rule */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  background-color: #fff;
+  position: relative;
 }
 
 /* THE MARQUEE */
 .marquee-container {
+  top: 45%;
   position: absolute;
   width: 100%;
   z-index: 1;
@@ -1171,21 +1175,15 @@ iframe {
 /* --- Spotify Widget (Glassmorphism) --- */
 .spotify-widget {
   position: fixed;
-  bottom: 30px;
+  bottom: 100px; /* Higher than footer */
   right: 30px;
-  width: 300px;
+  width: 350px; /* Increased width */
   z-index: 1000;
-  
-  /* Glass Effect */
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  
-  padding: 10px;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 5px;
 }
 
 .spotify-widget:hover {
@@ -1193,7 +1191,11 @@ iframe {
   background: rgba(255, 255, 255, 0.6);
 }
 
-/* Make sure footer doesn't hide the widget */
-footer {
-  padding-bottom: 100px;
+/* --- 5. Clean up General Rules --- */
+section {
+  /* Your current code has 100px padding, which causes scrolling. 
+     We override it for the home page specifically. */
+  opacity: 1; /* Set to 1 so things don't stay invisible if animation fails */
 }
+
+
