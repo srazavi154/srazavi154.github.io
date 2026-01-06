@@ -18,8 +18,7 @@ html, body {
 }
 
 /* =========================================
-   2. SHARED HEADER & NAVIGATION 
-   (Matches Index Perfectly)
+   2. SHARED HEADER & NAVIGATION
    ========================================= */
 header {
   height: 90px;
@@ -53,7 +52,6 @@ header .logo img {
 
 .nav-menu a:hover { opacity: 0.5; }
 
-/* Hamburger Icon (Visible on mobile) */
 .menu-toggle {
   display: none;
   font-size: 1.5rem;
@@ -61,7 +59,7 @@ header .logo img {
   z-index: 1200;
 }
 
-/* Dropdown Logic */
+/* Dropdown */
 .dropdown { position: relative; }
 .dropdown-content {
   display: none;
@@ -77,105 +75,139 @@ header .logo img {
 .dropdown:hover .dropdown-content { display: block; }
 
 /* =========================================
-   3. ABOUT PAGE SPECIFIC CONTENT
+   3. NARRATIVE STORY LAYOUT
    ========================================= */
-.about-main-wrapper {
+.story-wrapper {
   flex: 1;
-  padding: 80px 10%;
+  overflow-x: hidden;
 }
 
-.about-container {
+.story-chapter {
+  min-height: 80vh;
   display: flex;
   align-items: center;
+  padding: 100px 10%;
+  position: relative;
+}
+
+/* Typography */
+.chapter-number {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #ccc;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.chapter-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 4rem;
+  font-weight: normal;
+  margin-bottom: 40px;
+  line-height: 1.1;
+}
+
+.serif-italic { font-style: italic; color: #333; }
+
+.big-p {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #444;
+  max-width: 750px;
+}
+
+/* Chapter 1: The Intro */
+.intro { justify-content: space-between; gap: 80px; }
+.parallax-img-wrapper {
+  flex: 1;
+  max-width: 450px;
+  position: relative;
+}
+
+/* The decorative "Shadow" box behind your photo */
+.parallax-img-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eee;
+  background: #fcfcfc;
+  z-index: -1;
+}
+
+.parallax-img { 
+  width: 100%; 
+  border-radius: 4px;
+  display: block; 
+}
+
+/* Chapter 2: The Odyssey (Timeline) */
+.migration { 
+  background-color: #fafafa; 
+  flex-direction: column; 
+  text-align: center;
+  justify-content: center;
+}
+
+.location-timeline {
+  display: flex;
+  justify-content: center;
   gap: 80px;
+  margin: 60px 0;
+}
+
+.loc span {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+
+.loc p { 
+  font-size: 0.7rem; 
+  text-transform: uppercase; 
+  color: #999; 
+  letter-spacing: 2px; 
+}
+
+/* Chapter 3: The Split */
+.dual-identity { flex-direction: column; padding-bottom: 150px; }
+.split-content {
+  display: flex;
+  width: 100%;
+  gap: 100px;
   margin-bottom: 100px;
 }
 
-.about-text-content {
-  flex: 1.5;
+.engineering-side, .creative-side { 
+  flex: 1; 
+  padding: 40px; 
+  border-left: 1px solid #eee; 
 }
 
-.category-label {
-  font-size: 0.75rem;
+.engineering-side h3, .creative-side h3 {
+  font-family: 'Source Sans Pro', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  color: #999;
-  margin-bottom: 15px;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
+  color: #888;
 }
 
-.about-text-content h1 {
+.center-quote {
   font-family: 'Times New Roman', serif;
-  font-size: 3.5rem;
-  font-weight: normal;
-  line-height: 1.1;
-  margin-bottom: 30px;
-}
-
-.italic-serif { font-style: italic; font-weight: bold; }
-
-.about-text-content p {
-  font-size: 1.1rem;
-  color: #444;
-  max-width: 600px;
-  margin-bottom: 20px;
-}
-
-/* --- THE IMAGE FRAME --- */
-.about-profile-frame {
-  flex: 1;
-  position: relative;
-}
-
-.about-img {
+  font-style: italic;
+  font-size: 2.8rem;
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
   width: 100%;
-  max-width: 400px;
-  border-radius: 15px;
-  z-index: 2;
-  position: relative;
-}
-
-.frame-decoration {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 100%;
-  height: 100%;
-  border: 1.5px solid #000;
-  border-radius: 15px;
-  z-index: 1;
-}
-
-/* --- JOURNEY GRID --- */
-.journey-section {
-  border-top: 1px solid #eee;
-  padding-top: 80px;
-}
-
-.journey-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-
-.journey-card {
-  padding: 30px;
-  background: #fcfcfc;
-  border-radius: 20px;
-  transition: all 0.4s ease;
-  border: 1px solid #eee;
-}
-
-.journey-card:hover {
-  background: #fff;
-  border-color: #000;
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-}
-
-.card-icon {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #333;
 }
 
 /* =========================================
@@ -200,7 +232,6 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
    ========================================= */
 @media (max-width: 768px) {
   header { padding: 0 25px; }
-  
   .menu-toggle { display: block; }
 
   .nav-menu {
@@ -218,17 +249,13 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
 
   .nav-menu.active { right: 0; }
 
-  .about-main-wrapper { padding: 40px 5%; }
-
-  .about-container { 
-    flex-direction: column; 
-    text-align: center; 
-    gap: 40px; 
-  }
-
-  .about-text-content h1 { font-size: 2.5rem; }
-
-  .journey-grid { grid-template-columns: 1fr; }
+  .story-chapter { padding: 60px 8%; }
+  .chapter-title { font-size: 2.8rem; }
+  .big-p { font-size: 1.2rem; }
   
-  .frame-decoration { display: none; } /* Simplify mobile view */
+  .intro { flex-direction: column; text-align: center; }
+  .location-timeline { flex-direction: column; gap: 40px; }
+  .split-content { flex-direction: column; gap: 50px; }
+  
+  .center-quote { font-size: 1.8rem; }
 }
