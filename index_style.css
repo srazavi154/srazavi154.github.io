@@ -265,7 +265,7 @@ header .logo img {
 }
 
 /* =========================================
-   7. FOOTER
+   7. FOOTER (LinkedIn Fix)
    ========================================= */
 footer {
   height: 100px;
@@ -277,6 +277,21 @@ footer {
   color: #aaa;
   border-top: 1px solid #f9f9f9;
 }
+
+/* Forces LinkedIn icon to be black and slightly larger */
+footer .social-links a {
+  color: #000 !important; /* Forces black color */
+  text-decoration: none;
+  font-size: 1.6rem; /* Increased size (was likely 1.2rem) */
+  transition: opacity 0.3s ease;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+footer .social-links a:hover {
+  opacity: 0.6;
+}
+
 /* =========================================
    9. FADE-IN ANIMATIONS (Scroll Observer)
    ========================================= */
@@ -291,7 +306,7 @@ footer {
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* The Active State: Triggered by script.js */
+/* The Active State: Triggered by script.js adding the .show class */
 .status-item.show, 
 .resume-btn.show,
 .hero-bio.show,
@@ -300,7 +315,7 @@ footer {
   transform: translateY(0);
 }
 
-/* Optional: Stagger the three circles so they pop in one by one */
+/* Stagger the three circles so they pop in one by one */
 .status-item:nth-child(1) { transition-delay: 0.1s; }
 .status-item:nth-child(2) { transition-delay: 0.3s; }
 .status-item:nth-child(3) { transition-delay: 0.5s; }
