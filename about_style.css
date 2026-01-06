@@ -1,32 +1,86 @@
+/* =========================================
+   1. CORE RESET & BASE LAYOUT
+   ========================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  min-height: 100%;
+  width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
+  color: #000;
   background-color: #fff;
-  color: #1a1a1a;
-  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
 }
 
-/* --- HEADER (Consistent with Home) --- */
+/* =========================================
+   2. SHARED HEADER & NAVIGATION 
+   (Matches Index Perfectly)
+   ========================================= */
 header {
   height: 90px;
   padding: 0 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1100;
+  background: #fff;
   border-bottom: 1px solid #eeeeee;
+  position: relative;
 }
 
-nav { display: flex; gap: 30px; }
-nav a { text-decoration: none; color: #000; font-size: 0.9rem; transition: 0.3s; }
-nav a:hover { opacity: 0.4; }
+header .logo img {
+  width: 100px;
+  height: auto;
+}
 
-/* --- ABOUT HERO SECTION --- */
-.about-main {
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.nav-menu a:hover { opacity: 0.5; }
+
+/* Hamburger Icon (Visible on mobile) */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1200;
+}
+
+/* Dropdown Logic */
+.dropdown { position: relative; }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #fff;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  border-radius: 5px;
+  top: 100%;
+  z-index: 100;
+}
+.dropdown-content a { padding: 12px; display: block; font-size: 0.9rem; }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* =========================================
+   3. ABOUT PAGE SPECIFIC CONTENT
+   ========================================= */
+.about-main-wrapper {
+  flex: 1;
   padding: 80px 10%;
 }
 
@@ -57,20 +111,19 @@ nav a:hover { opacity: 0.4; }
   margin-bottom: 30px;
 }
 
-.italic-serif { font-style: italic; }
+.italic-serif { font-style: italic; font-weight: bold; }
 
 .about-text-content p {
   font-size: 1.1rem;
   color: #444;
   max-width: 600px;
+  margin-bottom: 20px;
 }
 
 /* --- THE IMAGE FRAME --- */
 .about-profile-frame {
   flex: 1;
   position: relative;
-  display: flex;
-  justify-content: center;
 }
 
 .about-img {
@@ -79,7 +132,6 @@ nav a:hover { opacity: 0.4; }
   border-radius: 15px;
   z-index: 2;
   position: relative;
-  filter: grayscale(20%);
 }
 
 .frame-decoration {
@@ -88,7 +140,7 @@ nav a:hover { opacity: 0.4; }
   left: 20px;
   width: 100%;
   height: 100%;
-  border: 1px solid #000;
+  border: 1.5px solid #000;
   border-radius: 15px;
   z-index: 1;
 }
@@ -102,20 +154,20 @@ nav a:hover { opacity: 0.4; }
 .journey-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 30px;
 }
 
 .journey-card {
-  padding: 40px;
+  padding: 30px;
   background: #fcfcfc;
   border-radius: 20px;
   transition: all 0.4s ease;
-  border: 1px solid transparent;
+  border: 1px solid #eee;
 }
 
 .journey-card:hover {
   background: #fff;
-  border-color: #eee;
+  border-color: #000;
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.05);
 }
@@ -126,32 +178,57 @@ nav a:hover { opacity: 0.4; }
   color: #333;
 }
 
-.journey-card h3 {
-  font-family: 'Times New Roman', serif;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-.journey-card p {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* --- FOOTER --- */
+/* =========================================
+   4. SHARED FOOTER
+   ========================================= */
 footer {
-  padding: 60px 0;
-  text-align: center;
-  border-top: 1px solid #eee;
-  font-size: 0.8rem;
-  color: #999;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  font-size: 0.7rem;
+  color: #aaa;
+  border-top: 1px solid #f9f9f9;
 }
 
-.social-links { margin-bottom: 10px; }
-.social-links a { color: #000; font-size: 1.2rem; }
+footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .about-container { flex-direction: column; text-align: center; gap: 40px; }
-  .journey-grid { grid-template-columns: 1fr; }
+/* =========================================
+   5. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+  header { padding: 0 25px; }
+  
+  .menu-toggle { display: block; }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  }
+
+  .nav-menu.active { right: 0; }
+
+  .about-main-wrapper { padding: 40px 5%; }
+
+  .about-container { 
+    flex-direction: column; 
+    text-align: center; 
+    gap: 40px; 
+  }
+
   .about-text-content h1 { font-size: 2.5rem; }
+
+  .journey-grid { grid-template-columns: 1fr; }
+  
+  .frame-decoration { display: none; } /* Simplify mobile view */
 }
