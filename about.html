@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Sara Razavi</title>
-  <link rel="stylesheet" href="about_style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>The Story | Sara Razavi</title>
+  <link rel="stylesheet" href="about_style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  
+
   <header>
     <div class="logo"><img src="image/logo.png" alt="Logo"></div>
-    <nav>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <nav class="nav-menu">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <div class="dropdown">
@@ -28,49 +30,66 @@
     </nav>
   </header>
 
-  <main class="about-main">
-    <section class="about-hero">
-      <div class="about-container">
-        <div class="about-text-content">
-          <h2 class="category-label">Mechanical Engineer + Biologist</h2>
-          <h1>Blending <span class="italic-serif">Mechanics</span> with the <span class="italic-serif">Living World</span>.</h1>
-          <p>
-            I recently graduated from <strong>Caltech</strong> with a major in <strong>Mechanical Engineering</strong> and a minor in <strong>Biology</strong>. My work lives at the intersection of precision robotics and biological systems—designing hardware that moves with the elegance of nature.
-          </p>
-        </div>
-        <div class="about-profile-frame">
-          <img src="image/about3.png" alt="Sara Razavi" class="about-img">
-          <div class="frame-decoration"></div>
-        </div>
+  <main class="story-wrapper">
+    
+    <section class="story-chapter intro">
+      <div class="chapter-content">
+        <h2 class="chapter-number">01</h2>
+        <h1 class="chapter-title">The <span class="serif-italic">Intersection</span></h1>
+        <p class="big-p">
+          Most people see a machine and a living organism as opposites. I see them as the same language. 
+          As a <strong>Caltech Mechanical Engineer</strong> with a <strong>Biology minor</strong>, 
+          I don't just build parts; I study how nature has already perfected movement over millions of years.
+        </p>
+      </div>
+      <div class="parallax-img-wrapper">
+        <img src="image/about3.png" alt="Sara at Caltech" class="parallax-img">
       </div>
     </section>
 
-    <section class="journey-section">
-      <div class="journey-grid">
-        <div class="journey-card">
-          <div class="card-icon"><i class="fas fa-microscope"></i></div>
-          <h3>The Caltech Era</h3>
-          <p>Rigorous problem-solving meets deep-dive biological research. I spent my time exploring how synthetic structures can aid human recovery.</p>
+    <section class="story-chapter migration">
+      <div class="migration-visual">
+         <div class="path-line"></div>
+      </div>
+      <div class="chapter-content">
+        <h2 class="chapter-number">02</h2>
+        <h1 class="chapter-title">The <span class="serif-italic">Odyssey</span></h1>
+        <div class="location-timeline">
+            <div class="loc"><span>Baton Rouge</span><p>Roots in the South</p></div>
+            <div class="loc"><span>Fairfax</span><p>Growth in the East</p></div>
+            <div class="loc"><span>Pasadena</span><p>Innovation at Caltech</p></div>
         </div>
-        <div class="journey-card">
-          <div class="card-icon"><i class="fas fa-compass"></i></div>
-          <h3>My Roots</h3>
-          <p>From the bayous of Baton Rouge to the tech-hubs of Fairfax and finally the labs of Pasadena. A journey across the states fueled by curiosity.</p>
-        </div>
-        <div class="journey-card">
-          <div class="card-icon"><i class="fas fa-pen-nib"></i></div>
-          <h3>Beyond the Lab</h3>
-          <p>When the tools go down, the brushes come out. Whether it's poetry or painting, I believe the best engineers are also storytellers.</p>
-        </div>
+        <p>
+          My journey across the states mirrors my technical journey: a constant migration toward 
+          more complex systems and bigger questions.
+        </p>
       </div>
     </section>
+
+    <section class="story-chapter dual-identity">
+      <div class="split-content">
+        <div class="engineering-side">
+          <h3>The Engineer</h3>
+          <p>Analyzing stress loads, designing gearboxes, and optimizing snake-robot gaits.</p>
+        </div>
+        <div class="creative-side">
+          <h3>The Storyteller</h3>
+          <p>Painting with oils and writing poetry. Because every great design needs a soul.</p>
+        </div>
+      </div>
+      <div class="center-quote">
+        <blockquote>"Precision is nothing without purpose."</blockquote>
+      </div>
+    </section>
+
   </main>
 
   <footer>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/sara-razavi" target="_blank"><i class="fab fa-linkedin"></i></a>
     </div>
-    <p>© 2026 Sara Razavi. Coded by Yours Truly.</p>
+    <p>© 2026 Sara Razavi. All Rights Reserved.</p>
+    <p>Coded by Yours Truly</p>
   </footer>
 
   <script src="script.js"></script>
