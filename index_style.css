@@ -8,8 +8,8 @@
 }
 
 html, body {
-  width: 100%;
   min-height: 100%;
+  width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
   background-color: #fff;
@@ -17,12 +17,13 @@ html, body {
   flex-direction: column;
 }
 
-/* Allow scrolling if height is tight */
-@media (min-width: 1024px) {
-  body { 
-    height: 100vh; 
-    overflow-x: hidden;
-  }
+/* Desktop: Fixed Viewport | Mobile: Scrollable */
+@media (min-width: 769px) {
+  body { overflow: hidden; height: 100vh; }
+}
+
+@media (max-width: 768px) {
+  body { overflow-y: auto; height: auto; }
 }
 
 /* =========================================
@@ -37,6 +38,7 @@ header {
   z-index: 1100;
   background: #fff;
   border-bottom: 1px solid #eeeeee;
+  position: relative;
 }
 
 header .logo img {
@@ -48,50 +50,56 @@ header .logo img {
 .nav-menu {
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .nav-menu a {
   text-decoration: none;
   color: #000;
-  transition: opacity 0.3s;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
 }
 
 .nav-menu a:hover { opacity: 0.5; }
 
 /* =========================================
-   3. HERO SECTION & MARQUEE
+   3. HERO SECTION & PERFECTLY CENTERED MARQUEE
    ========================================= */
 .home-main {
   flex: 1;
   display: flex;
   position: relative;
+  overflow: hidden; 
 }
 
 .hero-section {
   width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; 
-  padding-top: 5vh; 
+  justify-content: center; 
+  align-items: center;     
   position: relative;
+  padding: 40px 20px;
 }
 
 .marquee-container {
   position: absolute;
-  top: 160px; /* Anchored behind the head */
+  top: 50%; /* Mathematically centered vertically */
   left: 0;
-  width: 100%;
+  width: 100vw;
   transform: translateY(-50%);
   z-index: 1;
   pointer-events: none;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .marquee-content {
   display: inline-block;
   white-space: nowrap;
-  animation: scrollText 30s linear infinite;
+  animation: scrollText 25s linear infinite;
+  will-change: transform;
 }
 
 .marquee-content span {
@@ -99,8 +107,9 @@ header .logo img {
   font-style: italic;
   font-size: 18vw;
   color: #000;
-  opacity: 0.04;
+  opacity: 0.04; /* Very subtle behind photo */
   padding-right: 100px;
+  line-height: 1;
 }
 
 @keyframes scrollText {
@@ -108,16 +117,15 @@ header .logo img {
   to { transform: translateX(-50%); }
 }
 
-/* =========================================
-   4. CENTER CONTENT & CENTERING FIX
-   ========================================= */
+/* Content Wrapper */
 .hero-content-wrapper {
   position: relative;
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; /* Ensures children are centered */
+  text-align: center;
+  max-width: 850px;
   width: 100%;
 }
 
@@ -126,44 +134,33 @@ header .logo img {
   height: 240px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.06);
   border: 4px solid #fff;
-  background: #fff;
+  animation: softPulse 4s infinite ease-in-out;
+}
+
+@keyframes softPulse {
+  0% { box-shadow: 0 15px 35px rgba(0,0,0,0.06), 0 0 0 0px rgba(0,0,0,0.02); }
+  50% { box-shadow: 0 15px 35px rgba(0,0,0,0.06), 0 0 0 15px rgba(0,0,0,0.04); }
+  100% { box-shadow: 0 15px 35px rgba(0,0,0,0.06), 0 0 0 0px rgba(0,0,0,0.02); }
 }
 
 .floating-avatar { width: 100%; height: 100%; object-fit: cover; }
-
-.hero-bio {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
 
 .hero-bio h1 {
   font-family: 'Times New Roman', serif;
   font-size: 2.6rem;
   font-weight: normal;
-  line-height: 1.3;
+  line-height: 1.2;
   margin-bottom: 25px;
-  max-width: 850px;
-  text-align: center; /* Forces the text block to center */
 }
 
 .highlight {
   font-style: italic;
   font-weight: 700;
-  display: inline-block; /* Helps with centering logic */
-  border-right: 3px solid #000;
-  padding-right: 4px;
-  margin-left: 5px;
-  animation: blink 0.7s infinite;
-  min-width: 20px; /* Prevents layout jump */
-}
-
-@keyframes blink {
-  0%, 100% { border-color: transparent; }
-  50% { border-color: black; }
+  border-right: 2px solid #000;
+  padding-right: 5px;
 }
 
 .resume-btn {
@@ -179,131 +176,133 @@ header .logo img {
   font-size: 0.75rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.resume-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;
+  transition: all 0.3s ease;
 }
 
 .resume-btn:hover {
+  background: #000;
   color: #fff;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-
-.resume-btn:hover::before { left: 0; }
-
-.resume-btn i {
-  font-size: 0.8rem;
-  transition: transform 0.3s ease;
-}
-
-.resume-btn:hover i { transform: translate(2px, -2px); }}
 
 /* =========================================
-   5. STATUS CIRCLES (COLORS FIXED)
+   4. STATUS CIRCLES (PERMANENT COLORS)
    ========================================= */
 .status-container {
   display: flex;
   gap: 40px;
   margin-top: 40px;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .status-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 130px;
+  width: 140px;
+  cursor: pointer;
 }
 
 .circle-icon {
-  width: 65px; height: 65px;
-  border: 1px solid #e0e0e0;
+  width: 65px;
+  height: 65px;
+  border: 1.5px solid #e0e0e0;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
   transition: all 0.4s ease;
-  background-color: transparent;
+  background: #fff;
 }
 
-.status-label { font-size: 0.6rem; text-transform: uppercase; color: #bbb; letter-spacing: 1px; margin-bottom: 3px;}
-.status-value { font-size: 0.85rem; font-family: 'Times New Roman', serif; font-style: italic; color: #444;}
-
+/* Base Icons */
 .viking-icon, .reddit-icon, .kintsugi-icon {
-  width: 28px; height: 28px;
-  background-color: #555;
-  mask-size: contain; mask-repeat: no-repeat; mask-position: center;
-  -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
-  transition: 0.3s;
+  width: 32px;
+  height: 32px;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 }
 
-.viking-icon { mask-image: url('image/longship.png'); -webkit-mask-image: url('image/longship.png'); }
-.reddit-icon { mask-image: url('image/reddit-snoo.png'); -webkit-mask-image: url('image/reddit-snoo.png'); }
-.kintsugi-icon { mask-image: url('image/kintsugi-bowl.png'); -webkit-mask-image: url('image/kintsugi-bowl.png'); }
+/* Assigned Permanent Colors */
+.viking-icon { background-color: #3688e0; -webkit-mask-image: url('image/longship.png'); mask-image: url('image/longship.png'); }
+.reddit-icon { background-color: #FF4500; -webkit-mask-image: url('image/reddit-snoo.png'); mask-image: url('image/reddit-snoo.png'); }
+.kintsugi-icon { background-color: #D4AF37; -webkit-mask-image: url('image/kintsugi-bowl.png'); mask-image: url('image/kintsugi-bowl.png'); }
 
-/* HOVER COLORS RESTORED */
-.status-item:hover .circle-icon.watching-icon { border-color: #3688e0; box-shadow: 0 0 15px rgba(54,136,224,0.2); }
-.status-item:hover .viking-icon { background-color: #3688e0; }
+/* Hover Glows */
+.status-item:hover .circle-icon.watching-icon { border-color: #3688e0; box-shadow: 0 0 15px rgba(54, 136, 224, 0.4); transform: translateY(-5px); }
+.status-item:hover .circle-icon.reading-icon { border-color: #FF4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.4); transform: translateY(-5px); }
+.status-item:hover .circle-icon.learning-icon { border-color: #D4AF37; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); transform: translateY(-5px); }
 
-.status-item:hover .circle-icon.reading-icon { border-color: #FF4500; box-shadow: 0 0 15px rgba(255,69,0,0.2); }
-.status-item:hover .reddit-icon { background-color: #FF4500; }
+.status-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #bbb;
+  margin-bottom: 4px;
+}
 
-.status-item:hover .circle-icon.learning-icon { border-color: #D4AF37; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
-.status-item:hover .kintsugi-icon { background-color: #D4AF37; }
+.status-value {
+  font-size: 0.85rem;
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+  color: #444;
+}
 
 /* =========================================
-   6. SPOTIFY WIDGET (FIXED ON RIGHT)
+   5. SPOTIFY WIDGET (BOTTOM RIGHT)
    ========================================= */
-@media (min-width: 1024px) {
-  .spotify-widget {
-    position: fixed; 
-    right: 30px;
-    bottom: 120px;
-    width: 320px;
-    z-index: 100;
-  }
-}
-
-.spotify-widget iframe {
+.spotify-widget {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  width: 320px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  height: 152px !important;
+  padding: 5px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
 /* =========================================
-   7. RESPONSIVE
+   6. FOOTER
    ========================================= */
-@media (max-width: 1024px) {
+footer {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  font-size: 0.7rem;
+  color: #aaa;
+  border-top: 1px solid #f9f9f9;
+  z-index: 10;
+}
+
+footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
+
+/* =========================================
+   7. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+  header { padding: 0 25px; }
+  
+  .hero-bio h1 { font-size: 1.8rem; }
+  .hero-image-wrapper { width: 180px; height: 180px; }
+  
   .spotify-widget {
     position: relative;
-    margin: 40px auto;
     width: 90%;
-    max-width: 400px;
+    margin: 40px auto 20px;
     right: auto;
     bottom: auto;
   }
-  
-  .hero-bio h1 { font-size: 2.1rem; padding: 0 20px; }
-  .hero-image-wrapper { width: 200px; height: 200px; }
-  .marquee-container { top: 140px; }
-}
 
-@media (max-height: 800px) and (min-width: 1024px) {
-    .spotify-widget { bottom: 80px; }
+  .marquee-container { top: 30%; } /* Slightly higher on mobile to clear the photo better */
 }
