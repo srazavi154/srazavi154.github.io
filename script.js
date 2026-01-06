@@ -30,11 +30,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 /* =========================================
    TYPEWRITER EFFECT
    ========================================= */
-const words = ["creator", "problem solver", "innovator", "designer", "engineer"];
+const words = ["professional-overthinker", "pixel-perfectionist", "whiteboard-philosopher", "complexity-simplifier"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-const speed = 150; // Base typing speed
+const speed = 180; // Base typing speed
 
 function type() {
     const typewriterSpan = document.getElementById("typewriter");
@@ -89,3 +89,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
