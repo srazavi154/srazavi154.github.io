@@ -285,17 +285,39 @@ header .logo img {
 /* =========================================
    5. FOOTER & SPOTIFY
    ========================================= */
+/* Update this in Section 5 */
 .spotify-widget {
   position: absolute;
   bottom: 20px; 
   right: 30px;
-  width: 350px;
+  width: 100%;       /* 1. Occupy full width of container... */
+  max-width: 350px;  /* 2. ...but never go over 350px */
   z-index: 20;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
+
+/* Update this inside your @media (max-width: 768px) block */
+@media (max-width: 768px) {
+  
+  .spotify-widget {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 40px auto;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s ease; /* Smooth transition when resizing */
+  }
+
+  /* Target the iframe height specifically for mobile */
+  .spotify-widget iframe {
+    height: 152px !important; 
+  }
+
+} /* End of Media Query */
 
 footer {
   height: 100px;
