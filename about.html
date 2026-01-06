@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="about_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-  <script src="//unpkg.com/globe.gl"></script>
 </head>
 <body>
 
@@ -30,36 +29,66 @@
   </header>
 
   <main class="about-main">
-    <section class="globe-section">
-      <div id="globeViz"></div>
-      
-      <div class="journey-card animate-on-scroll">
-        <span class="chapter-label">THE JOURNEY</span>
-        <div class="card-header">
-          <span class="chapter-num" id="chap-num">01</span>
-          <h2 id="city-title">Baton Rouge, LA</h2>
+    <section class="banner">
+        <div class="slider" style="--quantity: 6;">
+            <div class="item" style="--position: 1;">
+                <img src="image/caltech.jpg" alt="Caltech Life">
+                <div class="item-desc">Mechanical Engineering</div>
+            </div>
+            <div class="item" style="--position: 2;">
+                <img src="image/tinkering.jpg" alt="Tinkering">
+                <div class="item-desc">Tinkering with Gadgets</div>
+            </div>
+            <div class="item" style="--position: 3;">
+                <img src="image/poetry.jpg" alt="Writing">
+                <div class="item-desc">Poetry & Reflection</div>
+            </div>
+            <div class="item" style="--position: 4;">
+                <img src="image/painting.jpg" alt="Art">
+                <div class="item-desc">Painting & Design</div>
+            </div>
+            <div class="item" style="--position: 5;">
+                <img src="image/kintsugi.jpg" alt="Philosophy">
+                <div class="item-desc">Kintsugi Philosophy</div>
+            </div>
+            <div class="item" style="--position: 6;">
+                <img src="image/biology.jpg" alt="Biology Minor">
+                <div class="item-desc">Minor in Biology</div>
+            </div>
         </div>
-        <p id="city-desc">Where the journey began. Louisiana taught me the value of community and the spark of early scientific curiosity.</p>
-        <button class="next-city-btn" onclick="nextDestination()">
-          FOLLOW THE PATH <i class="fas fa-arrow-right"></i>
-        </button>
-      </div>
+
+        <div class="content">
+            <h1 data-content="SARA RAZAVI">SARA RAZAVI</h1>
+            <div class="author">
+                <h2>ENGINEER & CREATIVE</h2>
+                <p>Caltech Graduate</p>
+            </div>
+        </div>
     </section>
 
     <section class="story-content">
-      <div class="split-container animate-on-scroll">
-        <div class="split-box">
-          <span class="split-tag">THE ENGINEER</span>
-          <h3>Technical Rigor</h3>
-          <p>My time at Caltech redefined my approach to problem-solving. It wasn't just about formulas; it was about the intersection of mechanics and biology—building systems that mimic life.</p>
-        </div>
-        <div class="split-box">
-          <span class="split-tag">THE HUMAN</span>
-          <h3>Creative Philosophy</h3>
-          <p>Beyond the lab, I find balance in the philosophy of Kintsugi—finding beauty in the broken and strength in the repair. I believe our scars make us more resilient and unique.</p>
-        </div>
+      <div class="intro-block animate-on-scroll">
+        <h1><em class="Sara">Welcome to My World!</em></h1>
+        <p>
+          I’m a Mechanical Engineering graduate from the <strong>California Institute of Technology (Caltech)</strong> 
+          with a minor in Biology. My work is driven by a passion for creating things that don't just function, 
+          but make a difference.
+        </p>
+        <p>
+          Originally from <strong>Baton Rouge, Louisiana</strong>, my path took me through <strong>Fairfax, Virginia</strong>, 
+          and eventually to <strong>Pasadena, California</strong>. Each place added a layer to how I see the world and 
+          how I approach design.
+        </p>
+        <p>
+          Growing up, I've always had a broad range of interests—whether it was tinkering with gadgets, writing poetry, 
+          or painting. The common thread? <strong>The desire to create.</strong>
+        </p>
+        <p>
+          When I'm not designing or building something in the lab, you can find me spending time with family and friends, 
+          exploring new places, or getting lost in a good movie.
+        </p>
       </div>
-      
+
       <div class="quote-block animate-on-scroll">
         <blockquote>"The path isn't a straight line; it's a series of intentional turns."</blockquote>
       </div>
@@ -76,8 +105,6 @@
     <p>Coded by Yours Truly</p>
   </footer>
 
-  <script src="globe_script.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
-
