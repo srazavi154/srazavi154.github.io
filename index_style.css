@@ -227,12 +227,35 @@ nav a {
   font-style: italic;
   color: #444;
 }
+.demogorgon-icon {
+  width: 32px;  /* Adjust size to fit your circle */
+  height: 32px;
+  background-color: #555; /* The default gray color */
+  
+  /* The Masking Logic */
+  -webkit-mask-image: url('image/demogorgon.png'); /* Ensure path is correct */
+  mask-image: url('image/demogorgon.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  
+  display: inline-block;
+  transition: all 0.3s ease;
+}
 
-/* Stranger Things Vibe (Dark Mystery) */
-.watching-icon:hover {
-    color: #db202c !important; /* Stranger Things Red */
-    border-color: #db202c !important;
-    box-shadow: 0 0 15px rgba(219, 32, 44, 0.3);
+/* Change the "stencil" color to Stranger Things Red on hover */
+.status-item:hover .demogorgon-icon {
+  background-color: #db202c;
+  transform: scale(1.1);
+}
+/* Stranger Things */
+/* Keep the circle border turning red too */
+.status-item:hover .watching-icon {
+  border-color: #db202c !important;
+  box-shadow: 0 0 15px rgba(219, 32, 44, 0.2);
 }
 
 /* The Alchemist Vibe (Desert/Gold/Soul) */
