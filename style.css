@@ -1045,86 +1045,90 @@ iframe {
   height: 100%;
 }
 
-/* Hero Section Container */
+/* Hero Section Setup */
 .hero-section {
   position: relative;
-  height: 80vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Keeps marquee inside */
-  background-color: #ffffff;
+  overflow: hidden;
+  background-color: #fff;
 }
 
-/* Moving Text in Background */
+/* THE MARQUEE */
 .marquee-container {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   width: 100%;
   z-index: 1;
-  opacity: 0.1; /* Makes it subtle like the inspiration site */
   pointer-events: none;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
 .marquee-content {
-  display: inline-block;
-  font-size: 15vw; /* Huge text */
-  font-weight: 800;
+  display: flex;
+  animation: scrollText 30s linear infinite; /* Adjust speed here */
+}
+
+.marquee-content span {
+  /* The Unique Font Style */
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 18vw; /* Scale text to screen width */
+  font-weight: 400;
   color: #000;
-  animation: scrollText 20s linear infinite;
+  opacity: 0.08; /* Subtle transparency like matthisgarnier.io */
+  padding-right: 50px;
 }
 
+/* Animation Logic */
 @keyframes scrollText {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* Centered Avatar Image */
+/* AVATAR IMAGE */
 .hero-image-wrapper {
   position: relative;
-  z-index: 2; /* Sits above the text */
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
+  z-index: 2; /* Sits on top of the text */
+  width: 280px;
+  height: 280px;
+  border-radius: 50%; /* Circle shape */
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
 }
 
 .floating-avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.floating-avatar:hover {
-  transform: scale(1.05);
+.hero-image-wrapper:hover .floating-avatar {
+  transform: scale(1.08);
 }
 
-/* Bio Text underneath */
+/* BIO TEXT */
 .hero-bio {
   z-index: 2;
   text-align: center;
-  margin-top: 30px;
-  max-width: 600px;
+  max-width: 700px;
+  padding: 0 20px;
 }
 
 .hero-bio h1 {
-  font-size: 1.5rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.6rem;
   font-weight: 400;
-  line-height: 1.4;
+  color: #333;
 }
 
-/* PDF Viewer Styling */
-.pdf-viewer {
-  width: 80%;
-  height: 600px;
-  border: none;
-  margin: 50px auto;
-  display: block;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+.creator {
+  font-style: italic;
+  color: #007bff; /* Or your preferred highlight color */
 }
