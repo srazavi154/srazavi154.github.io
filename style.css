@@ -1045,27 +1045,6 @@ iframe {
   height: 100%;
 }
 
-/* Hero Section Setup */
-.hero-section {
-  position: relative;
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-color: #fff;
-}
-
-/* Vertical centering for the marquee */
-.marquee-container {
-  position: absolute;
-  top: 45%; /* Adjusted to sit behind the image better */
-  transform: translateY(-50%);
-  width: 100%;
-  z-index: 1;
-}
-
 .marquee-content {
   display: flex;
   animation: scrollText 30s linear infinite; /* Adjust speed here */
@@ -1169,3 +1148,98 @@ iframe {
   margin-bottom: 20px;
 }
 
+/* --- HERO FIXES --- */
+.hero-section {
+  height: 90vh; /* Taller hero to give room */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.marquee-container {
+  top: 40%; /* Moved up slightly to sit behind the headshot, not the bio */
+  opacity: 0.05; /* More subtle than before */
+}
+
+.hero-bio {
+  margin-top: 120px; /* Big gap to clear the marquee */
+}
+
+.statement {
+  font-size: 1.8rem;
+  line-height: 2; /* Vertical space between words */
+  letter-spacing: 1px;
+}
+
+/* --- THE LIBRARY SECTION --- */
+.library-shelves {
+  padding: 100px 20px;
+  background-color: #fdfdfd; /* Clean, light library feel */
+  text-align: center;
+}
+
+.shelf-intro h3 {
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.shelf {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 50px;
+  perspective: 1000px;
+}
+
+.book-spine {
+  width: 50px;
+  height: 220px;
+  padding: 15px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  writing-mode: vertical-rl;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: inset -3px 0 5px rgba(0,0,0,0.2);
+}
+
+/* Different Spine Colors (Pastels/Muted) */
+.reading { background: #e0d7c6; border-left: 4px solid #c4b59d; }
+.watching { background: #cedae0; border-left: 4px solid #b1c1c9; }
+.inspiration { background: #d7e0ce; border-left: 4px solid #b9c7ae; }
+
+.book-spine .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+.book-spine .book-title {
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* INTERACTION */
+.book-spine:hover {
+  transform: rotateY(-15deg) translateZ(20px) scale(1.05);
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.1);
+  filter: brightness(1.05);
+}
+
+.shelf-base {
+  width: 350px;
+  height: 8px;
+  background: #333; /* The "Shelf" line */
+  margin: 0 auto;
+  border-radius: 10px;
+}
