@@ -93,7 +93,7 @@ header .logo img {
 
 .marquee-container {
   position: absolute;
-  top: 30%;
+  top: 10%;
   left: 0;
   width: 100%;
   transform: translateY(-50%);
