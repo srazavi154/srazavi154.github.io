@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #fff;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* --- HEADER (Consistent with Home) --- */
+header {
+  height: 90px;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee;
+}
+
+nav { display: flex; gap: 30px; }
+nav a { text-decoration: none; color: #000; font-size: 0.9rem; transition: 0.3s; }
+nav a:hover { opacity: 0.4; }
+
+/* --- ABOUT HERO SECTION --- */
+.about-main {
+  padding: 80px 10%;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  margin-bottom: 100px;
+}
+
+.about-text-content {
+  flex: 1.5;
+}
+
+.category-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #999;
+  margin-bottom: 15px;
+}
+
+.about-text-content h1 {
+  font-family: 'Times New Roman', serif;
+  font-size: 3.5rem;
+  font-weight: normal;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.italic-serif { font-style: italic; }
+
+.about-text-content p {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 600px;
+}
+
+/* --- THE IMAGE FRAME --- */
+.about-profile-frame {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.about-img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  z-index: 2;
+  position: relative;
+  filter: grayscale(20%);
+}
+
+.frame-decoration {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+/* --- JOURNEY GRID --- */
+.journey-section {
+  border-top: 1px solid #eee;
+  padding-top: 80px;
+}
+
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.journey-card {
+  padding: 40px;
+  background: #fcfcfc;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+}
+
+.journey-card:hover {
+  background: #fff;
+  border-color: #eee;
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.journey-card h3 {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.journey-card p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* --- FOOTER --- */
+footer {
+  padding: 60px 0;
+  text-align: center;
+  border-top: 1px solid #eee;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.social-links { margin-bottom: 10px; }
+.social-links a { color: #000; font-size: 1.2rem; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-container { flex-direction: column; text-align: center; gap: 40px; }
+  .journey-grid { grid-template-columns: 1fr; }
+  .about-text-content h1 { font-size: 2.5rem; }
+}
