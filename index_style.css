@@ -226,7 +226,7 @@ nav a {
    ========================================= */
 .spotify-widget {
   position: absolute;
-  bottom: 20px;
+  bottom: 5px;
   right: 20px;
   width: 320px;
   z-index: 20;
