@@ -226,6 +226,35 @@ nav a {
   color: #444;
 }
 
+/* Stranger Things Vibe (Dark Mystery) */
+.watching-icon:hover {
+    color: #db202c !important; /* Stranger Things Red */
+    border-color: #db202c !important;
+    box-shadow: 0 0 15px rgba(219, 32, 44, 0.3);
+}
+
+/* The Alchemist Vibe (Desert/Gold/Soul) */
+.reading-icon:hover {
+    color: #d4af37 !important; /* Alchemy Gold */
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Creative Coding Vibe (Digital/Modern) */
+.learning-icon:hover {
+    color: #007bff !important; /* Tech Blue */
+    border-color: #007bff !important;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+}
+
+/* General style for the icons to make them look delicate */
+.circle-icon i {
+    transition: transform 0.3s ease;
+}
+
+.status-item:hover .circle-icon i {
+    transform: scale(1.2);
+}
 /* =========================================
    5. FOOTER & WIDGET
    ========================================= */
