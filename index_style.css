@@ -27,7 +27,7 @@ html, body {
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION (Hamburger Ready)
+   2. HEADER & NAVIGATION
    ========================================= */
 header {
   height: 90px;
@@ -35,7 +35,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1100; /* Higher than nav menu */
+  z-index: 1100;
   background: #fff;
   border-bottom: 1px solid #eeeeee;
   position: relative;
@@ -135,7 +135,6 @@ header .logo img {
   to { transform: translateX(-50%); }
 }
 
-/* Content Wrapper */
 .hero-content-wrapper {
   position: relative;
   z-index: 10;
@@ -194,7 +193,7 @@ header .logo img {
 .resume-btn:hover { background: #000; color: #fff; }
 
 /* =========================================
-   4. STATUS CIRCLES & CUSTOM PNG ICONS
+   4. STATUS CIRCLES & GLOW EFFECTS
    ========================================= */
 .status-container {
   display: flex;
@@ -227,10 +226,9 @@ header .logo img {
 /* Hover Physics */
 .status-item:hover .circle-icon {
   transform: translateY(-8px) rotate(5deg);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-/* Mask Icon Base Styles */
+/* Icons & Colors */
 .viking-icon, .reddit-icon, .kintsugi-icon {
   width: 32px;
   height: 32px;
@@ -242,29 +240,30 @@ header .logo img {
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask-position: center;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .viking-icon { -webkit-mask-image: url('image/longship.png'); mask-image: url('image/longship.png'); }
 .reddit-icon { -webkit-mask-image: url('image/reddit-snoo.png'); mask-image: url('image/reddit-snoo.png'); }
 .kintsugi-icon { -webkit-mask-image: url('image/kintsugi-bowl.png'); mask-image: url('image/kintsugi-bowl.png'); }
 
-/* Individual Hover Colors */
+/* Dynamic Hover Glows */
 .status-item:hover .viking-icon { background-color: #3688e0; transform: scale(1.1); }
-.status-item:hover .reddit-icon { background-color: #FF4500; transform: scale(1.1); }
-.status-item:hover .kintsugi-icon { background-color: #D4AF37; transform: scale(1.1); }
-
 .status-item:hover .watching-icon {
   border-color: #3688e0;
-  box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); /* Bronze Glow */
+  box-shadow: 0 0 25px rgba(54, 136, 224, 0.4);
 }
+
+.status-item:hover .reddit-icon { background-color: #FF4500; transform: scale(1.1); }
 .status-item:hover .reading-icon {
   border-color: #FF4500;
-  box-shadow: 0 0 25px rgba(255, 69, 0, 0.4); /* Reddit Orange Glow */
+  box-shadow: 0 0 25px rgba(255, 69, 0, 0.4);
 }
+
+.status-item:hover .kintsugi-icon { background-color: #D4AF37; transform: scale(1.1); }
 .status-item:hover .learning-icon {
   border-color: #D4AF37;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); /* Gold Glow */
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
 }
 
 .status-label {
@@ -285,39 +284,19 @@ header .logo img {
 /* =========================================
    5. FOOTER & SPOTIFY
    ========================================= */
-/* Update this in Section 5 */
 .spotify-widget {
   position: absolute;
   bottom: 20px; 
   right: 30px;
-  width: 100%;       /* 1. Occupy full width of container... */
-  max-width: 350px;  /* 2. ...but never go over 350px */
+  width: 100%;
+  max-width: 350px;
   z-index: 20;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
-
-/* Update this inside your @media (max-width: 768px) block */
-@media (max-width: 768px) {
-  
-  .spotify-widget {
-    position: relative;
-    width: 90%;
-    max-width: 400px;
-    margin: 40px auto;
-    right: 0;
-    bottom: 0;
-    transition: all 0.3s ease; /* Smooth transition when resizing */
-  }
-
-  /* Target the iframe height specifically for mobile */
-  .spotify-widget iframe {
-    height: 152px !important; 
-  }
-
-} /* End of Media Query */
 
 footer {
   height: 100px;
@@ -343,11 +322,11 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
   /* Hamburger Toggle */
   .menu-toggle { display: block; }
 
-  /* Mobile Nav Menu Overlap */
+  /* Mobile Nav Menu (Sliding from right) */
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -100%; /* Hidden */
+    right: -100%;
     width: 80%;
     height: 100vh;
     background: #fff;
@@ -363,7 +342,7 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
     position: static;
     box-shadow: none;
     text-align: center;
-    display: block; /* Show links by default on mobile */
+    display: block;
   }
 
   /* Content scaling */
@@ -371,12 +350,17 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
   .hero-image-wrapper { width: 180px; height: 180px; }
   .marquee-content span { font-size: 25vw; }
 
-  /* Footer & Widget stacking */
+  /* Spotify Mobile Fix */
   .spotify-widget {
     position: relative;
     width: 90%;
+    max-width: 400px;
     margin: 40px auto;
     right: 0;
     bottom: 0;
+  }
+
+  .spotify-widget iframe {
+    height: 152px !important; 
   }
 }
