@@ -109,7 +109,6 @@ header {
 
 .marquee-content {
   white-space: nowrap;
-  animation: scrollText 25s linear infinite;
 }
 
 .marquee-content span {
