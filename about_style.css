@@ -18,7 +18,7 @@ html, body {
 }
 
 /* =========================================
-   2. SHARED HEADER & NAVIGATION
+   2. SHARED HEADER & NAVIGATION (AS REQUESTED)
    ========================================= */
 header {
   height: 90px;
@@ -61,175 +61,121 @@ header .logo img {
 }
 
 /* =========================================
-   3. BRIGHT VIRAL GLOBE SECTION
+   3. 3D IMAGE SLIDER SECTION (REPLACES GLOBE)
    ========================================= */
-.globe-container {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* Full screen for the viral effect */
-  background-color: #ffffff; 
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #f0f0f0;
+.banner {
+    width: 100%;
+    height: 85vh; /* Adjusted to fit better with header */
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background-color: #ffffff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#globeViz {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.slider {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 20%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 25s linear infinite;
+    z-index: 2;
 }
 
-/* Floating Journey Card (Glassmorphism) */
-.journey-card {
-  position: relative;
-  z-index: 10;
-  margin-left: 8%;
-  width: 380px;
-  background: rgba(255, 255, 255, 0.7); /* High transparency */
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+@keyframes autoRun {
+    from { transform: perspective(1000px) rotateX(-10deg) rotateY(0deg); }
+    to { transform: perspective(1000px) rotateX(-10deg) rotateY(360deg); }
 }
 
-.chapter-num {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 5px;
-  color: #3688e0; /* Match the arc blue */
-  display: block;
-  margin-bottom: 10px;
+.slider .item {
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: 
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
+        translateZ(450px);
 }
 
-#city-title {
-  font-family: 'Times New Roman', serif;
-  font-size: 2.4rem;
-  font-weight: normal;
-  color: #1a1a1a;
-  margin-bottom: 15px;
+.slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-#city-desc {
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 25px;
+.item-desc {
+    position: absolute;
+    bottom: -35px;
+    width: 100%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.city-image-box {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  background: #f8f8f8;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-.city-image-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.next-city-btn {
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 14px 30px;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.next-city-btn:hover {
-  background: #3688e0;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(54, 136, 224, 0.2);
+.content h1 {
+    font-size: 10rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px #eeeeee;
+    position: relative;
+    z-index: 1;
 }
 
 /* =========================================
-   4. NARRATIVE STORY LAYOUT
+   4. NARRATIVE STORY SECTION
    ========================================= */
-.story-wrapper {
-  flex: 1;
-  overflow-x: hidden;
+.story-content {
+    padding: 100px 15%;
+    background: #fff;
 }
 
-.story-chapter {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  padding: 100px 10%;
-  position: relative;
+.intro-block {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.chapter-title {
-  font-family: 'Times New Roman', serif;
-  font-size: 4rem;
-  font-weight: normal;
-  margin-bottom: 40px;
-  line-height: 1.1;
+.intro-block h1 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 30px;
 }
 
-.big-p {
-  font-size: 1.4rem;
-  line-height: 1.6;
-  color: #444;
-  max-width: 750px;
+.intro-block p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 25px;
 }
 
-/* Chapter: The Split */
-.dual-identity { flex-direction: column; padding-bottom: 150px; }
-.split-content {
-  display: flex;
-  width: 100%;
-  gap: 100px;
-  margin-bottom: 100px;
+.Sara {
+    font-style: italic;
+    color: #000;
+    border-bottom: 2px solid #3688e0; /* Subtle blue accent */
 }
 
-.engineering-side, .creative-side { 
-  flex: 1; 
-  padding: 40px; 
-  border-left: 1px solid #eee; 
+.quote-block {
+    margin: 60px auto;
+    text-align: center;
+    max-width: 700px;
 }
 
-.engineering-side h3, .creative-side h3 {
-  font-family: 'Source Sans Pro', sans-serif;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 4px;
-  margin-bottom: 25px;
-  color: #888;
-}
-
-.center-quote {
-  font-family: 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 2.8rem;
-  text-align: center;
-  padding: 80px 20px;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
-  width: 100%;
+blockquote {
+    font-family: 'Times New Roman', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: #555;
 }
 
 /* =========================================
-   5. SHARED FOOTER
+   5. SHARED FOOTER (AS REQUESTED)
    ========================================= */
 footer {
   height: 100px;
@@ -246,7 +192,7 @@ footer {
 footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
 
 /* =========================================
-   6. MOBILE RESPONSIVENESS
+   6. MOBILE RESPONSIVENESS (AS REQUESTED)
    ========================================= */
 @media (max-width: 768px) {
   header { padding: 0 25px; }
@@ -267,23 +213,10 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
 
   .nav-menu.active { right: 0; }
 
-  /* Mobile Globe Adjustments */
-  .globe-container { height: 85vh; }
+  .content h1 { font-size: 4rem; }
+  .slider { width: 150px; height: 200px; }
+  .slider .item { transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(250px); }
   
-  .journey-card {
-    width: 90%;
-    margin: 0 auto;
-    bottom: 30px;
-    left: 5%;
-    position: absolute;
-    padding: 25px;
-  }
-  
-  #city-title { font-size: 1.8rem; }
-  .city-image-box { height: 140px; }
-
-  .story-chapter { padding: 60px 8%; }
-  .chapter-title { font-size: 2.8rem; }
-  .split-content { flex-direction: column; gap: 50px; }
-  .center-quote { font-size: 1.8rem; }
+  .intro-block h1 { font-size: 2rem; }
+  blockquote { font-size: 1.5rem; }
 }
