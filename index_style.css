@@ -224,12 +224,14 @@ nav a {
 /* =========================================
    5. FOOTER & WIDGET
    ========================================= */
+/* --- Layer 3: Spotify Widget --- */
 .spotify-widget {
   position: absolute;
-  bottom: 5px;
-  right: 20px;
+  bottom: 10px;    /* Decreased from 30px to bring it closer to the bottom */
+  right: 20px;     /* Optional: tucked slightly more into the corner */
   width: 320px;
-  z-index: 20;
+  z-index: 20;     /* Stays above the marquee */
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.08));
 }
 
 footer {
