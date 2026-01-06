@@ -1132,3 +1132,44 @@ iframe {
   font-style: italic;
   color: #007bff; /* Or your preferred highlight color */
 }
+
+/* Container for the button */
+.resume-cta {
+  margin-top: 40px;
+}
+
+/* The Button Styling */
+.resume-btn {
+  display: inline-block;
+  padding: 15px 35px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #000;
+  text-decoration: none;
+  border: 2px solid #000;
+  border-radius: 50px; /* Pill shape */
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+/* Hover Effect */
+.resume-btn:hover {
+  background-color: #000;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Icon spacing */
+.resume-btn i {
+  margin-left: 10px;
+  font-size: 0.8rem;
+}
+
+/* Ensure Bio text doesn't clash with the button */
+.hero-bio h1 {
+  margin-bottom: 20px;
+}
