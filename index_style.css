@@ -17,7 +17,7 @@ html, body {
   flex-direction: column;
 }
 
-/* Allow scrolling on laptops/smaller desktops to prevent overlap */
+/* Allow scrolling if height is tight */
 @media (min-width: 1024px) {
   body { 
     height: 100vh; 
@@ -108,7 +108,7 @@ header .logo img {
 }
 
 /* =========================================
-   4. CENTER CONTENT
+   4. CENTER CONTENT & CENTERING FIX
    ========================================= */
 .hero-content-wrapper {
   position: relative;
@@ -116,7 +116,7 @@ header .logo img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: center; /* Ensures children are centered */
   width: 100%;
 }
 
@@ -133,21 +133,31 @@ header .logo img {
 
 .floating-avatar { width: 100%; height: 100%; object-fit: cover; }
 
+.hero-bio {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .hero-bio h1 {
   font-family: 'Times New Roman', serif;
   font-size: 2.6rem;
   font-weight: normal;
-  line-height: 1.2;
+  line-height: 1.3;
   margin-bottom: 25px;
-  max-width: 750px;
+  max-width: 850px;
+  text-align: center; /* Forces the text block to center */
 }
 
 .highlight {
   font-style: italic;
   font-weight: 700;
-  border-right: 2px solid #000;
-  padding-right: 5px;
+  display: inline-block; /* Helps with centering logic */
+  border-right: 3px solid #000;
+  padding-right: 4px;
+  margin-left: 5px;
   animation: blink 0.7s infinite;
+  min-width: 20px; /* Prevents layout jump */
 }
 
 @keyframes blink {
@@ -174,20 +184,21 @@ header .logo img {
 .resume-btn:hover { background: #000; color: #fff; }
 
 /* =========================================
-   5. STATUS CIRCLES (COLORS RESTORED)
+   5. STATUS CIRCLES (COLORS FIXED)
    ========================================= */
 .status-container {
   display: flex;
   gap: 40px;
   margin-top: 40px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .status-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;
+  width: 130px;
 }
 
 .circle-icon {
@@ -199,14 +210,14 @@ header .logo img {
   align-items: center;
   margin-bottom: 10px;
   transition: all 0.4s ease;
+  background-color: transparent;
 }
 
-.status-label { font-size: 0.6rem; text-transform: uppercase; color: #bbb; letter-spacing: 1px;}
+.status-label { font-size: 0.6rem; text-transform: uppercase; color: #bbb; letter-spacing: 1px; margin-bottom: 3px;}
 .status-value { font-size: 0.85rem; font-family: 'Times New Roman', serif; font-style: italic; color: #444;}
 
-/* Icon Masks */
 .viking-icon, .reddit-icon, .kintsugi-icon {
-  width: 30px; height: 30px;
+  width: 28px; height: 28px;
   background-color: #555;
   mask-size: contain; mask-repeat: no-repeat; mask-position: center;
   -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
@@ -217,7 +228,7 @@ header .logo img {
 .reddit-icon { mask-image: url('image/reddit-snoo.png'); -webkit-mask-image: url('image/reddit-snoo.png'); }
 .kintsugi-icon { mask-image: url('image/kintsugi-bowl.png'); -webkit-mask-image: url('image/kintsugi-bowl.png'); }
 
-/* HOVER COLORS */
+/* HOVER COLORS RESTORED */
 .status-item:hover .circle-icon.watching-icon { border-color: #3688e0; box-shadow: 0 0 15px rgba(54,136,224,0.2); }
 .status-item:hover .viking-icon { background-color: #3688e0; }
 
@@ -228,14 +239,14 @@ header .logo img {
 .status-item:hover .kintsugi-icon { background-color: #D4AF37; }
 
 /* =========================================
-   6. SPOTIFY WIDGET (FIXED POSITION)
+   6. SPOTIFY WIDGET (FIXED ON RIGHT)
    ========================================= */
 @media (min-width: 1024px) {
   .spotify-widget {
-    position: fixed; /* Keeps it on the right without shifting the center */
+    position: fixed; 
     right: 30px;
     bottom: 120px;
-    width: 300px;
+    width: 320px;
     z-index: 100;
   }
 }
@@ -243,24 +254,11 @@ header .logo img {
 .spotify-widget iframe {
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  height: 152px !important;
 }
 
 /* =========================================
-   7. FOOTER
-   ========================================= */
-footer {
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.7rem;
-  color: #aaa;
-  border-top: 1px solid #f9f9f9;
-}
-
-/* =========================================
-   8. RESPONSIVE / MOBILE
+   7. RESPONSIVE
    ========================================= */
 @media (max-width: 1024px) {
   .spotify-widget {
@@ -268,9 +266,15 @@ footer {
     margin: 40px auto;
     width: 90%;
     max-width: 400px;
+    right: auto;
+    bottom: auto;
   }
   
-  .hero-bio h1 { font-size: 2rem; padding: 0 20px; }
+  .hero-bio h1 { font-size: 2.1rem; padding: 0 20px; }
   .hero-image-wrapper { width: 200px; height: 200px; }
   .marquee-container { top: 140px; }
+}
+
+@media (max-height: 800px) and (min-width: 1024px) {
+    .spotify-widget { bottom: 80px; }
 }
