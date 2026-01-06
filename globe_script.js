@@ -1,107 +1,105 @@
-// 1. DATA: Your Journey Locations
 const journey = [
   {
-    order: "01",
     city: "Baton Rouge, LA",
-    lat: 30.4515,
-    lng: -91.1871,
-    desc: "Where the journey began. Louisiana taught me the value of community and the spark of early scientific curiosity.",
-    img: "image/baton-rouge.jpg" // Make sure these images exist!
+    lat: 30.4515, lng: -91.1871,
+    desc: "Where it all began. Early roots in curiosity and community.",
+    img: "image/baton-rouge.jpg"
   },
   {
-    order: "02",
     city: "Fairfax, VA",
-    lat: 38.8462,
-    lng: -77.3064,
-    desc: "Moving to Virginia sharpened my focus. Here, I began diving deeper into the technical foundations that would lead me to engineering.",
+    lat: 38.8462, lng: -77.3064,
+    desc: "Moving East. Sharpening my technical focus and foundations.",
     img: "image/fairfax.jpg"
   },
   {
-    order: "03",
     city: "Pasadena, CA",
-    lat: 34.1478,
-    lng: -118.1445,
-    desc: "The Caltech Chapter. Immersed in a world of rigorous robotics and biological engineering, I learned to build for the future.",
+    lat: 34.1478, lng: -118.1445,
+    desc: "Caltech: Where engineering met biology at the highest level.",
     img: "image/caltech.jpg"
   },
   {
-    order: "04",
     city: "Fairfax, VA",
-    lat: 38.8462,
-    lng: -77.3064,
-    desc: "Returning with a global perspective, ready to apply my research and engineering skills to real-world healthcare challenges.",
+    lat: 38.8462, lng: -77.3064,
+    desc: "Applying Caltech research to solve real-world healthcare problems.",
     img: "image/virginia-return.jpg"
   }
 ];
 
 let currentIndex = 0;
+let isAnimating = false;
 
-// 2. INITIALIZE THE GLOBE
+// 1. INITIALIZE THE GLOBE (Bright & Clean Theme)
 const world = Globe()
   (document.getElementById('globeViz'))
-  .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg') // High-quality night view
-  .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
-  .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+  .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg') // Brighter texture
+  .backgroundImageUrl(null) // Removes the black space background
+  .backgroundColor('#ffffff') // Clean white background
   .showAtmosphere(true)
-  .atmosphereColor('lightskyblue')
-  .atmosphereDaylightAlpha(0.1);
+  .atmosphereColor('#3688e0')
+  .atmosphereDaylightAlpha(0.2);
 
-// 3. SET INITIAL VIEW
+// Disable default zoom so scroll moves the story instead
+world.controls().enableZoom = false;
+
+// 2. SET INITIAL VIEW
 world.pointOfView({ lat: journey[0].lat, lng: journey[0].lng, altitude: 2 }, 1000);
 
-// 4. ADD MARKERS (The Cities)
-world.pointsData(journey)
-  .pointColor(() => '#ffffff')
-  .pointRadius(0.5)
-  .pointLabel('city');
+// 3. THE VIRAL TRAVEL LOGIC (Scroll to Move)
+window.addEventListener('wheel', (event) => {
+    if (isAnimating) return; // Prevent "double-jumping" cities
 
-// 5. FUNCTION TO MOVE TO NEXT DESTINATION
-function nextDestination() {
-  const prevIndex = currentIndex;
-  currentIndex = (currentIndex + 1) % journey.length;
-  
-  const currentLoc = journey[currentIndex];
-  const prevLoc = journey[prevIndex];
-
-  // A. Move the Globe
-  world.pointOfView({ 
-    lat: currentLoc.lat, 
-    lng: currentLoc.lng, 
-    altitude: 1.8 
-  }, 2000);
-
-  // B. Draw Flight Arc
-  const arcData = [{
-    startLat: prevLoc.lat,
-    startLng: prevLoc.lng,
-    endLat: currentLoc.lat,
-    endLng: currentLoc.lng,
-    color: ['#ffffff', '#3688e0'] // White to Blue gradient
-  }];
-
-  world.arcsData([...world.arcsData(), ...arcData])
-    .arcColor('color')
-    .arcDashLength(0.4)
-    .arcDashGap(4)
-    .arcDashInitialGap(() => Math.random() * 5)
-    .arcDashAnimateTime(1500)
-    .arcStroke(0.5);
-
-  // C. Update the UI Card with a Fade Effect
-  const card = document.getElementById('journey-card');
-  card.style.opacity = 0;
-  
-  setTimeout(() => {
-    document.getElementById('chap-num').innerText = currentLoc.order;
-    document.getElementById('city-title').innerText = currentLoc.city;
-    document.getElementById('city-desc').innerText = currentLoc.desc;
-    document.getElementById('city-img').src = currentLoc.img;
-    card.style.opacity = 1;
-  }, 500);
-}
-
-// Auto-resize globe on window change
-window.addEventListener('resize', () => {
-  world.width(window.innerWidth);
-  world.height(window.innerHeight);
+    if (event.deltaY > 0) {
+        // Scrolling Down -> Next City
+        if (currentIndex < journey.length - 1) {
+            currentIndex++;
+            updateJourney();
+        }
+    } else if (event.deltaY < 0) {
+        // Scrolling Up -> Previous City
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateJourney();
+        }
+    }
 });
+
+function updateJourney() {
+    isAnimating = true;
+    const currentLoc = journey[currentIndex];
+    const prevLoc = journey[currentIndex - 1] || journey[0];
+
+    // Move Globe
+    world.pointOfView({ 
+        lat: currentLoc.lat, 
+        lng: currentLoc.lng, 
+        altitude: 1.8 
+    }, 2000);
+
+    // Draw the "Viral" Arc
+    const arcData = [{
+        startLat: prevLoc.lat,
+        startLng: prevLoc.lng,
+        endLat: currentLoc.lat,
+        endLng: currentLoc.lng,
+        color: ['#3688e0', '#000000'] 
+    }];
+
+    world.arcsData([...world.arcsData(), ...arcData])
+        .arcDashLength(0.5)
+        .arcDashGap(2)
+        .arcDashAnimateTime(1000)
+        .arcStroke(0.7);
+
+    // Update the UI Card
+    const card = document.getElementById('journey-card');
+    card.style.opacity = 0;
+    
+    setTimeout(() => {
+        document.getElementById('chap-num').innerText = `0${currentIndex + 1}`;
+        document.getElementById('city-title').innerText = currentLoc.city;
+        document.getElementById('city-desc').innerText = currentLoc.desc;
+        document.getElementById('city-img').src = currentLoc.img;
+        card.style.opacity = 1;
+        isAnimating = false; // Release lock
+    }, 800);
+}
