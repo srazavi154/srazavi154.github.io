@@ -7,11 +7,10 @@
   box-sizing: border-box;
 }
 
-/* Force the page to fit exactly into the window */
 html, body {
   height: 100vh;
   width: 100vw;
-  overflow: hidden; /* This stops all scrolling */
+  overflow: hidden; 
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
   background-color: #fff;
@@ -23,16 +22,17 @@ body {
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION
+   2. HEADER & NAVIGATION (Fixed Alignment & Border)
    ========================================= */
 header {
-  height: 80px;
+  height: 90px;
   padding: 0 50px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  z-index: 100; /* Stays above everything */
+  align-items: center; /* Aligns logo and nav links perfectly */
+  z-index: 100;
   background: #fff;
+  border-bottom: 1px solid #eeeeee; /* The subtle separator line */
 }
 
 .logo img {
@@ -52,11 +52,7 @@ nav a {
   transition: opacity 0.3s ease;
 }
 
-nav a:hover {
-  opacity: 0.4;
-}
-
-/* Dropdown styling */
+/* Dropdown Logic */
 .dropdown { position: relative; }
 .dropdown-content {
   display: none;
@@ -67,18 +63,14 @@ nav a:hover {
   border-radius: 5px;
   top: 100%;
 }
-.dropdown-content a {
-  padding: 12px;
-  display: block;
-  font-size: 0.9rem;
-}
+.dropdown-content a { padding: 12px; display: block; font-size: 0.9rem; }
 .dropdown:hover .dropdown-content { display: block; }
 
 /* =========================================
-   3. HERO SECTION (The Middle Part)
+   3. HERO SECTION & TYPEWRITER
    ========================================= */
 .home-main {
-  flex: 1; /* Takes up all space between header and footer */
+  flex: 1;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -92,14 +84,14 @@ nav a:hover {
   position: relative;
 }
 
-/* --- Layer 1: The Marquee (Moving Background) --- */
+/* Marquee stays behind everything */
 .marquee-container {
   position: absolute;
   top: 50%;
   left: 0;
   width: 100%;
   transform: translateY(-50%);
-  z-index: 1; /* Lowest layer */
+  z-index: 1;
   pointer-events: none;
   overflow: hidden;
 }
@@ -113,9 +105,9 @@ nav a:hover {
 .marquee-content span {
   font-family: 'Times New Roman', serif;
   font-style: italic;
-  font-size: 18vw; /* Scale based on screen width */
+  font-size: 18vw;
   color: #000;
-  opacity: 0.04; /* Very subtle */
+  opacity: 0.04;
   padding-right: 100px;
 }
 
@@ -124,115 +116,141 @@ nav a:hover {
   to { transform: translateX(-50%); }
 }
 
-/* --- Layer 2: Main Content (The "I'm a Creator" Part) --- */
+/* Main Content Layer */
 .hero-content-wrapper {
   position: relative;
-  z-index: 10; /* Above the marquee */
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 750px;
-  padding: 20px;
+  max-width: 850px;
 }
 
 .hero-image-wrapper {
-  width: 260px;
-  height: 260px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 25px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
 }
 
-.floating-avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.floating-avatar { width: 100%; height: 100%; object-fit: cover; }
 
 .hero-bio h1 {
   font-family: 'Times New Roman', serif;
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: normal;
-  line-height: 1.1;
-  color: #1a1a1a;
-  margin-bottom: 30px;
+  line-height: 1.2;
+  margin-bottom: 25px;
 }
 
-.creator {
+/* Typewriter Highlight Style */
+.highlight {
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
+  border-right: 2px solid #000; /* The blinking cursor */
+  padding-right: 5px;
 }
 
-/* View Resume Button */
 .resume-btn {
   display: inline-block;
-  padding: 14px 35px;
+  padding: 12px 30px;
   border: 1.5px solid #000;
   border-radius: 50px;
   text-decoration: none;
   color: #000;
   font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 1.5px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-
-.resume-btn:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(-2px);
-}
-
-/* --- Layer 3: Spotify Widget --- */
-.spotify-widget {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  width: 340px;
-  z-index: 20; /* Above everything else */
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+  transition: 0.3s;
 }
 
 /* =========================================
-   4. FOOTER
+   4. STATUS CIRCLES (Fantasy/Botanical)
    ========================================= */
+.status-container {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+}
+
+.circle-icon {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #555;
+  transition: all 0.4s ease;
+}
+
+/* Fantasy Hover Effect */
+.status-item:hover .circle-icon {
+  transform: translateY(-8px) rotate(10deg);
+  border-color: #000;
+  color: #000;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.status-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #bbb;
+  margin-bottom: 4px;
+}
+
+.status-value {
+  font-size: 0.85rem;
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+  color: #444;
+}
+
+/* =========================================
+   5. FOOTER & WIDGET
+   ========================================= */
+.spotify-widget {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  z-index: 20;
+}
+
 footer {
-  height: 100px;
+  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: #fff;
-  font-size: 0.75rem;
-  color: #999;
+  font-size: 0.7rem;
+  color: #aaa;
+  border-top: 1px solid #f9f9f9;
 }
 
-footer .social-links a {
-  color: #000;
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
+footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 5px; }
 
-/* =========================================
-   5. MOBILE ADJUSTMENTS
-   ========================================= */
+/* Mobile */
 @media (max-width: 768px) {
-  body { overflow-y: auto; height: auto; } /* Let mobile scroll */
-  
-  header { padding: 0 20px; height: 60px; }
-  nav { display: none; } /* Hide desktop nav on mobile */
-  
-  .hero-image-wrapper { width: 180px; height: 180px; }
-  .hero-bio h1 { font-size: 1.8rem; }
-  
-  .spotify-widget {
-    position: relative;
-    width: 90%;
-    bottom: 20px;
-    right: 0;
-    margin: 40px auto;
-  }
+  body { overflow-y: auto; height: auto; }
+  header { padding: 0 20px; }
+  nav { display: none; }
+  .status-container { flex-direction: column; gap: 20px; }
+  .spotify-widget { position: relative; width: 90%; margin: 20px auto; right: 0; }
 }
