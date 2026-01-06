@@ -105,6 +105,7 @@ header .logo img {
 .marquee-content {
   display: inline-block;
   white-space: nowrap;
+   animation: scrollText 30s linear infinite; /* Re-added animation property */
 }
 
 .marquee-content span {
