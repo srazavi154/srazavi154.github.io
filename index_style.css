@@ -277,7 +277,33 @@ footer {
   color: #aaa;
   border-top: 1px solid #f9f9f9;
 }
+/* =========================================
+   9. FADE-IN ANIMATIONS (Scroll Observer)
+   ========================================= */
 
+/* The Initial State: Hidden and slightly shifted down */
+.status-item, 
+.resume-btn,
+.hero-bio,
+.hero-image-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* The Active State: Triggered by script.js */
+.status-item.show, 
+.resume-btn.show,
+.hero-bio.show,
+.hero-image-wrapper.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: Stagger the three circles so they pop in one by one */
+.status-item:nth-child(1) { transition-delay: 0.1s; }
+.status-item:nth-child(2) { transition-delay: 0.3s; }
+.status-item:nth-child(3) { transition-delay: 0.5s; }
 /* =========================================
    8. MOBILE RESPONSIVENESS (Menu Logic)
    ========================================= */
