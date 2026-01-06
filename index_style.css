@@ -283,7 +283,7 @@ footer {
 footer .social-links a {
   color: #000 !important;
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
   display: inline-block;
   margin-bottom: 10px;
