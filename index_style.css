@@ -15,9 +15,9 @@ html, body {
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Global horizontal centering */
 }
 
-/* On large desktops, keep it app-like. On laptops/small screens, allow scroll. */
 @media (min-width: 1024px) and (min-height: 850px) {
   body { height: 100vh; overflow: hidden; }
 }
@@ -26,12 +26,13 @@ html, body {
    2. HEADER & NAVIGATION
    ========================================= */
 header {
+  width: 100%;
   height: 90px;
   padding: 0 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2000; /* Higher than marquee */
+  z-index: 2000;
   background: #fff;
   border-bottom: 1px solid #eeeeee;
 }
@@ -39,7 +40,6 @@ header {
 header .logo img {
   width: 100px;
   height: auto;
-  margin-top: 35px;
 }
 
 .nav-menu {
@@ -58,7 +58,7 @@ header .logo img {
 .nav-menu a:hover { opacity: 0.5; }
 
 .menu-toggle {
-  display: none; /* Hidden on desktop */
+  display: none;
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 2100;
@@ -68,6 +68,7 @@ header .logo img {
    3. HERO SECTION & MARQUEE
    ========================================= */
 .home-main {
+  width: 100%;
   flex: 1;
   display: flex;
   position: relative;
@@ -86,7 +87,7 @@ header .logo img {
 
 .marquee-container {
   position: absolute;
-  top: 170px; /* Anchored exactly behind the head */
+  top: 170px; 
   left: 0;
   width: 100%;
   transform: translateY(-50%);
@@ -116,7 +117,7 @@ header .logo img {
 }
 
 /* =========================================
-   4. CENTER CONTENT (The "I am a" fix)
+   4. CENTER CONTENT
    ========================================= */
 .hero-content-wrapper {
   position: relative;
@@ -137,6 +138,8 @@ header .logo img {
   box-shadow: 0 15px 35px rgba(0,0,0,0.06);
   border: 4px solid #fff;
   background: #fff;
+  /* Always visible now to prevent "disappearing" bug */
+  opacity: 1; 
 }
 
 .floating-avatar { width: 100%; height: 100%; object-fit: cover; }
@@ -153,10 +156,9 @@ header .logo img {
   font-weight: normal;
   line-height: 1.3;
   margin-bottom: 25px;
-  text-align: center; /* Ensures central alignment */
+  text-align: center;
 }
 
-/* Typewriter Highlight Fix */
 .highlight {
   font-style: italic;
   font-weight: 700;
@@ -191,7 +193,7 @@ header .logo img {
 .resume-btn:hover { background: #000; color: #fff; }
 
 /* =========================================
-   5. STATUS CIRCLES (Colors Restored)
+   5. STATUS CIRCLES
    ========================================= */
 .status-container {
   display: flex;
@@ -222,7 +224,6 @@ header .logo img {
 .status-label { font-size: 0.6rem; text-transform: uppercase; color: #bbb; letter-spacing: 1px;}
 .status-value { font-size: 0.85rem; font-family: 'Times New Roman', serif; font-style: italic; color: #444;}
 
-/* Icon logic */
 .viking-icon, .reddit-icon, .kintsugi-icon {
   width: 30px; height: 30px;
   background-color: #555;
@@ -236,7 +237,6 @@ header .logo img {
 .reddit-icon { -webkit-mask-image: url('image/reddit-snoo.png'); mask-image: url('image/reddit-snoo.png'); }
 .kintsugi-icon { -webkit-mask-image: url('image/kintsugi-bowl.png'); mask-image: url('image/kintsugi-bowl.png'); }
 
-/* Specific Colors on Hover */
 .status-item:hover .circle-icon.watching-icon { border-color: #3688e0; box-shadow: 0 0 15px rgba(54,136,224,0.2); }
 .status-item:hover .viking-icon { background-color: #3688e0; }
 
@@ -247,7 +247,7 @@ header .logo img {
 .status-item:hover .kintsugi-icon { background-color: #D4AF37; }
 
 /* =========================================
-   6. SPOTIFY WIDGET (Fixed on Desktop)
+   6. SPOTIFY WIDGET
    ========================================= */
 @media (min-width: 1024px) {
   .spotify-widget {
@@ -265,10 +265,11 @@ header .logo img {
 }
 
 /* =========================================
-   7. FOOTER (LinkedIn Fix)
+   7. FOOTER (Centering & LinkedIn)
    ========================================= */
 footer {
-  height: 100px;
+  width: 100%;
+  height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -276,59 +277,54 @@ footer {
   font-size: 0.7rem;
   color: #aaa;
   border-top: 1px solid #f9f9f9;
+  background: #fff;
 }
 
-/* Forces LinkedIn icon to be black and slightly larger */
 footer .social-links a {
-  color: #000 !important; /* Forces black color */
+  color: #000 !important;
   text-decoration: none;
-  font-size: 1.6rem; /* Increased size (was likely 1.2rem) */
-  transition: opacity 0.3s ease;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
   display: inline-block;
   margin-bottom: 10px;
 }
 
+/* LinkedIn Hover Color */
 footer .social-links a:hover {
-  opacity: 0.6;
+  color: #0077B5 !important;
+  transform: scale(1.1);
 }
 
 /* =========================================
-   9. FADE-IN ANIMATIONS (Scroll Observer)
+   8. ANIMATIONS (SAFETY FIX)
    ========================================= */
-
-/* The Initial State: Hidden and slightly shifted down */
-.status-item, 
-.resume-btn,
-.hero-bio,
-.hero-image-wrapper {
+/* Only animate things below the main bio to prevent disappearing */
+.status-item, .resume-btn {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* The Active State: Triggered by script.js adding the .show class */
-.status-item.show, 
-.resume-btn.show,
-.hero-bio.show,
-.hero-image-wrapper.show {
+.status-item.show, .resume-btn.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Stagger the three circles so they pop in one by one */
 .status-item:nth-child(1) { transition-delay: 0.1s; }
-.status-item:nth-child(2) { transition-delay: 0.3s; }
-.status-item:nth-child(3) { transition-delay: 0.5s; }
+.status-item:nth-child(2) { transition-delay: 0.2s; }
+.status-item:nth-child(3) { transition-delay: 0.3s; }
+
 /* =========================================
-   8. MOBILE RESPONSIVENESS (Menu Logic)
+   9. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 1024px) {
+  header { padding: 0 20px; }
   .menu-toggle { display: block; }
 
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -100%; /* Hidden by default */
+    right: -100%;
     width: 80%;
     height: 100vh;
     background: #fff;
@@ -339,12 +335,15 @@ footer .social-links a:hover {
     z-index: 1500;
   }
 
-  /* When JS toggles .active */
-  .nav-menu.active {
-    right: 0;
-  }
-
+  .nav-menu.active { right: 0; }
   .nav-menu a { font-size: 1.5rem; }
+
+  /* Mobile Marquee Speed Normalization */
+  .marquee-content { animation: scrollText 15s linear infinite; }
+
+  .hero-bio h1 { font-size: 1.9rem; padding: 0 10px; }
+  .hero-image-wrapper { width: 180px; height: 180px; }
+  .marquee-container { top: 140px; }
 
   .spotify-widget {
     position: relative;
@@ -354,8 +353,4 @@ footer .social-links a:hover {
     right: auto;
     bottom: auto;
   }
-
-  .hero-bio h1 { font-size: 2rem; padding: 0 10px; }
-  .hero-image-wrapper { width: 180px; height: 180px; }
-  .marquee-container { top: 140px; }
 }
