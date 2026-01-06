@@ -1168,3 +1168,32 @@ iframe {
   font-size: 0.8rem;
 }
 
+/* --- Spotify Widget (Glassmorphism) --- */
+.spotify-widget {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 300px;
+  z-index: 1000;
+  
+  /* Glass Effect */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.spotify-widget:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Make sure footer doesn't hide the widget */
+footer {
+  padding-bottom: 100px;
+}
