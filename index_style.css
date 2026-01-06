@@ -44,7 +44,7 @@ header {
 header .logo img {
   width: 100px;
   height: auto;
-  top: 35px;
+  margin-top: 35px;
 }
 
 .nav-menu {
@@ -227,7 +227,6 @@ header .logo img {
 /* Hover Physics */
 .status-item:hover .circle-icon {
   transform: translateY(-8px) rotate(5deg);
-  border-color: #000;
   box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
@@ -254,6 +253,19 @@ header .logo img {
 .status-item:hover .viking-icon { background-color: #c5a059; transform: scale(1.1); }
 .status-item:hover .reddit-icon { background-color: #FF4500; transform: scale(1.1); }
 .status-item:hover .kintsugi-icon { background-color: #D4AF37; transform: scale(1.1); }
+
+.status-item:hover .watching-icon {
+  border-color: #c5a059;
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); /* Bronze Glow */
+}
+.status-item:hover .reading-icon {
+  border-color: #FF4500;
+  box-shadow: 0 0 25px rgba(255, 69, 0, 0.4); /* Reddit Orange Glow */
+}
+.status-item:hover .learning-icon {
+  border-color: #D4AF37;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); /* Gold Glow */
+}
 
 .status-label {
   font-size: 0.6rem;
