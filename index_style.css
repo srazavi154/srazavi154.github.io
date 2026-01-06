@@ -8,8 +8,9 @@
 }
 
 html, body {
-  min-height: 100%;
   width: 100%;
+  /* min-height ensures the background covers everything */
+  min-height: 100%;
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
   background-color: #fff;
@@ -17,13 +18,15 @@ html, body {
   flex-direction: column;
 }
 
-/* Desktop: App-like feel | Mobile: Scrolling allowed */
-@media (min-width: 769px) {
-  body { overflow: hidden; height: 100vh; }
-}
-
-@media (max-width: 768px) {
-  body { overflow-y: auto; height: auto; }
+/* Smart Overflow: 
+   Hide scrollbars only on large screens IF there is enough height.
+   If the screen is short (laptop/tablet), allow scrolling.
+*/
+@media (min-width: 1024px) and (min-height: 800px) {
+  body { 
+    overflow: hidden; 
+    height: 100vh; 
+  }
 }
 
 /* =========================================
@@ -31,7 +34,7 @@ html, body {
    ========================================= */
 header {
   height: 90px;
-  padding: 0 50px;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,12 +42,13 @@ header {
   background: #fff;
   border-bottom: 1px solid #eeeeee;
   position: relative;
+  flex-shrink: 0; /* Prevents header from squishing */
 }
 
 header .logo img {
   width: 100px;
   height: auto;
-  margin-top: 35px;
+  margin-top: 10px; /* Adjusted for better alignment */
 }
 
 .nav-menu {
@@ -66,34 +70,32 @@ header .logo img {
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
-  z-index: 1200;
 }
 
 /* =========================================
-   3. HERO SECTION & MARQUEE
+   3. HERO SECTION & BACKGROUND MARQUEE
    ========================================= */
 .home-main {
-  flex: 1;
+  flex: 1; /* Fills remaining space between header and footer */
   display: flex;
   position: relative;
-  overflow: hidden;
+  width: 100%;
 }
 
 .hero-section {
   width: 100%;
-  /* Takes up full space between header and footer */
-  min-height: calc(100vh - 190px); 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centers content vertically */
-  align-items: center;     /* Centers content horizontally */
+  align-items: center;
+  justify-content: flex-start; 
+  padding: 6vh 20px; /* Use vh to scale with screen height */
   position: relative;
-  padding: 40px 20px;
 }
 
 .marquee-container {
   position: absolute;
-  top: 25%;
+  /* Centered relative to the Image Area */
+  top: 18vh; 
   left: 0;
   width: 100%;
   transform: translateY(-50%);
@@ -105,7 +107,7 @@ header .logo img {
 .marquee-content {
   display: inline-block;
   white-space: nowrap;
-   animation: scrollText 30s linear infinite; /* Re-added animation property */
+  animation: scrollText 30s linear infinite;
 }
 
 .marquee-content span {
@@ -122,6 +124,9 @@ header .logo img {
   to { transform: translateX(-50%); }
 }
 
+/* =========================================
+   4. CENTER CONTENT (Bio & Stats)
+   ========================================= */
 .hero-content-wrapper {
   position: relative;
   z-index: 10;
@@ -129,35 +134,38 @@ header .logo img {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 850px;
+  max-width: 900px;
   width: 100%;
 }
 
 .hero-image-wrapper {
-  width: 240px;
-  height: 240px;
+  /* Scales based on screen width but has a max/min limit */
+  width: clamp(180px, 20vw, 240px);
+  height: clamp(180px, 20vw, 240px);
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 25px;
+  margin-bottom: 3vh;
   box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-  border: 4px solid #fff; /* White border to separate from marquee */
+  border: 4px solid #fff;
+  background: #fff;
   animation: softPulse 4s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
 @keyframes softPulse {
-  0% { box-shadow: 0 15px 35px rgba(0,0,0,0.06), 0 0 0 0px rgba(0,0,0,0.02); }
+  0%, 100% { box-shadow: 0 15px 35px rgba(0,0,0,0.06); }
   50% { box-shadow: 0 15px 35px rgba(0,0,0,0.06), 0 0 0 15px rgba(0,0,0,0.04); }
-  100% { box-shadow: 0 15px 35px rgba(0,0,0,0.06), 0 0 0 0px rgba(0,0,0,0.02); }
 }
 
 .floating-avatar { width: 100%; height: 100%; object-fit: cover; }
 
 .hero-bio h1 {
   font-family: 'Times New Roman', serif;
-  font-size: 2.6rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem); /* Responsive font size */
   font-weight: normal;
   line-height: 1.2;
   margin-bottom: 25px;
+  max-width: 80%;
 }
 
 .highlight {
@@ -189,194 +197,149 @@ header .logo img {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s ease;
 }
 
-/* The sliding background effect */
 .resume-btn::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
   background: #000;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 0.4s ease;
   z-index: -1;
 }
 
-.resume-btn:hover {
-  color: #fff;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
+.resume-btn:hover { color: #fff; transform: translateY(-3px); }
+.resume-btn:hover::before { left: 0; }
 
-.resume-btn:hover::before {
-  left: 0;
-}
-
-.resume-btn i {
-  font-size: 0.8rem;
-  transition: transform 0.3s ease;
-}
-
-.resume-btn:hover i {
-  transform: translate(2px, -2px); /* Makes the external link icon 'pop' */
-}
-/* =========================================
-   4. STATUS CIRCLES
-   ========================================= */
+/* Status Circles */
 .status-container {
   display: flex;
-  gap: 40px;
-  margin-top: 40px;
-  margin-bottom: 40px; /* Space before Spotify widget */
-  flex-wrap: wrap;
+  gap: 5%;
+  margin-top: 4vh;
   justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .status-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 140px;
-  cursor: pointer;
+  width: 120px;
+  margin-bottom: 20px;
 }
 
 .circle-icon {
-  width: 65px;
-  height: 65px;
+  width: 60px; height: 60px;
   border: 1px solid #e0e0e0;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  transition: all 0.4s ease;
+  transition: 0.4s ease;
 }
 
-.status-item:hover .circle-icon {
-  transform: translateY(-8px) rotate(5deg);
-}
+.status-item:hover .circle-icon { transform: translateY(-5px); border-color: #000; }
 
 .viking-icon, .reddit-icon, .kintsugi-icon {
-  width: 32px;
-  height: 32px;
+  width: 25px; height: 25px;
   background-color: #555;
-  display: inline-block;
-  -webkit-mask-size: contain;
   mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: center;
   mask-position: center;
-  transition: all 0.3s ease;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 }
 
-.viking-icon { -webkit-mask-image: url('image/longship.png'); mask-image: url('image/longship.png'); }
-.reddit-icon { -webkit-mask-image: url('image/reddit-snoo.png'); mask-image: url('image/reddit-snoo.png'); }
-.kintsugi-icon { -webkit-mask-image: url('image/kintsugi-bowl.png'); mask-image: url('image/kintsugi-bowl.png'); }
+.viking-icon { mask-image: url('image/longship.png'); -webkit-mask-image: url('image/longship.png'); }
+.reddit-icon { mask-image: url('image/reddit-snoo.png'); -webkit-mask-image: url('image/reddit-snoo.png'); }
+.kintsugi-icon { mask-image: url('image/kintsugi-bowl.png'); -webkit-mask-image: url('image/kintsugi-bowl.png'); }
 
-.status-item:hover .viking-icon { background-color: #3688e0; transform: scale(1.1); }
-.status-item:hover .watching-icon {
-  border-color: #3688e0;
-  box-shadow: 0 0 25px rgba(54, 136, 224, 0.4);
-}
-
-.status-item:hover .reddit-icon { background-color: #FF4500; transform: scale(1.1); }
-.status-item:hover .reading-icon {
-  border-color: #FF4500;
-  box-shadow: 0 0 25px rgba(255, 69, 0, 0.4);
-}
-
-.status-item:hover .kintsugi-icon { background-color: #D4AF37; transform: scale(1.1); }
-.status-item:hover .learning-icon {
-  border-color: #D4AF37;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
-}
-
-.status-label {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #bbb;
-  margin-bottom: 4px;
-}
-
-.status-value {
-  font-size: 0.85rem;
-  font-family: 'Times New Roman', serif;
-  font-style: italic;
-  color: #444;
-}
+.status-label { font-size: 0.6rem; text-transform: uppercase; color: #bbb; }
+.status-value { font-size: 0.85rem; font-family: 'Times New Roman', serif; font-style: italic; }
 
 /* =========================================
-   5. SPOTIFY WIDGET & FOOTER
+   5. SPOTIFY WIDGET (Pinned Right)
    ========================================= */
 .spotify-widget {
-  position: relative; /* Centers within the flex container */
-  margin-top: 30;   /* Pushes to the bottom of the content-wrapper */
-  width: 90%;
-  max-width: 400px;
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  width: 300px;
   z-index: 20;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
 }
 
+.spotify-widget iframe {
+  height: 80px !important;
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
 footer {
   height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
   font-size: 0.7rem;
   color: #aaa;
   border-top: 1px solid #f9f9f9;
+  flex-shrink: 0;
 }
 
 footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
 
 /* =========================================
-   6. MOBILE RESPONSIVENESS
+   7. RESPONSIVENESS (Laptops & Mobile)
    ========================================= */
-@media (max-width: 768px) {
-  header { padding: 0 25px; }
-  header .logo img { width: 80px; }
 
-  .menu-toggle { display: block; }
-
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    height: 100vh;
-    background: #fff;
-    flex-direction: column;
-    justify-content: center;
-    transition: 0.4s ease-in-out;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-    z-index: 1500;
-  }
-
-  .nav-menu.active { right: 0; }
-
-  /* Content scaling */
-  .hero-bio h1 { font-size: 1.8rem; padding: 0 10px; }
-  .hero-image-wrapper { width: 180px; height: 180px; }
-  .marquee-content span { font-size: 25vw; }
-
-  .status-container { gap: 20px; margin-bottom: 30px; }
-
+/* Tablets & Small Laptops */
+@media (max-width: 1200px) {
   .spotify-widget {
-    margin: 20px auto;
+    right: 20px;
+    width: 250px;
+  }
+}
+
+/* Vertical Check: If screen is too short, allow scrolling */
+@media (max-height: 700px) {
+  body { overflow-y: auto !important; height: auto !important; }
+}
+
+/* Mobile Devices */
+@media (max-width: 1024px) {
+  .spotify-widget {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin: 40px auto 0 auto;
+    width: 90%;
+    max-width: 350px;
+  }
+  
+  .hero-section {
+    padding-top: 40px;
   }
 
-  .spotify-widget iframe {
-    height: 152px !important; 
+  .marquee-container {
+    top: 130px; /* Adjust for smaller mobile header space */
   }
+}
+
+@media (max-width: 768px) {
+  header { padding: 0 20px; }
+  .menu-toggle { display: block; }
+  .nav-menu { display: none; } /* Handle with JS class toggle */
+
+  .hero-bio h1 { max-width: 95%; }
+  .marquee-content span { font-size: 25vw; }
 }
