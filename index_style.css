@@ -1,5 +1,5 @@
 /* =========================================
-   1. CORE RESET & HOME LAYOUT
+   1. CORE RESET & BASE LAYOUT
    ========================================= */
 * {
   margin: 0;
@@ -8,50 +8,65 @@
 }
 
 html, body {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden; 
+  min-height: 100%;
+  width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
   background-color: #fff;
-}
-
-body {
   display: flex;
   flex-direction: column;
 }
 
+/* Desktop: App-like feel | Mobile: Scrolling allowed */
+@media (min-width: 769px) {
+  body { overflow: hidden; height: 100vh; }
+}
+
+@media (max-width: 768px) {
+  body { overflow-y: auto; height: auto; }
+}
+
 /* =========================================
-   2. HEADER & NAVIGATION (Fixed Alignment & Border)
+   2. HEADER & NAVIGATION (Hamburger Ready)
    ========================================= */
 header {
   height: 90px;
   padding: 0 50px;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Aligns logo and nav links perfectly */
-  z-index: 100;
+  align-items: center;
+  z-index: 1100; /* Higher than nav menu */
   background: #fff;
-  border-bottom: 1px solid #eeeeee; /* The subtle separator line */
+  border-bottom: 1px solid #eeeeee;
+  position: relative;
 }
 
 header .logo img {
   width: 100px;
   height: auto;
-  margin-right: 15px;
-  margin-top: 35px;
 }
 
-nav {
+.nav-menu {
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
-nav a {
+.nav-menu a {
   text-decoration: none;
   color: #000;
   font-size: 1rem;
   transition: opacity 0.3s ease;
+}
+
+.nav-menu a:hover { opacity: 0.5; }
+
+/* Hamburger Icon Styles */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1200;
 }
 
 /* Dropdown Logic */
@@ -60,16 +75,17 @@ nav a {
   display: none;
   position: absolute;
   background: #fff;
-  min-width: 180px;
+  min-width: 200px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.05);
   border-radius: 5px;
   top: 100%;
+  z-index: 100;
 }
-.dropdown-content a { padding: 12px; display: block; font-size: 0.9rem; }
+.dropdown-content a { padding: 12px; display: block; font-size: 0.9rem; border-bottom: 1px solid #f9f9f9; }
 .dropdown:hover .dropdown-content { display: block; }
 
 /* =========================================
-   3. HERO SECTION & TYPEWRITER
+   3. HERO SECTION & MARQUEE
    ========================================= */
 .home-main {
   flex: 1;
@@ -84,9 +100,9 @@ nav a {
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 40px 20px;
 }
 
-/* Marquee stays behind everything */
 .marquee-container {
   position: absolute;
   top: 50%;
@@ -118,7 +134,7 @@ nav a {
   to { transform: translateX(-50%); }
 }
 
-/* Main Content Layer */
+/* Content Wrapper */
 .hero-content-wrapper {
   position: relative;
   z-index: 10;
@@ -149,16 +165,16 @@ nav a {
 }
 
 .highlight {
-    font-style: italic;
-    font-weight: 700;
-    border-right: 2px solid #000;
-    padding-right: 5px;
-    animation: blink 0.7s infinite;
+  font-style: italic;
+  font-weight: 700;
+  border-right: 2px solid #000;
+  padding-right: 5px;
+  animation: blink 0.7s infinite;
 }
 
 @keyframes blink {
-    0%, 100% { border-color: transparent; }
-    50% { border-color: black; }
+  0%, 100% { border-color: transparent; }
+  50% { border-color: black; }
 }
 
 .resume-btn {
@@ -174,14 +190,17 @@ nav a {
   text-transform: uppercase;
   transition: 0.3s;
 }
+.resume-btn:hover { background: #000; color: #fff; }
 
 /* =========================================
-   4. STATUS CIRCLES (Fantasy/Botanical)
+   4. STATUS CIRCLES & CUSTOM PNG ICONS
    ========================================= */
 .status-container {
   display: flex;
   gap: 40px;
   margin-top: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .status-item {
@@ -189,29 +208,51 @@ nav a {
   flex-direction: column;
   align-items: center;
   width: 140px;
+  cursor: pointer;
 }
 
 .circle-icon {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   border: 1px solid #e0e0e0;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  font-size: 1.2rem;
-  color: #555;
   transition: all 0.4s ease;
 }
 
-/* Fantasy Hover Effect */
+/* Hover Physics */
 .status-item:hover .circle-icon {
-  transform: translateY(-8px) rotate(10deg);
+  transform: translateY(-8px) rotate(5deg);
   border-color: #000;
-  color: #000;
   box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
+
+/* Mask Icon Base Styles */
+.viking-icon, .reddit-icon, .kintsugi-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #555;
+  display: inline-block;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.viking-icon { -webkit-mask-image: url('image/longship.png'); mask-image: url('image/longship.png'); }
+.reddit-icon { -webkit-mask-image: url('image/reddit-snoo.png'); mask-image: url('image/reddit-snoo.png'); }
+.kintsugi-icon { -webkit-mask-image: url('image/kintsugi-bowl.png'); mask-image: url('image/kintsugi-bowl.png'); }
+
+/* Individual Hover Colors */
+.status-item:hover .viking-icon { background-color: #c5a059; transform: scale(1.1); }
+.status-item:hover .reddit-icon { background-color: #FF4500; transform: scale(1.1); }
+.status-item:hover .kintsugi-icon { background-color: #D4AF37; transform: scale(1.1); }
 
 .status-label {
   font-size: 0.6rem;
@@ -227,74 +268,24 @@ nav a {
   font-style: italic;
   color: #444;
 }
-/* Base style for all mask-icons */
-.viking-icon, .reddit-icon, .kintsugi-icon {
-  width: 30px;
-  height: 30px;
-  background-color: #555;
-  display: inline-block;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  transition: all 0.3s ease;
-}
 
-/* 1. Vinland Saga - Viking Longship Mask */
-.viking-icon {
-  -webkit-mask-image: url('image/longship.png'); 
-  mask-image: url('image/longship.png');
-}
-.status-item:hover .viking-icon {
-  background-color: #c5a059; /* Bronze/Gold */
-}
-
-/* 2. Reddit Snoo Mask */
-.reddit-icon {
-  -webkit-mask-image: url('image/reddit-snoo.png');
-  mask-image: url('image/reddit-snoo.png');
-}
-.status-item:hover .reddit-icon {
-  background-color: #FF4500; /* Reddit Orange */
-}
-
-/* 3. Kintsugi Bowl Mask */
-.kintsugi-icon {
-  -webkit-mask-image: url('image/kintsugi-bowl.png');
-  mask-image: url('image/kintsugi-bowl.png');
-}
-.status-item:hover .kintsugi-icon {
-  background-color: #D4AF37; /* Metallic Gold */
-}
-/* General style for the icons to make them look delicate */
-.circle-icon i {
-    transition: transform 0.3s ease;
-}
-
-.status-item:hover .circle-icon i {
-    transform: scale(1.2);
-}
 /* =========================================
-   5. FOOTER & WIDGET
+   5. FOOTER & SPOTIFY
    ========================================= */
 .spotify-widget {
   position: absolute;
-  /* Adjusted bottom to 10px so it sits flush near the footer line */
-  bottom: 10px; 
+  bottom: 20px; 
   right: 30px;
   width: 350px;
   z-index: 20;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   border-radius: 15px;
-  padding: 5px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 
 footer {
-  height: 80px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -305,13 +296,52 @@ footer {
   border-top: 1px solid #f9f9f9;
 }
 
-footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 5px; }
+footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
 
-/* Mobile */
+/* =========================================
+   6. MOBILE RESPONSIVENESS
+   ========================================= */
 @media (max-width: 768px) {
-  body { overflow-y: auto; height: auto; }
-  header { padding: 0 20px; }
-  nav { display: none; }
-  .status-container { flex-direction: column; gap: 20px; }
-  .spotify-widget { position: relative; width: 90%; margin: 20px auto; right: 0; }
+  header { padding: 0 25px; }
+  header .logo img { width: 80px; }
+
+  /* Hamburger Toggle */
+  .menu-toggle { display: block; }
+
+  /* Mobile Nav Menu Overlap */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden */
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  }
+
+  .nav-menu.active { right: 0; }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    text-align: center;
+    display: block; /* Show links by default on mobile */
+  }
+
+  /* Content scaling */
+  .hero-bio h1 { font-size: 1.8rem; }
+  .hero-image-wrapper { width: 180px; height: 180px; }
+  .marquee-content span { font-size: 25vw; }
+
+  /* Footer & Widget stacking */
+  .spotify-widget {
+    position: relative;
+    width: 90%;
+    margin: 40px auto;
+    right: 0;
+    bottom: 0;
+  }
 }
