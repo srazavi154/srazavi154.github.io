@@ -8,8 +8,6 @@ let isDeleting = false;
 
 function type() {
     const typewriterSpan = document.getElementById("typewriter");
-    
-    // Safety check: only run if the element exists on this page
     if (!typewriterSpan) return;
 
     const currentWord = words[wordIndex];
@@ -46,19 +44,14 @@ function initMobileMenu() {
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            
-            // Toggle icon between bars and 'X'
             const icon = menuToggle.querySelector('i');
             if (navMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
+                icon.classList.replace('fa-bars', 'fa-times');
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                icon.classList.replace('fa-times', 'fa-bars');
             }
         });
 
-        // Close menu when a link is clicked (useful for mobile UX)
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -70,31 +63,35 @@ function initMobileMenu() {
 }
 
 /* =========================================
-   3. INTERSECTION OBSERVER (Fade-in animations)
+   3. SCROLL ANIMATIONS (Intersection Observer)
    ========================================= */
-const observerOptions = { threshold: 0.1 };
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
+function initAnimations() {
+    const observerOptions = { threshold: 0.15 };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, observerOptions);
+
+    // This targets .status-item (Home), .resume-btn (Home), 
+    // and .animate-on-scroll (About/Projects)
+    const elementsToAnimate = document.querySelectorAll('.status-item, .resume-btn, .animate-on-scroll, section');
+    
+    elementsToAnimate.forEach((el) => {
+        observer.observe(el);
     });
-}, observerOptions);
+}
 
 /* =========================================
    4. INITIALIZE ALL SCRIPTS
    ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
-    // Start Typewriter
     type();
-
-    // Start Mobile Menu
     initMobileMenu();
-
-    // Start Scroll Animations
-    document.querySelectorAll('section').forEach((section) => {
-        observer.observe(section);
-    });
+    initAnimations();
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
