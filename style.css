@@ -1057,15 +1057,13 @@ iframe {
   background-color: #fff;
 }
 
-/* THE MARQUEE */
+/* Vertical centering for the marquee */
 .marquee-container {
   position: absolute;
+  top: 45%; /* Adjusted to sit behind the image better */
+  transform: translateY(-50%);
   width: 100%;
   z-index: 1;
-  pointer-events: none;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
 }
 
 .marquee-content {
@@ -1113,19 +1111,16 @@ iframe {
   transform: scale(1.08);
 }
 
-/* BIO TEXT */
+/* Fix for the bio text being too high and cramped */
 .hero-bio {
   z-index: 2;
-  text-align: center;
-  max-width: 700px;
-  padding: 0 20px;
+  margin-top: 80px; /* Pushes it lower below the infinite text */
+  padding: 0 40px;
 }
 
 .hero-bio h1 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: #333;
+  line-height: 1.8; /* Increases space between lines of text */
+  letter-spacing: 0.5px; /* Makes text less "squished" */
 }
 
 .creator {
@@ -1173,3 +1168,4 @@ iframe {
 .hero-bio h1 {
   margin-bottom: 20px;
 }
+
