@@ -97,7 +97,7 @@ header .logo img {
     inset: 0 0 0 0;
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
-        translateZ(450px);
+        translateZ(550px); /* Increased from 450px to 550px for the 9 items */
 }
 
 .slider .item img {
