@@ -3,93 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Projects | Sara Razavi</title>
+  <link rel="stylesheet" href="projects_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <div class="logo">
-      <img src="image/logo.png" alt="Logo" style="width: 100px; height: auto;">
+      <img src="image/logo.png" alt="Logo">
     </div>
-    <!-- Navigation Menu -->
-    <nav>
+    <nav class="nav-menu">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <div class="dropdown">
-        <a href="projects.html" class="dropbtn">Projects</a>
-        <div class="dropdown-content">
-          <a href="bot-hockey.html">Bot Hockey</a>
-          <a href="snake-robot.html">Snake Robot Development</a>
-          <a href="transmission-gearbox.html">Transmission Gearbox</a>
-          <a href="robot-mirror-therapy.html">Robot Mirror Therapy</a>
-        </div>
-      </div>
+      <a href="projects.html" style="font-weight: bold; border-bottom: 2px solid #000;">Projects</a>
       <a href="playground.html">Playground</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  
-  <main>
-    <section>
-      <h2><em class="Sara">My Projects</em></h2>
-      <div class="bento-box">
-        <div class="bento-item">
-          <a href="bot-hockey.html"><img src="image/bot-hockey/Robots.jpg" alt="Bot Hockey Project" class="project-image"></a>
-          <h3><a href="bot-hockey.html">Bot Hockey</a></h3>
-          <p class="project-date">
-            Sep 2024 - Current
-          </p>
-          <p>
-            The Bot Hockey project focuses on developing a suite of competitive robots designed for strategic gameplay, leveraging advanced engineering principles to dominate in robotic hockey competitions.
-          </p>
-        </div>
-        <div class="bento-item">
-          <a href="snake-robot.html"><img src="image/snake-robot/snake.png" alt="Snake Robot Project" class="project-image"></a>
-          <h3><a href="snake-robot.html">Snake Robot Development</a></h3>
-          <p class="project-date">
-            Nov - Dec 2024
-          </p>
-          <p>
-            The Snake Robot is a biologically inspired robotic system designed for seamless navigation 
-            and obstacle avoidance, mimicking the fluid movement of real snakes.
-          </p>
-        </div>
-        <div class="bento-item">
-          <a href="transmission-gearbox.html"><img src="image/transmission-gearbox/transmission.png" alt="Transmission Gearbox Project" class="project-image"></a>
-          <h3><a href="transmission-gearbox.html">Transmission Gearbox</a></h3>
-          <p class="project-date">
-            May - June 2024
-          </p>
-          <p>
-            The Transmission Gearbox project focused on designing an efficient and durable gearbox system for automotive applications, optimizing torque distribution and energy transmission for enhanced vehicle performance.      
-      </p>
-        </div>
-        <div class="bento-item">
-          <a href="robot-mirror-therapy.html"><img src="image/robot-mirror-therapy/robot.png" alt="Robot Mirror Therapy Project" class="project-image"></a>
-          <h3><a href="robot-mirror-therapy.html">Robot Mirror Therapy</a></h3>
-          <p class="project-date">
-            June - Aug 2022
-          </p>
-          <p>
-            Developed a lightweight exoskeleton for children with hemiplegic cerebral palsy, integrating mirror therapy techniques to improve motor function and rehabilitation outcomes.
-          </p>
-        </div>
+
+  <main class="home-main">
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span>PROJECTS PROJECTS PROJECTS PROJECTS</span>
+        <span>PROJECTS PROJECTS PROJECTS PROJECTS</span>
       </div>
+    </div>
+
+    <section class="projects-hero">
+      <div class="projects-header">
+        <h1>Selected Works</h1>
+        <p>Hover to preview engineering in motion.</p>
+      </div>
+
+      <div class="netflix-grid">
+        <div class="netflix-card" onclick="window.location.href='bot-hockey.html'">
+          <div class="video-wrapper">
+            <video class="project-video" muted loop playsinline poster="image/bot-hockey-thumb.jpg">
+              <source src="video/bot-hockey.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-details">
+            <h3 class="card-title">Bot Hockey</h3>
+            <p class="card-meta"><span class="match">98% Match</span> Robotics</p>
+            <button class="details-btn">Learn More <i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        <div class="netflix-card" onclick="window.location.href='snake-robot.html'">
+          <div class="video-wrapper">
+            <video class="project-video" muted loop playsinline poster="image/snake-thumb.jpg">
+              <source src="video/snake-robot.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-details">
+            <h3 class="card-title">Snake Robot</h3>
+            <p class="card-meta"><span class="match">New</span> Biomechanics</p>
+            <button class="details-btn">Learn More <i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        </div>
     </section>
   </main>
-  
+
   <footer>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/sara-razavi" target="_blank"><i class="fab fa-linkedin"></i></a>
     </div>
-    <p>© 2025 Sara Razavi. All Rights Reserved.</p>
-    <p>Coded by Yours Truly</p>
-
+    <p>© 2026 Sara Razavi. All Rights Reserved.</p>
   </footer>
-  
-  <script src="script.js"></script>
+
+  <script>
+    const cards = document.querySelectorAll('.netflix-card');
+    cards.forEach(card => {
+      const video = card.querySelector('video');
+      card.addEventListener('mouseenter', () => video.play());
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  </script>
 </body>
 </html>
-
