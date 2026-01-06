@@ -17,12 +17,9 @@ html, body {
   flex-direction: column;
 }
 
-/* Allow scrolling if height is tight */
-@media (min-width: 1024px) {
-  body { 
-    height: 100vh; 
-    overflow-x: hidden;
-  }
+/* On large desktops, keep it app-like. On laptops/small screens, allow scroll. */
+@media (min-width: 1024px) and (min-height: 850px) {
+  body { height: 100vh; overflow: hidden; }
 }
 
 /* =========================================
@@ -34,28 +31,37 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1100;
+  z-index: 2000; /* Higher than marquee */
   background: #fff;
   border-bottom: 1px solid #eeeeee;
 }
 
 header .logo img {
   width: 100px;
-  margin-top: 35px;
+  height: auto;
 }
 
 .nav-menu {
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .nav-menu a {
   text-decoration: none;
   color: #000;
-  transition: opacity 0.3s;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
 }
 
 .nav-menu a:hover { opacity: 0.5; }
+
+.menu-toggle {
+  display: none; /* Hidden on desktop */
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2100;
+}
 
 /* =========================================
    3. HERO SECTION & MARQUEE
@@ -64,6 +70,7 @@ header .logo img {
   flex: 1;
   display: flex;
   position: relative;
+  overflow: hidden;
 }
 
 .hero-section {
@@ -72,25 +79,19 @@ header .logo img {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start; 
-  padding-top: 5vh; 
+  padding: 5vh 20px; 
   position: relative;
 }
 
 .marquee-container {
   position: absolute;
-  top: 160px; /* Anchored behind the head */
+  top: 170px; /* Anchored exactly behind the head */
   left: 0;
   width: 100%;
   transform: translateY(-50%);
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
-}
-
-.marquee-content {
-  display: inline-block;
-  white-space: nowrap;
-  animation: scrollText 30s linear infinite;
 }
 
 .marquee-content span {
@@ -102,13 +103,19 @@ header .logo img {
   padding-right: 100px;
 }
 
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollText 30s linear infinite;
+}
+
 @keyframes scrollText {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
 /* =========================================
-   4. CENTER CONTENT & CENTERING FIX
+   4. CENTER CONTENT (The "I am a" fix)
    ========================================= */
 .hero-content-wrapper {
   position: relative;
@@ -116,7 +123,7 @@ header .logo img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; /* Ensures children are centered */
+  text-align: center;
   width: 100%;
 }
 
@@ -135,8 +142,8 @@ header .logo img {
 
 .hero-bio {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  max-width: 850px;
+  margin: 0 auto;
 }
 
 .hero-bio h1 {
@@ -145,19 +152,18 @@ header .logo img {
   font-weight: normal;
   line-height: 1.3;
   margin-bottom: 25px;
-  max-width: 850px;
-  text-align: center; /* Forces the text block to center */
+  text-align: center; /* Ensures central alignment */
 }
 
+/* Typewriter Highlight Fix */
 .highlight {
   font-style: italic;
   font-weight: 700;
-  display: inline-block; /* Helps with centering logic */
+  display: inline-block;
   border-right: 3px solid #000;
   padding-right: 4px;
-  margin-left: 5px;
+  min-width: 2px;
   animation: blink 0.7s infinite;
-  min-width: 20px; /* Prevents layout jump */
 }
 
 @keyframes blink {
@@ -184,7 +190,7 @@ header .logo img {
 .resume-btn:hover { background: #000; color: #fff; }
 
 /* =========================================
-   5. STATUS CIRCLES (COLORS FIXED)
+   5. STATUS CIRCLES (Colors Restored)
    ========================================= */
 .status-container {
   display: flex;
@@ -210,25 +216,26 @@ header .logo img {
   align-items: center;
   margin-bottom: 10px;
   transition: all 0.4s ease;
-  background-color: transparent;
 }
 
-.status-label { font-size: 0.6rem; text-transform: uppercase; color: #bbb; letter-spacing: 1px; margin-bottom: 3px;}
+.status-label { font-size: 0.6rem; text-transform: uppercase; color: #bbb; letter-spacing: 1px;}
 .status-value { font-size: 0.85rem; font-family: 'Times New Roman', serif; font-style: italic; color: #444;}
 
+/* Icon logic */
 .viking-icon, .reddit-icon, .kintsugi-icon {
-  width: 28px; height: 28px;
+  width: 30px; height: 30px;
   background-color: #555;
-  mask-size: contain; mask-repeat: no-repeat; mask-position: center;
-  -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
   transition: 0.3s;
 }
 
-.viking-icon { mask-image: url('image/longship.png'); -webkit-mask-image: url('image/longship.png'); }
-.reddit-icon { mask-image: url('image/reddit-snoo.png'); -webkit-mask-image: url('image/reddit-snoo.png'); }
-.kintsugi-icon { mask-image: url('image/kintsugi-bowl.png'); -webkit-mask-image: url('image/kintsugi-bowl.png'); }
+.viking-icon { -webkit-mask-image: url('image/longship.png'); mask-image: url('image/longship.png'); }
+.reddit-icon { -webkit-mask-image: url('image/reddit-snoo.png'); mask-image: url('image/reddit-snoo.png'); }
+.kintsugi-icon { -webkit-mask-image: url('image/kintsugi-bowl.png'); mask-image: url('image/kintsugi-bowl.png'); }
 
-/* HOVER COLORS RESTORED */
+/* Specific Colors on Hover */
 .status-item:hover .circle-icon.watching-icon { border-color: #3688e0; box-shadow: 0 0 15px rgba(54,136,224,0.2); }
 .status-item:hover .viking-icon { background-color: #3688e0; }
 
@@ -239,14 +246,14 @@ header .logo img {
 .status-item:hover .kintsugi-icon { background-color: #D4AF37; }
 
 /* =========================================
-   6. SPOTIFY WIDGET (FIXED ON RIGHT)
+   6. SPOTIFY WIDGET (Fixed on Desktop)
    ========================================= */
 @media (min-width: 1024px) {
   .spotify-widget {
     position: fixed; 
-    right: 30px;
+    right: 40px;
     bottom: 120px;
-    width: 320px;
+    width: 300px;
     z-index: 100;
   }
 }
@@ -254,13 +261,49 @@ header .logo img {
 .spotify-widget iframe {
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  height: 152px !important;
 }
 
 /* =========================================
-   7. RESPONSIVE
+   7. FOOTER
+   ========================================= */
+footer {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  border-top: 1px solid #f9f9f9;
+}
+
+/* =========================================
+   8. MOBILE RESPONSIVENESS (Menu Logic)
    ========================================= */
 @media (max-width: 1024px) {
+  .menu-toggle { display: block; }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden by default */
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    z-index: 1500;
+  }
+
+  /* When JS toggles .active */
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-menu a { font-size: 1.5rem; }
+
   .spotify-widget {
     position: relative;
     margin: 40px auto;
@@ -269,12 +312,8 @@ header .logo img {
     right: auto;
     bottom: auto;
   }
-  
-  .hero-bio h1 { font-size: 2.1rem; padding: 0 20px; }
-  .hero-image-wrapper { width: 200px; height: 200px; }
-  .marquee-container { top: 140px; }
-}
 
-@media (max-height: 800px) and (min-width: 1024px) {
-    .spotify-widget { bottom: 80px; }
+  .hero-bio h1 { font-size: 2rem; padding: 0 10px; }
+  .hero-image-wrapper { width: 180px; height: 180px; }
+  .marquee-container { top: 140px; }
 }
