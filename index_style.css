@@ -314,7 +314,7 @@ header .logo img {
    ========================================= */
 .spotify-widget {
   position: relative; /* Centers within the flex container */
-  margin-top: auto;   /* Pushes to the bottom of the content-wrapper */
+  margin-top: 30;   /* Pushes to the bottom of the content-wrapper */
   width: 90%;
   max-width: 400px;
   z-index: 20;
