@@ -85,7 +85,7 @@ header .logo img {
   min-height: calc(100vh - 190px); 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centers content vertically */
+  justify-content: space-between; /* Centers content vertically */
   align-items: center;     /* Centers content horizontally */
   position: relative;
   padding: 40px 20px;
@@ -315,7 +315,7 @@ header .logo img {
    ========================================= */
 .spotify-widget {
   position: relative; /* Centers within the flex container */
-  margin-top: auto;   /* Pushes to the bottom of the content-wrapper */
+  margin-top: 20px;   /* Pushes to the bottom of the content-wrapper */
   width: 90%;
   max-width: 400px;
   z-index: 20;
