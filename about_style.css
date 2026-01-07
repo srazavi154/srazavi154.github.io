@@ -61,11 +61,11 @@ header .logo img {
 }
 
 /* =========================================
-   3. 3D IMAGE SLIDER SECTION
+   3. 3D IMAGE SLIDER SECTION (OPTIMIZED SPACE)
    ========================================= */
 .banner {
     width: 100%;
-    height: 85vh;
+    height: 100vh; /* Full screen height for laptops */
     text-align: center;
     overflow: hidden;
     position: relative;
@@ -79,11 +79,12 @@ header .logo img {
     position: absolute;
     width: 200px;
     height: 250px;
-    top: 20%;
+    top: 25%; 
     left: calc(50% - 100px);
     transform-style: preserve-3d;
     transform: perspective(1000px);
-    animation: autoRun 20s linear infinite;
+    /* Slowed down to 30s for better readability */
+    animation: autoRun 30s linear infinite;
     z-index: 2;
 }
 
@@ -97,7 +98,7 @@ header .logo img {
     inset: 0 0 0 0;
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
-        translateZ(550px); /* Full Desktop distance */
+        translateZ(550px);
 }
 
 .slider .item img {
@@ -105,12 +106,6 @@ header .logo img {
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
-    transition: transform 0.4s ease;
-}
-
-.slider .item:hover img {
-    transform: none; 
-    box-shadow: none;
 }
 
 .item-desc {
@@ -118,7 +113,7 @@ header .logo img {
     bottom: -35px;
     width: 100%;
     font-size: 0.75rem;
-    font-weight: 400; /* Not bold */
+    font-weight: 400; /* Normal weight */
     color: #666;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -166,6 +161,7 @@ header .logo img {
 .Sara {
     font-style: italic;
     color: #000;
+    border-bottom: none; /* Removed blue line */
 }
 
 blockquote {
@@ -221,17 +217,20 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; tex
    6. LAPTOP / SMALL DESKTOP ADJUSTMENTS
    ========================================= */
 @media (max-width: 1440px) {
-    .content h1 { font-size: 4.5rem; } /* Shrinks "Welcome" text */
-    
+    .banner { height: 110vh; } 
+
     .slider {
-        width: 160px; /* Smaller slider base */
-        height: 200px;
+        width: 170px;
+        height: 220px;
+        top: 20%;
     }
     
     .slider .item {
         transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
-                   translateZ(400px); /* Pulls images back so text is visible */
+                   translateZ(450px); 
     }
+    
+    .content h1 { font-size: 5rem; }
 }
 
 /* =========================================
@@ -269,6 +268,4 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; tex
   .slider .item { 
     transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(240px); 
   }
-  
-  .story-content { padding: 60px 10%; }
 }
