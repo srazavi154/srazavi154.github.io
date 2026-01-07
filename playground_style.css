@@ -20,7 +20,7 @@ html, body {
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION (Synchronized with Home)
+   2. HEADER & NAVIGATION
    ========================================= */
 header {
     height: 90px;
@@ -64,7 +64,7 @@ header .logo img {
 }
 
 /* =========================================
-   3. HERO SECTION (Non-Bold Font Fix)
+   3. HERO SECTION
    ========================================= */
 .hero {
     padding: 80px 20px 40px;
@@ -73,7 +73,7 @@ header .logo img {
 
 .hero h1 {
     font-family: 'Times New Roman', serif;
-    font-weight: normal; /* "Magic line" to remove bold */
+    font-weight: normal; 
     font-size: 3.5rem;
     color: #000;
     margin-bottom: 10px;
@@ -95,7 +95,7 @@ header .logo img {
 }
 
 /* =========================================
-   4. PLAYGROUND GRID (Pinterest / Masonry)
+   4. PLAYGROUND GRID (Masonry)
    ========================================= */
 #playground {
     padding: 20px 5% 80px;
@@ -133,36 +133,36 @@ header .logo img {
 }
 
 /* =========================================
-   7. FOOTER (LinkedIn Fix)
+   5. FOOTER
    ========================================= */
 footer {
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.7rem;
-  color: #aaa;
-  border-top: 1px solid #eeeeee;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #aaa;
+    border-top: 1px solid #eeeeee;
 }
 
-/* Forces LinkedIn icon to be black and slightly larger */
 footer .social-links a {
-  color: #000 !important; /* Forces black color */
-  text-decoration: none;
-  font-size: 1.2rem; 
-  transition: opacity 0.3s ease;
-  display: inline-block;
-  margin-bottom: 10px;
+    color: #000 !important; 
+    text-decoration: none;
+    font-size: 1.2rem; 
+    transition: opacity 0.3s ease;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
 footer .social-links a:hover {
-  opacity: 0.6;
+    opacity: 0.6;
 }
+
 /* =========================================
-   6. RESPONSIVE DESIGN (Hamburger Menu)
+   6. RESPONSIVE DESIGN
    ========================================= */
-@media (max-width: 1024px) {    
+@media (max-width: 1024px) {   
     .menu-toggle { display: block; }
 
     .nav-menu {
@@ -180,6 +180,11 @@ footer .social-links a:hover {
     }
 
     .nav-menu.active { right: 0; }
+
+    /* New font size for mobile drop down */
+    .nav-menu a { 
+        font-size: 1.5rem; 
+    }
     
     .playground-grid { column-count: 2; }
     .hero h1 { font-size: 2.5rem; }
