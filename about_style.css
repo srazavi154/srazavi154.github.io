@@ -135,8 +135,12 @@ header .logo img {
    4. NARRATIVE STORY SECTION
    ========================================= */
 .story-content {
-    padding: 80px 15% 120px 15%;
+    flex: 1;                 /* Pushes footer to bottom if content is short */
+    padding: 80px 15%;       /* Cleaned up padding */
     background: #fff;
+    display: flex;           /* Added to help align internal blocks */
+    flex-direction: column;
+    justify-content: center;
 }
 
 .intro-block {
@@ -146,15 +150,14 @@ header .logo img {
 
 /* Welcome to My World Styling */
 .intro-block h1 {
-    font-family: 'Times New Roman', serif; /* Requested Font */
+    font-family: 'Times New Roman', serif;
     font-size: 3rem;
-    font-weight: 400; /* Times New Roman looks better at 400 */
-    color: #000; /* Black text */
+    font-weight: 400;
+    color: #000;
     margin-bottom: 40px;
     letter-spacing: -1px;
 }
 
-/* Removed Underline and Blue Color for "Sara" class to keep H1 pure black */
 .Sara {
     font-style: italic;
     color: inherit; 
@@ -170,13 +173,8 @@ header .logo img {
     margin-bottom: 30px;
 }
 
-.intro-block strong {
-    font-weight: 700;
-    color: #000;
-}
-
 .quote-block {
-    margin: 80px auto 0 auto;
+    margin: 60px auto 0 auto;
     text-align: center;
     max-width: 600px;
 }
@@ -191,29 +189,32 @@ blockquote {
 }
 
 /* =========================================
-   5. FOOTER
+   5. FOOTER (Matches Index Style)
    ========================================= */
 footer {
-    padding: 60px 0;
+    height: 100px;           /* Fixed height like index */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 0.7rem;
-    color: #bbb;
+    color: #aaa;             /* Slightly lighter gray to match */
     border-top: 1px solid #f9f9f9;
 }
 
+/* Forces LinkedIn icon to be black and slightly larger */
 footer .social-links a {
-    color: #000 !important;
+    color: #000 !important; 
     text-decoration: none;
-    font-size: 1.2rem; 
-    margin-bottom: 15px;
+    font-size: 1.2rem;  
+    transition: opacity 0.3s ease;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
-/* =========================================
-   6. RESPONSIVE DESIGN
-   ========================================= */
+footer .social-links a:hover {
+    opacity: 0.6;
+}
 
 /* Tablets */
 @media (max-width: 1024px) {
