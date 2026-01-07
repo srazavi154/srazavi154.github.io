@@ -72,6 +72,8 @@ header .logo img {
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    /* This helps the phone realize it's a 3D space */
+    perspective: 1000px; 
 }
 
 .slider {
@@ -80,19 +82,21 @@ header .logo img {
     height: 250px;
     top: 15%;
     transform-style: preserve-3d;
-    transform: perspective(1000px);
+    /* Added a deeper default tilt for mobile visibility */
+    transform: rotateX(-10deg); 
     animation: autoRun 35s linear infinite;
     z-index: 2;
 }
 
 @keyframes autoRun {
-    from { transform: perspective(1000px) rotateX(-5deg) rotateY(0deg); }
-    to { transform: perspective(1000px) rotateX(-5deg) rotateY(360deg); }
+    from { transform: perspective(1000px) rotateX(-10deg) rotateY(0deg); }
+    to { transform: perspective(1000px) rotateX(-10deg) rotateY(360deg); }
 }
 
 .slider .item {
     position: absolute;
     inset: 0 0 0 0;
+    transform-style: preserve-3d;
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
         translateZ(550px);
@@ -103,13 +107,17 @@ header .logo img {
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
-    /* Reflection removed as requested */
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    /* Explicitly ensuring NO reflection */
+    -webkit-box-reflect: unset !important;
+    box-reflect: none !important;
+    /* Shadow for depth */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.5s ease;
 }
 
 .slider .item:hover img {
     transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 30px rgba(54, 136, 224, 0.3);
 }
 
 .item-desc {
@@ -117,7 +125,7 @@ header .logo img {
     bottom: -40px;
     width: 100%;
     font-size: 0.7rem;
-    font-weight: 400; /* Lighter text */
+    font-weight: 400;
     color: #999;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -136,24 +144,27 @@ header .logo img {
     margin: 0 auto;
 }
 
+/* Welcome to My World Styling */
 .intro-block h1 {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Times New Roman', serif; /* Requested Font */
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 400; /* Times New Roman looks better at 400 */
+    color: #000; /* Black text */
     margin-bottom: 40px;
     letter-spacing: -1px;
 }
 
+/* Removed Underline and Blue Color for "Sara" class to keep H1 pure black */
 .Sara {
     font-style: italic;
-    color: #3688e0; /* Blue accent color */
-    border-bottom: none; /* Underline removed */
+    color: inherit; 
+    border-bottom: none; 
 }
 
 .intro-block p {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.15rem;
-    font-weight: 300; /* Lighter font weight for better readability */
+    font-weight: 300;
     line-height: 1.9;
     color: #444;
     margin-bottom: 30px;
@@ -162,14 +173,6 @@ header .logo img {
 .intro-block strong {
     font-weight: 700;
     color: #000;
-}
-
-.location-timeline {
-    font-size: 0.85rem;
-    color: #aaa;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 50px;
 }
 
 .quote-block {
@@ -205,23 +208,12 @@ footer .social-links a {
     color: #000 !important;
     text-decoration: none;
     font-size: 1.2rem; 
-    transition: opacity 0.3s ease;
-    display: inline-block;
     margin-bottom: 15px;
 }
 
-footer .social-links a:hover { opacity: 0.5; }
-
 /* =========================================
-   6. RESPONSIVE DESIGN (Smaller Screen Fixes)
+   6. RESPONSIVE DESIGN
    ========================================= */
-
-/* Desktop/Laptop (Radius Fix) */
-@media (max-width: 1400px) {
-    .slider .item {
-        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(450px);
-    }
-}
 
 /* Tablets */
 @media (max-width: 1024px) {
@@ -238,32 +230,35 @@ footer .social-links a:hover { opacity: 0.5; }
         justify-content: center;
         transition: 0.4s ease-in-out;
         z-index: 2000;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     }
 
     .nav-menu.active { right: 0; }
-    .nav-menu a { font-size: 1.5rem; }
 
     .slider {
         width: 150px;
         height: 200px;
+        /* Tilt slightly more on mobile for better 3D feel */
+        transform: rotateX(-15deg); 
     }
 
     .slider .item {
-        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(300px);
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(320px);
     }
-
-    .story-content { padding: 60px 10%; }
-    .intro-block h1 { font-size: 2.2rem; }
 }
 
 /* Phones */
 @media (max-width: 480px) {
-    .slider { width: 120px; height: 160px; }
-    .slider .item {
-        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(220px);
+    .slider { 
+        width: 110px; 
+        height: 150px; 
+        top: 25%;
+        /* Force tilt so it's not flat on phone */
+        transform: perspective(1000px) rotateX(-15deg);
     }
-    .item-desc { font-size: 0.6rem; bottom: -30px; letter-spacing: 1px; }
-    .intro-block h1 { font-size: 1.8rem; }
-    .intro-block p { font-size: 1.05rem; }
+    
+    .slider .item {
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(200px);
+    }
+    
+    .intro-block h1 { font-size: 2.2rem; }
 }
