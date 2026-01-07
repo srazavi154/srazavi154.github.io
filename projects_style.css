@@ -226,29 +226,47 @@ footer .social-links a {
 footer .social-links a:hover { opacity: 0.6; }
 
 /* =========================================
-   5. MOBILE FIXES
+   5. MOBILE RESPONSIVENESS (Menu Logic)
    ========================================= */
 @media (max-width: 1024px) {
-  .menu-toggle { display: block; }
+  /* Show the toggle button */
+  .menu-toggle { 
+    display: block; 
+    font-size: 1.5rem; 
+    cursor: pointer;
+    z-index: 2100; /* Higher than the menu itself */
+  }
+
   header { padding: 0 20px; }
   
+  /* The Sidebar Menu */
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%; /* Hidden off-screen to the right */
     width: 80%;
     height: 100vh;
     background: #fff;
     flex-direction: column;
     justify-content: center;
-    transition: 0.4s ease;
+    align-items: center; /* Center links horizontally */
+    transition: 0.4s ease-in-out;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
     z-index: 2000;
   }
   
-  .nav-menu.active { right: 0; }
-  .nav-menu a { font-size: 1.5rem; margin-left: 0; }
+  /* When JS toggles .active */
+  .nav-menu.active { 
+    right: 0; 
+  }
 
-  .card { flex: 0 0 85%; } /* Larger on mobile for touch targets */
-  .nav-btn { display: none; } /* Best to use swipe gestures on mobile */
+  .nav-menu a { 
+    font-size: 1.5rem; 
+    margin: 15px 0; /* Add space between vertical links */
+  }
+
+  /* Slider Adjustments for Mobile */
+  .card { flex: 0 0 85%; } 
+  .nav-btn { display: none; } 
   .projects-header h1 { font-size: 2.2rem; }
 }
