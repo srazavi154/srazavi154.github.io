@@ -61,74 +61,82 @@ header .logo img {
 }
 
 /* =========================================
-   3. 3D IMAGE SLIDER SECTION (Fixed for Desktop)
+   3. 3D IMAGE SLIDER SECTION
    ========================================= */
 .banner {
     width: 100%;
-    height: 90vh; /* Increased slightly for desktop breathing room */
+    height: 80vh;
     overflow: hidden;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    perspective: 2000px; /* Increased perspective for a smoother 3D effect on big screens */
+    /* This helps the phone realize it's a 3D space */
+    perspective: 1000px; 
 }
 
 .slider {
     position: absolute;
     width: 200px;
     height: 250px;
-    top: 20%; /* Adjusted from 15% to center it better vertically */
+    top: 15%;
     transform-style: preserve-3d;
+    /* Added a deeper default tilt for mobile visibility */
     transform: rotateX(-10deg); 
     animation: autoRun 35s linear infinite;
     z-index: 2;
 }
 
 @keyframes autoRun {
-    from { transform: rotateX(-10deg) rotateY(0deg); }
-    to { transform: rotateX(-10deg) rotateY(360deg); }
+    from { transform: perspective(1000px) rotateX(-10deg) rotateY(0deg); }
+    to { transform: perspective(1000px) rotateX(-10deg) rotateY(360deg); }
 }
 
 .slider .item {
     position: absolute;
     inset: 0 0 0 0;
     transform-style: preserve-3d;
-    /* REDUCED translateZ for Desktop: 550px is usually too much for wide monitors */
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
-        translateZ(450px); 
-}
-
-/* Add this specific Desktop tweak for very large screens */
-@media (min-width: 1400px) {
-    .slider .item {
-        transform: 
-            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
-            translateZ(500px); /* Slightly larger radius only for massive screens */
-    }
+        translateZ(550px);
 }
 
 .slider .item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    border-radius: 8px;
+    /* Explicitly ensuring NO reflection */
+    -webkit-box-reflect: unset !important;
+    box-reflect: none !important;
+    /* Shadow for depth */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.5s ease;
+}
+
+.slider .item:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(54, 136, 224, 0.3);
+}
+
+.item-desc {
+    position: absolute;
+    bottom: -40px;
+    width: 100%;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 /* =========================================
    4. NARRATIVE STORY SECTION
    ========================================= */
 .story-content {
-    flex: 1;                 /* Pushes footer to bottom if content is short */
-    padding: 80px 15%;       /* Cleaned up padding */
+    padding: 80px 15% 120px 15%;
     background: #fff;
-    display: flex;           /* Added to help align internal blocks */
-    flex-direction: column;
-    justify-content: center;
 }
 
 .intro-block {
@@ -138,14 +146,15 @@ header .logo img {
 
 /* Welcome to My World Styling */
 .intro-block h1 {
-    font-family: 'Times New Roman', serif;
+    font-family: 'Times New Roman', serif; /* Requested Font */
     font-size: 3rem;
-    font-weight: 400;
-    color: #000;
+    font-weight: 400; /* Times New Roman looks better at 400 */
+    color: #000; /* Black text */
     margin-bottom: 40px;
     letter-spacing: -1px;
 }
 
+/* Removed Underline and Blue Color for "Sara" class to keep H1 pure black */
 .Sara {
     font-style: italic;
     color: inherit; 
@@ -161,8 +170,13 @@ header .logo img {
     margin-bottom: 30px;
 }
 
+.intro-block strong {
+    font-weight: 700;
+    color: #000;
+}
+
 .quote-block {
-    margin: 60px auto 0 auto;
+    margin: 80px auto 0 auto;
     text-align: center;
     max-width: 600px;
 }
@@ -204,6 +218,10 @@ footer .social-links a:hover {
   opacity: 0.6;
 }
 
+/* =========================================
+   6. RESPONSIVE DESIGN
+   ========================================= */
+
 /* Tablets */
 @media (max-width: 1024px) {
     .menu-toggle { display: block; }
@@ -218,7 +236,6 @@ footer .social-links a:hover {
         flex-direction: column;
         justify-content: center;
         transition: 0.4s ease-in-out;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
         z-index: 2000;
     }
 
