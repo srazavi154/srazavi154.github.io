@@ -9,7 +9,7 @@
 
 html, body {
   width: 100%;
-  height: 100vh; /* Keeps the app contained in one view */
+  height: 100vh;
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
   background-color: #fff;
@@ -19,7 +19,7 @@ html, body {
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION
+   2. HEADER & NAVIGATION (Matched to Index)
    ========================================= */
 header {
   height: 90px;
@@ -27,59 +27,81 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2000;
   background: #fff;
   border-bottom: 1px solid #eeeeee;
-  flex-shrink: 0; /* Prevents header from squishing */
+  flex-shrink: 0;
 }
 
 header .logo img {
   width: 100px;
   height: auto;
+  margin-top: 35px; /* Matched margin from index */
+}
+
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
 
 .nav-menu a {
   text-decoration: none;
   color: #000;
-  margin-left: 30px;
   font-size: 1rem;
+  transition: opacity 0.3s ease;
 }
+
+.nav-menu a:hover { opacity: 0.5; }
+
+.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
 /* =========================================
    3. CENTERED NETFLIX SLIDER
    ========================================= */
 main {
-  flex: 1; /* Takes up all space between header and footer */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* VERTICAL CENTERING */
+  justify-content: center; /* Vertical Center */
   align-items: center;
   width: 100%;
 }
 
 .projects-header {
   width: 100%;
-  padding: 0 5% 20px 5%;
+  padding: 0 5% 40px 5%; /* Increased bottom padding to prevent overlap */
   max-width: 1600px;
+  text-align: left; /* Netflix style */
 }
 
 .projects-header h1 {
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-family: 'Times New Roman', serif; /* Requested font */
+  font-style: italic; /* Matches index marquee style */
+  font-size: 2.8rem;
+  font-weight: normal;
+  margin-bottom: 10px;
 }
 
-/* THE SLIDER CONTAINER */
+.projects-header p {
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 .slider-container {
   position: relative;
   width: 100%;
-  max-height: 500px; /* Keeps the cards from becoming giant on huge screens */
+  max-height: 550px;
   display: flex;
   align-items: center;
 }
 
 .slider-track {
   display: flex;
-  gap: 20px;
-  padding: 40px 5%; /* Padding allows for the zoom effect without clipping */
+  gap: 25px;
+  padding: 40px 5%; /* Padding allows the scale(1.08) without clipping */
   overflow-x: scroll;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -88,9 +110,9 @@ main {
 
 .slider-track::-webkit-scrollbar { display: none; }
 
-/* MEDIUM SIZED CARDS */
+/* MEDIUM CARDS */
 .card {
-  flex: 0 0 45%; /* MEDIUM SIZE: Shows 2 full cards and a peek of the 3rd */
+  flex: 0 0 45%; 
   aspect-ratio: 16 / 9;
   background: #f7f7f7;
   border-radius: 10px;
@@ -101,59 +123,38 @@ main {
   transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
-/* Netflix Pop-out effect */
 .card:hover {
-  transform: scale(1.08); /* Slightly more subtle than before to stay readable */
+  transform: scale(1.08);
   z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 
-.card-media {
-  width: 100%;
-  height: 100%;
-}
+.card-media { width: 100%; height: 100%; }
+.card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
 
-.card-media video, .card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* CONTENT OVERLAY (Visible on Hover) */
 .card-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 30px;
+  padding: 35px;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.98), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.card:hover .card-overlay {
-  opacity: 1;
-}
+.card:hover .card-overlay { opacity: 1; }
 
-.card-overlay h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.card-overlay p {
-  font-size: 0.95rem;
-  color: #333;
-  line-height: 1.4;
-}
+.card-overlay h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
+.card-overlay p { font-size: 1rem; color: #333; line-height: 1.4; }
 
 /* NAVIGATION ARROWS */
 .nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #ddd;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #eee;
   color: #000;
   width: 60px;
   height: 60px;
@@ -163,34 +164,59 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
 }
 
-.nav-btn:hover {
-  background: #000;
-  color: #fff;
-}
-
-.prev { left: 20px; }
-.next { right: 20px; }
+.nav-btn:hover { background: #000; color: #fff; transform: translateY(-50%) scale(1.1); }
+.prev { left: 30px; }
+.next { right: 30px; }
 
 /* =========================================
-   4. FOOTER
+   4. FOOTER (Matched to Index)
    ========================================= */
 footer {
-  height: 90px;
+  height: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 0.7rem;
+  color: #aaa;
   border-top: 1px solid #eeeeee;
+  background: #fff;
   flex-shrink: 0;
 }
 
+footer .social-links a {
+  color: #000 !important;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  transition: opacity 0.3s;
+}
+
+footer .social-links a:hover { opacity: 0.6; }
+
 /* =========================================
-   5. MOBILE FIXES
+   5. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 1024px) {
-  .card { flex: 0 0 75%; } /* Larger on mobile for touch readability */
-  .nav-btn { width: 45px; height: 45px; }
+  .menu-toggle { display: block; }
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+    z-index: 2000;
+  }
+  .nav-menu.active { right: 0; }
+  .card { flex: 0 0 80%; }
+  .projects-header h1 { font-size: 2.2rem; }
+  .nav-btn { display: none; } /* Better to swipe on mobile */
 }
