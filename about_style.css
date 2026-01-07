@@ -235,7 +235,7 @@ blockquote {
     }
 }
 /* =========================================
-   5. SHARED FOOTER (AS REQUESTED)
+   7. FOOTER (LinkedIn Fix)
    ========================================= */
 footer {
   height: 100px;
@@ -243,14 +243,24 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
   font-size: 0.7rem;
   color: #aaa;
   border-top: 1px solid #f9f9f9;
 }
 
-footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
+/* Forces LinkedIn icon to be black and slightly larger */
+footer .social-links a {
+  color: #000 !important; /* Forces black color */
+  text-decoration: none;
+  font-size: 1.2rem; 
+  transition: opacity 0.3s ease;
+  display: inline-block;
+  margin-bottom: 10px;
+}
 
+footer .social-links a:hover {
+  opacity: 0.6;
+}
 /* =========================================
    6. MOBILE RESPONSIVENESS (Menu Logic)
    ========================================= */
