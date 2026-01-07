@@ -19,7 +19,7 @@ html, body {
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION (Matched to Index)
+   2. HEADER & NAVIGATION (Matches Index)
    ========================================= */
 header {
   height: 90px;
@@ -36,7 +36,7 @@ header {
 header .logo img {
   width: 100px;
   height: auto;
-  margin-top: 35px; /* Matched margin from index */
+  margin-top: 35px;
 }
 
 .nav-menu {
@@ -54,7 +54,7 @@ header .logo img {
 
 .nav-menu a:hover { opacity: 0.5; }
 
-.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+.menu-toggle { display: none; }
 
 /* =========================================
    3. CENTERED NETFLIX SLIDER
@@ -63,21 +63,20 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertical Center */
+  justify-content: center; /* Vertical Center Alignment */
   align-items: center;
   width: 100%;
 }
 
 .projects-header {
   width: 100%;
-  padding: 0 5% 40px 5%; /* Increased bottom padding to prevent overlap */
+  padding: 0 5% 40px 5%; /* Padding prevents text/box collision */
   max-width: 1600px;
-  text-align: left; /* Netflix style */
 }
 
 .projects-header h1 {
-  font-family: 'Times New Roman', serif; /* Requested font */
-  font-style: italic; /* Matches index marquee style */
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
   font-size: 2.8rem;
   font-weight: normal;
   margin-bottom: 10px;
@@ -90,6 +89,7 @@ main {
   letter-spacing: 2px;
 }
 
+/* CONTAINER */
 .slider-container {
   position: relative;
   width: 100%;
@@ -101,7 +101,7 @@ main {
 .slider-track {
   display: flex;
   gap: 25px;
-  padding: 40px 5%; /* Padding allows the scale(1.08) without clipping */
+  padding: 40px 5%; /* Space for the scale effect */
   overflow-x: scroll;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -110,7 +110,7 @@ main {
 
 .slider-track::-webkit-scrollbar { display: none; }
 
-/* MEDIUM CARDS */
+/* UNIFORM CARDS */
 .card {
   flex: 0 0 45%; 
   aspect-ratio: 16 / 9;
@@ -123,30 +123,52 @@ main {
   transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
+/* 1. Zoom and Shadow effect */
 .card:hover {
   transform: scale(1.08);
   z-index: 10;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+/* 2. Media Dimmer: Darkens video on hover for text contrast */
+.card:hover .card-media {
+  filter: brightness(0.6);
+  transition: filter 0.4s ease;
 }
 
 .card-media { width: 100%; height: 100%; }
 .card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
 
+/* 3. Text Overlay: Solid High-Contrast Plate */
 .card-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 35px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.98), transparent);
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.95); /* Semi-solid for perfect readability */
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.card:hover .card-overlay { opacity: 1; }
+.card:hover .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-.card-overlay h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
-.card-overlay p { font-size: 1rem; color: #333; line-height: 1.4; }
+.card-overlay h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.card-overlay p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.4;
+}
 
 /* NAVIGATION ARROWS */
 .nav-btn {
@@ -168,12 +190,17 @@ main {
   transition: 0.3s ease;
 }
 
-.nav-btn:hover { background: #000; color: #fff; transform: translateY(-50%) scale(1.1); }
+.nav-btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+
 .prev { left: 30px; }
 .next { right: 30px; }
 
 /* =========================================
-   4. FOOTER (Matched to Index)
+   4. FOOTER (Matches Index)
    ========================================= */
 footer {
   height: 100px;
@@ -199,10 +226,12 @@ footer .social-links a {
 footer .social-links a:hover { opacity: 0.6; }
 
 /* =========================================
-   5. MOBILE RESPONSIVENESS
+   5. MOBILE FIXES
    ========================================= */
 @media (max-width: 1024px) {
   .menu-toggle { display: block; }
+  header { padding: 0 20px; }
+  
   .nav-menu {
     position: fixed;
     top: 0;
@@ -212,11 +241,14 @@ footer .social-links a:hover { opacity: 0.6; }
     background: #fff;
     flex-direction: column;
     justify-content: center;
-    transition: 0.4s ease-in-out;
+    transition: 0.4s ease;
     z-index: 2000;
   }
+  
   .nav-menu.active { right: 0; }
-  .card { flex: 0 0 80%; }
+  .nav-menu a { font-size: 1.5rem; margin-left: 0; }
+
+  .card { flex: 0 0 85%; } /* Larger on mobile for touch targets */
+  .nav-btn { display: none; } /* Best to use swipe gestures on mobile */
   .projects-header h1 { font-size: 2.2rem; }
-  .nav-btn { display: none; } /* Better to swipe on mobile */
 }
