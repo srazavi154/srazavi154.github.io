@@ -211,28 +211,27 @@ main {
 .next { right: 30px; }
 
 /* =========================================
-   4. FOOTER
+   7. FOOTER
    ========================================= */
 footer {
-  height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.7rem;
-  color: #aaa;
-  border-top: 1px solid #eeeeee;
-  background: #fff;
-  flex-shrink: 0;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #aaa;
+    border-top: 1px solid #eeeeee;
 }
 
 footer .social-links a {
-  color: #000 !important;
-  text-decoration: none;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  transition: opacity 0.3s;
+    color: #000 !important;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    transition: opacity 0.3s;
 }
+
 
 /* =========================================
    5. MOBILE RESPONSIVENESS (Menu & Footer Fix)
