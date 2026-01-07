@@ -1,5 +1,5 @@
 /* =========================================
-   1. CORE RESET & BASE STYLES
+   1. CORE RESET & BASE LAYOUT
    ========================================= */
 * {
     margin: 0;
@@ -9,15 +9,16 @@
 
 html, body {
     min-height: 100%;
+    width: 100%;
     font-family: 'Source Sans Pro', sans-serif;
     color: #000;
-    background-color: #ffffff;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION (Consistent with Home)
+   2. HEADER & NAVIGATION (Consistent)
    ========================================= */
 header {
     height: 90px;
@@ -25,8 +26,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 2000;
     background: #fff;
     border-bottom: 1px solid #eeeeee;
+    position: relative;
 }
 
 header .logo img {
@@ -35,151 +38,164 @@ header .logo img {
     margin-top: 35px;
 }
 
-nav {
+.nav-menu {
     display: flex;
     gap: 30px;
     align-items: center;
 }
 
-nav a {
+.nav-menu a {
     text-decoration: none;
     color: #000;
     font-size: 1rem;
     transition: opacity 0.3s ease;
 }
 
-nav a:hover { opacity: 0.5; }
+.nav-menu a:hover { opacity: 0.5; }
 
-/* =========================================
-   3. CONTACT CONTAINER (The Fix)
-   ========================================= */
-#contact-container {
-    flex: 1; /* Pushes footer down */
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch; /* Makes both boxes same height */
-    gap: 40px;
-    padding: 80px 10%;
-    max-width: 1200px;
-    margin: 0 auto;
-    opacity: 0;
-    animation: floatIn 1s forwards;
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 2100;
 }
 
-.contact-info, .contact-form {
-    width: 48%;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+/* =========================================
+   3. CONTACT SECTION STYLES
+   ========================================= */
+#contact-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding: 100px 10%;
+    align-items: start;
+}
+
+.Sara {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: normal;
 }
 
 .contact-info h1 {
-    font-family: 'Times New Roman', serif;
     font-size: 3rem;
     font-weight: normal;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .contact-info p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #666;
     margin-bottom: 20px;
-    line-height: 1.8;
-    color: #444;
+}
+
+.email-link a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #000;
+    transition: opacity 0.3s;
 }
 
 .contact-form h2 {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: normal;
     margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: #999;
 }
 
-/* =========================================
-   4. FORM ELEMENTS
-   ========================================= */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input, textarea {
-    padding: 15px;
-    margin-bottom: 20px;
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
     border: 1px solid #eee;
-    background: #f9f9f9;
-    border-radius: 8px;
+    border-radius: 4px;
     font-family: inherit;
     font-size: 1rem;
-    transition: border 0.3s;
+    transition: border-color 0.3s;
 }
 
-input:focus, textarea:focus {
+.input-group input:focus, 
+.input-group textarea:focus {
     outline: none;
-    border: 1px solid #000;
+    border-color: #000;
 }
 
-button[type="submit"] {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 15px 25px;
+.submit-btn {
+    background: #000;
+    color: #fff;
+    padding: 15px 40px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-weight: bold;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: transform 0.3s, background 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
 }
 
-button[type="submit"]:hover {
-    background-color: #333;
+.submit-btn:hover {
+    opacity: 0.8;
     transform: translateY(-2px);
 }
 
 /* =========================================
-   7. FOOTER (LinkedIn Fix)
+   4. FOOTER & RESPONSIVE
    ========================================= */
 footer {
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.7rem;
-  color: #aaa;
-  border-top: 1px solid #f9f9f9;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #aaa;
+    border-top: 1px solid #f9f9f9;
 }
 
-/* Forces LinkedIn icon to be black and slightly larger */
 footer .social-links a {
-  color: #000 !important; /* Forces black color */
-  text-decoration: none;
-  font-size: 1.2rem; 
-  transition: opacity 0.3s ease;
-  display: inline-block;
-  margin-bottom: 10px;
+    color: #000 !important;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }
 
-footer .social-links a:hover {
-  opacity: 0.6;
-}
-/* =========================================
-   6. RESPONSIVE DESIGN
-   ========================================= */
-@media (max-width: 900px) {
-    #contact-container {
+/* Tablets & Mobile Hamburger Logic */
+@media (max-width: 1024px) {
+    header { padding: 0 20px; }
+    .menu-toggle { display: block; }
+    
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: #fff;
         flex-direction: column;
-        padding: 40px 5%;
+        justify-content: center;
+        transition: 0.4s ease-in-out;
+        z-index: 2000;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     }
 
-    .contact-info, .contact-form {
-        width: 100%;
-    }
-}
+    .nav-menu.active { right: 0; }
 
-@keyframes floatIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    #contact-container {
+        grid-template-columns: 1fr;
+        padding: 60px 5%;
+        gap: 40px;
+    }
 }
