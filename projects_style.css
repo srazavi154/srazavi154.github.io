@@ -2,216 +2,216 @@
    1. CORE RESET & BASE LAYOUT
    ========================================= */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
-  width: 100%;
-  min-height: 100vh; /* Changed from height to min-height */
-  font-family: 'Source Sans Pro', sans-serif;
-  color: #000;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden; /* Prevent horizontal jitter */
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #000;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
-/* On large desktops, keep it app-like and fixed. 
-   On laptops/tablets/phones, allow natural scrolling. */
+/* On large desktops, keep it app-like and fixed. */
 @media (min-width: 1025px) and (min-height: 800px) {
-  body { 
-    height: 100vh; 
-    overflow: hidden; 
-  }
+    body { 
+        height: 100vh; 
+        overflow: hidden; 
+    }
 }
 
 /* =========================================
    2. HEADER & NAVIGATION
    ========================================= */
 header {
-  height: 90px;
-  padding: 0 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 2000;
-  background: #fff;
-  border-bottom: 1px solid #eeeeee;
-  flex-shrink: 0;
+    height: 90px;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2000;
+    background: #fff;
+    border-bottom: 1px solid #eeeeee;
+    flex-shrink: 0;
 }
 
 header .logo img {
-  width: 100px;
-  height: auto;
-  margin-top: 35px;
+    width: 100px;
+    height: auto;
+    margin-top: 35px;
 }
 
 .nav-menu {
-  display: flex;
-  gap: 30px;
-  align-items: center;
+    display: flex;
+    gap: 30px;
+    align-items: center;
 }
 
 .nav-menu a {
-  text-decoration: none;
-  color: #000;
-  font-size: 1rem;
-  transition: opacity 0.3s ease;
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
 }
 
 .nav-menu a:hover { opacity: 0.5; }
 
 .menu-toggle {
-  display: none; /* Hidden on desktop */
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 2100;
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 2100;
 }
 
 /* =========================================
    3. CENTERED NETFLIX SLIDER
    ========================================= */
 main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 40px 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 40px 0;
 }
 
 .projects-header {
-  width: 100%;
-  padding: 0 5% 40px 5%;
-  max-width: 1600px;
+    width: 100%;
+    padding: 0 5% 40px 5%;
+    max-width: 1600px;
 }
 
 .projects-header h1 {
-  font-family: 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 2.8rem;
-  font-weight: normal;
-  margin-bottom: 10px;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 2.8rem;
+    font-weight: normal;
+    margin-bottom: 10px;
 }
 
 .projects-header p {
-  font-size: 0.9rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 /* SLIDER CONTAINER */
 .slider-container {
-  position: relative;
-  width: 100%;
-  max-height: 550px;
-  display: flex;
-  align-items: center;
+    position: relative;
+    width: 100%;
+    max-height: 550px;
+    display: flex;
+    align-items: center;
 }
 
 .slider-track {
-  display: flex;
-  gap: 25px;
-  padding: 40px 5%;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  width: 100%;
+    display: flex;
+    gap: 25px;
+    padding: 40px 5%;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    width: 100%;
 }
 
 .slider-track::-webkit-scrollbar { display: none; }
 
 /* UNIFORM CARDS */
 .card {
-  flex: 0 0 45%; 
-  aspect-ratio: 16 / 9;
-  background: #f7f7f7;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  border: 1px solid #eee;
-  transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.3s ease;
+    flex: 0 0 45%; 
+    aspect-ratio: 16 / 9;
+    background: #f7f7f7;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.08);
-  z-index: 10;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+    transform: scale(1.08);
+    z-index: 10;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
 }
 
 .card:hover .card-media {
-  filter: brightness(0.6);
-  transition: filter 0.4s ease;
+    filter: brightness(0.6);
+    transition: filter 0.4s ease;
 }
 
 .card-media { width: 100%; height: 100%; }
 .card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
 
+/* FIXED OVERLAY: Dark gradient eliminates the white hover line */
 .card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.95);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 100%);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .card:hover .card-overlay {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card-overlay h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff; /* Switched to white for dark gradient */
 }
 
 .card-overlay p {
-  font-size: 0.95rem;
-  color: #333;
-  line-height: 1.4;
+    font-size: 0.95rem;
+    color: #ddd; /* Switched to light gray for dark gradient */
+    line-height: 1.4;
 }
 
 /* NAVIGATION ARROWS */
 .nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #eee;
-  color: #000;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  transition: 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #eee;
+    color: #000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
 }
 
 .nav-btn:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(-50%) scale(1.1);
+    background: #000;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
 }
 
 .prev { left: 30px; }
 .next { right: 30px; }
 
 /* =========================================
-   7. FOOTER
+   4. FOOTER (Synced with Index height & style)
    ========================================= */
 footer {
     height: 100px;
@@ -222,6 +222,8 @@ footer {
     font-size: 0.7rem;
     color: #aaa;
     border-top: 1px solid #eeeeee;
+    background: #fff;
+    flex-shrink: 0;
 }
 
 footer .social-links a {
@@ -232,72 +234,54 @@ footer .social-links a {
     transition: opacity 0.3s;
 }
 
+footer .social-links a:hover { opacity: 0.6; }
 
 /* =========================================
    5. MOBILE RESPONSIVENESS (Menu & Footer Fix)
    ========================================= */
 @media (max-width: 1024px) {
-  .menu-toggle { 
-    display: block; 
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 2100;
-  }
+    .menu-toggle { 
+        display: block; 
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 2100;
+    }
 
-  header { padding: 0 20px; }
+    header { padding: 0 20px; }
 
-  /* Slide-out Menu Sync */
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%; 
-    width: 80%;
-    height: 100vh;
-    background: #fff;
-    flex-direction: column;
+    /* Unified Sidebar Spacing */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; 
+        width: 80%;
+        height: 100vh;
+        background: #fff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        gap: 35px; /* Consistent spacing between links */
+        transition: 0.4s ease-in-out;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        z-index: 2000;
+    }
+
+    .nav-menu.active { right: 0; }
+    .nav-menu a { font-size: 1.5rem; margin: 0; }
+
+    main {
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+
+    .slider-container { max-height: none; }
+    .card { flex: 0 0 85%; }
+    .nav-btn { display: none; } 
     
-    /* Ensure links are perfectly centered */
-    justify-content: center;
-    align-items: center; 
-    
-    /* This gap ensures consistent spacing between the words */
-    gap: 30px; 
-    
-    transition: 0.4s ease-in-out;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-    z-index: 2000;
-  }
+    .projects-header h1 { font-size: 2.2rem; }
 
-  .nav-menu.active { 
-    right: 0; 
-  }
-
-  .nav-menu a { 
-    font-size: 1.5rem; 
-    margin: 0; /* Remove manual margins to let 'gap' handle spacing */
-    text-transform: none; /* Keeps original casing */
-  }
-
-  /* Slider & Content Adjustments */
-  main {
-    justify-content: flex-start;
-    padding-top: 20px;
-  }
-
-  .slider-container {
-    max-height: none; 
-  }
-
-  .card { 
-    flex: 0 0 85%; 
-  }
-
-  .nav-btn { display: none; } 
-  
-  .projects-header h1 { font-size: 2.2rem; }
-
-  footer {
-    height: auto;
-    padding: 40px 20px;
-  }
+    footer {
+        height: auto;
+        padding: 40px 20px;
+    }
 }
