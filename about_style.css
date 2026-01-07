@@ -97,7 +97,7 @@ header .logo img {
     inset: 0 0 0 0;
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
-        translateZ(550px); /* Desktop distance */
+        translateZ(550px); /* Full Desktop distance */
 }
 
 .slider .item img {
@@ -105,11 +105,9 @@ header .logo img {
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
-    /* Reflection removed */
     transition: transform 0.4s ease;
 }
 
-/* Hover glow and scale removed as requested */
 .slider .item:hover img {
     transform: none; 
     box-shadow: none;
@@ -120,21 +118,19 @@ header .logo img {
     bottom: -35px;
     width: 100%;
     font-size: 0.75rem;
-    font-weight: 400;
+    font-weight: 400; /* Not bold */
     color: #666;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-
-/* Welcome to My World - Styled to match your Hero style */
 .content h1 {
     font-family: 'Times New Roman', serif;
     font-style: italic;
-    font-weight: normal; /* Removed bold */
+    font-weight: normal; 
     font-size: 6rem;
     color: #000;
-    opacity: 0.05; /* Faded like the marquee on home page */
+    opacity: 0.05;
     position: relative;
     z-index: 1;
 }
@@ -172,17 +168,12 @@ header .logo img {
     color: #000;
 }
 
-.quote-block {
-    margin: 60px auto;
-    text-align: center;
-    max-width: 700px;
-}
-
 blockquote {
     font-family: 'Times New Roman', serif;
     font-size: 2rem;
     font-style: italic;
     color: #555;
+    text-align: center;
 }
 
 /* --- THE GLOWING SPHERE CORE --- */
@@ -227,13 +218,27 @@ footer {
 footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; text-decoration: none; }
 
 /* =========================================
-   6. MOBILE RESPONSIVENESS
+   6. LAPTOP / SMALL DESKTOP ADJUSTMENTS
+   ========================================= */
+@media (max-width: 1440px) {
+    .content h1 { font-size: 4.5rem; } /* Shrinks "Welcome" text */
+    
+    .slider {
+        width: 160px; /* Smaller slider base */
+        height: 200px;
+    }
+    
+    .slider .item {
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
+                   translateZ(400px); /* Pulls images back so text is visible */
+    }
+}
+
+/* =========================================
+   7. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 1024px) {
-  .menu-toggle { 
-    display: block; 
-    z-index: 2100; 
-  }
+  .menu-toggle { display: block; z-index: 2100; }
 
   .nav-menu {
     position: fixed;
@@ -249,29 +254,21 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; tex
     z-index: 2000;
   }
 
-  .nav-menu.active {
-    right: 0;
-  }
-
-  /* Matching your requested font size */
+  .nav-menu.active { right: 0; }
   .nav-menu a { font-size: 1.5rem; }
 
-  /* 3D Slider Mobile Adjustments - Smaller Scale */
   .content h1 { font-size: 2.5rem; opacity: 0.1; }
   
   .slider { 
-    width: 120px;  /* Smaller width */
-    height: 160px; /* Smaller height */
+    width: 120px; 
+    height: 160px; 
     top: 30%; 
     left: calc(50% - 60px);
   }
   
-  /* Images closer together so they don't clip off screen */
   .slider .item { 
     transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(240px); 
   }
   
   .story-content { padding: 60px 10%; }
-  .intro-block h1 { font-size: 1.8rem; }
-  blockquote { font-size: 1.4rem; }
 }
