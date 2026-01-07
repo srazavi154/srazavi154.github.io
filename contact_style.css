@@ -139,26 +139,32 @@ button[type="submit"]:hover {
 }
 
 /* =========================================
-   5. FOOTER (LinkedIn Fix)
+   7. FOOTER (LinkedIn Fix)
    ========================================= */
 footer {
-    padding: 40px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.7rem;
-    color: #aaa;
-    border-top: 1px solid #f9f9f9;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  border-top: 1px solid #f9f9f9;
 }
 
+/* Forces LinkedIn icon to be black and slightly larger */
 footer .social-links a {
-    color: #000 !important;
-    text-decoration: none;
-    font-size: 1.5rem; 
-    margin-bottom: 10px;
+  color: #000 !important; /* Forces black color */
+  text-decoration: none;
+  font-size: 1.2rem; 
+  transition: opacity 0.3s ease;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
+footer .social-links a:hover {
+  opacity: 0.6;
+}
 /* =========================================
    6. RESPONSIVE DESIGN
    ========================================= */
