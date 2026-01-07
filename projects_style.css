@@ -15,7 +15,6 @@ html, body {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
 }
 
 /* On large desktops, keep it app-like and fixed. */
@@ -276,5 +275,6 @@ footer .social-links a:hover { opacity: 0.6; }
     footer {
         height: auto;
         padding: 40px 20px;
+        text-align: center;
     }
 }
