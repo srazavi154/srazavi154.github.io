@@ -20,6 +20,7 @@ function type() {
         charIndex++;
     }
 
+    // Speed settings
     let typeSpeed = isDeleting ? 75 : 150;
 
     if (!isDeleting && charIndex === currentWord.length) {
@@ -56,7 +57,7 @@ function initMobileMenu() {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 const icon = menuToggle.querySelector('i');
-                icon.classList.replace('fa-times', 'fa-bars');
+                if (icon) icon.classList.replace('fa-times', 'fa-bars');
             });
         });
     }
@@ -76,8 +77,6 @@ function initAnimations() {
         });
     }, observerOptions);
 
-    // This targets .status-item (Home), .resume-btn (Home), 
-    // and .animate-on-scroll (About/Projects)
     const elementsToAnimate = document.querySelectorAll('.status-item, .resume-btn, .animate-on-scroll, section');
     
     elementsToAnimate.forEach((el) => {
@@ -86,27 +85,7 @@ function initAnimations() {
 }
 
 /* =========================================
-   4. INITIALIZE ALL SCRIPTS
-   ========================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    type();
-    initMobileMenu();
-    initAnimations();
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-                target.scrollIntoView({ behavior: "smooth" });
-            }
-        });
-    });
-});
-
-/* =========================================
-   5. PROJECT CAROUSEL LOGIC
+   4. PROJECT CAROUSEL LOGIC
    ========================================= */
 function initCarousel() {
     const slider = document.getElementById('projectSlider');
@@ -125,7 +104,8 @@ function initCarousel() {
 
     cards.forEach(card => {
         const video = card.querySelector('video');
-        
+        if (!video) return;
+
         // Video Play/Pause on hover
         card.addEventListener('mouseenter', () => video.play());
         card.addEventListener('mouseleave', () => {
@@ -141,10 +121,29 @@ function initCarousel() {
     });
 }
 
-// Update your existing document listener:
+/* =========================================
+   5. INITIALIZE ALL SCRIPTS (Single Entry Point)
+   ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
+    // Start the typewriter loop
     type();
+    
+    // Initialize component functions
     initMobileMenu();
     initAnimations();
-    initCarousel(); // Add this line here
+    initCarousel();
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            
+            const target = document.querySelector(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
 });
