@@ -1,7 +1,11 @@
 /* =========================================
    1. CORE RESET & BASE LAYOUT
    ========================================= */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html, body {
   width: 100%;
@@ -10,11 +14,11 @@ html, body {
   color: #000;
   background-color: #fff;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* This allows the footer to stay at bottom */
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION
+   2. HEADER & NAVIGATION (Matches Index)
    ========================================= */
 header {
   height: 90px;
@@ -27,149 +31,224 @@ header {
   border-bottom: 1px solid #eeeeee;
 }
 
-header .logo img { width: 100px; height: auto; margin-top: 35px; }
+header .logo img {
+  width: 100px;
+  height: auto;
+  margin-top: 35px;
+}
 
-.nav-menu { display: flex; gap: 30px; align-items: center; }
-.nav-menu a { text-decoration: none; color: #000; font-size: 1rem; transition: opacity 0.3s ease; }
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
+}
+
 .nav-menu a:hover { opacity: 0.5; }
 
-.menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+.menu-toggle {
+  display: none; 
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2100;
+}
 
 /* =========================================
-   3. NETFLIX CAROUSEL
+   3. MAIN CONTENT WRAPPER
    ========================================= */
+main {
+  flex: 1; /* Pushes footer to the bottom */
+}
+
 .projects-hero {
   width: 100%;
-  padding: 60px 0;
-  flex: 1;
-  opacity: 0; 
+  padding: 80px 0;
+  opacity: 0; /* Starts hidden for script.js animation */
   transform: translateY(30px);
   transition: all 0.8s ease-out;
 }
 
-/* For intersection observer in script.js */
 .projects-hero.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-.projects-header { padding: 0 50px; margin-bottom: 10px; }
-.projects-header h1 { font-family: 'Times New Roman', serif; font-size: 2.6rem; font-weight: normal; }
-.projects-header p { color: #888; font-size: 0.9rem; }
-
-.slider-wrapper { position: relative; padding: 0 50px; }
-
-.netflix-slider {
-  display: flex;
-  gap: 15px;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  padding: 60px 0;
+.projects-header {
+  padding: 0 50px;
+  margin-bottom: 40px;
 }
 
-.netflix-slider::-webkit-scrollbar { display: none; }
-
-.netflix-card {
-  min-width: 320px;
-  height: 200px;
-  background: #111;
-  border-radius: 6px;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+.projects-header h1 {
+  font-family: 'Times New Roman', serif;
+  font-size: 2.8rem;
+  font-weight: normal;
+  letter-spacing: -1px;
 }
 
-.netflix-card:hover {
-  transform: scale(1.3);
-  z-index: 100;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+.projects-header p {
+  color: #888;
+  margin-top: 10px;
 }
-
-.video-wrapper { width: 100%; height: 100%; }
-.project-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
-
-.card-details {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.95));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  color: #fff;
-}
-
-.netflix-card:hover .card-details { opacity: 1; }
-
-.card-title { font-size: 1rem; margin-bottom: 4px; }
-.card-meta { font-size: 0.65rem; color: #ccc; margin-bottom: 8px; }
-.match { color: #46d369; font-weight: bold; margin-right: 10px; }
-.card-desc { font-size: 0.6rem; line-height: 1.4; margin-bottom: 10px; }
-
-.details-btn {
-  background: rgba(255,255,255,0.2);
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 4px 12px;
-  font-size: 0.6rem;
-  border-radius: 4px;
-}
-
-/* Side Arrows */
-.handle {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 200px;
-  width: 45px;
-  background: rgba(255,255,255,0.1);
-  border: none;
-  color: #000;
-  font-size: 1.2rem;
-  cursor: pointer;
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
-.handle:hover { background: rgba(0,0,0,0.05); }
-.handle-prev { left: 5px; }
-.handle-next { right: 5px; }
 
 /* =========================================
-   4. FOOTER
+   4. HORIZONTAL SLIDER
    ========================================= */
-footer {
-  height: 120px;
+.slider-container {
+  position: relative;
+  width: 100%;
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+}
+
+.slider-track {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0 40px 0;
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
+.slider-track::-webkit-scrollbar { display: none; }
+
+/* The Project Card */
+.card {
+  min-width: 400px;
+  height: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background: #f4f4f4;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.card-media {
+  width: 100%;
+  height: 100%;
+}
+
+.card-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover Overlay */
+.card-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.95);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 0.7rem;
-  color: #aaa;
-  border-top: 1px solid #eeeeee;
+  text-align: center;
+  padding: 30px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-overlay h3 {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.6rem;
+  color: #000;
+  margin-bottom: 12px;
+}
+
+.card-overlay p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.view-link {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #000;
+  border-bottom: 2px solid #000;
+  padding-bottom: 2px;
+}
+
+/* Slider Nav Buttons */
+.nav-btn {
+  background: #fff;
+  border: 1px solid #eee;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+.nav-btn:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.nav-btn.prev { position: absolute; left: 20px; }
+.nav-btn.next { position: absolute; right: 20px; }
+
+/* =========================================
+   5. FOOTER (Matches Index)
+   ========================================= */
+footer {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #aaa;
+    border-top: 1px solid #eeeeee;
+    background: #fff;
 }
 
 footer .social-links a {
-  color: #000 !important;
-  font-size: 1.2rem;
-  margin-bottom: 8px;
+    color: #000 !important;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    transition: opacity 0.3s;
 }
 
+footer .social-links a:hover { opacity: 0.6; }
+
 /* =========================================
-   5. MOBILE RESPONSIVE
+   6. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 1024px) {
   .menu-toggle { display: block; }
-  header { padding: 0 20px; }
+
   .nav-menu {
-    position: fixed; top: 0; right: -100%; 
-    width: 70%; height: 100vh; background: #fff;
-    flex-direction: column; justify-content: center;
-    transition: 0.4s ease-in-out; box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-  }
-  .nav-menu.active { right: 0; }
-  .slider-wrapper { padding: 0 20px; }
-  .netflix-card { min-width: 280px; }
-  .netflix-card:hover { transform: scale(1.05); }
-  .handle { display: none; } /* Better for touch screens */
-}
+    position: fixed;
+    top: 0;
+    right: -100%;
