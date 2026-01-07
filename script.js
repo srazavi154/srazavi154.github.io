@@ -104,3 +104,47 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+/* =========================================
+   5. PROJECT CAROUSEL LOGIC
+   ========================================= */
+function initCarousel() {
+    const slider = document.getElementById('projectSlider');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const cards = document.querySelectorAll('.netflix-card');
+
+    if (slider && nextBtn && prevBtn) {
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: 400, behavior: 'smooth' });
+        });
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -400, behavior: 'smooth' });
+        });
+    }
+
+    cards.forEach(card => {
+        const video = card.querySelector('video');
+        
+        // Video Play/Pause on hover
+        card.addEventListener('mouseenter', () => video.play());
+        card.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+
+        // Click to navigate
+        card.addEventListener('click', () => {
+            const link = card.getAttribute('data-link');
+            if (link) window.location.href = link;
+        });
+    });
+}
+
+// Update your existing document listener:
+document.addEventListener("DOMContentLoaded", () => {
+    type();
+    initMobileMenu();
+    initAnimations();
+    initCarousel(); // Add this line here
+});
