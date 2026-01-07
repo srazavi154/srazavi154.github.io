@@ -8,7 +8,8 @@
 }
 
 html, body {
-    min-height: 100%;
+    /* Use 100vh to ensure the body always fills the full screen height */
+    min-height: 100vh; 
     width: 100%;
     font-family: 'Source Sans Pro', sans-serif;
     color: #000;
@@ -55,7 +56,7 @@ header .logo img {
 
 .menu-toggle {
     display: none;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Matches About page */
     cursor: pointer;
     z-index: 2100;
 }
@@ -64,7 +65,8 @@ header .logo img {
    3. CONTACT SECTION STYLES
    ========================================= */
 #contact-container {
-    flex: 1;
+    /* flex: 1 pushes the footer to the bottom of the screen */
+    flex: 1; 
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
@@ -153,7 +155,7 @@ header .logo img {
 }
 
 /* =========================================
-   4. FOOTER & RESPONSIVE
+   4. FOOTER
    ========================================= */
 footer {
     height: 100px;
@@ -164,17 +166,25 @@ footer {
     font-size: 0.7rem;
     color: #aaa;
     border-top: 1px solid #f9f9f9;
+    background: #fff;
 }
 
 footer .social-links a {
     color: #000 !important;
+    text-decoration: none;
     font-size: 1.2rem;
     margin-bottom: 10px;
+    transition: opacity 0.3s;
 }
 
-/* Tablets & Mobile Hamburger Logic */
+footer .social-links a:hover { opacity: 0.6; }
+
+/* =========================================
+   5. RESPONSIVE DESIGN
+   ========================================= */
 @media (max-width: 1024px) {
     header { padding: 0 20px; }
+    
     .menu-toggle { display: block; }
     
     .nav-menu {
@@ -192,10 +202,20 @@ footer .social-links a {
     }
 
     .nav-menu.active { right: 0; }
+    
+    /* Matches About/Index mobile menu font size */
+    .nav-menu a { font-size: 1.5rem; }
 
     #contact-container {
         grid-template-columns: 1fr;
         padding: 60px 5%;
         gap: 40px;
     }
+
+    .contact-info h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+    #contact-container { padding: 40px 20px; }
+    .submit-btn { width: 100%; }
 }
