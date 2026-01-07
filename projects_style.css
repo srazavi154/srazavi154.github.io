@@ -1,222 +1,230 @@
 /* =========================================
-   1. GLOBAL STYLES & RESET
+   1. CORE RESET & BASE LAYOUT (Matches Home)
    ========================================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-    font-family: 'Source Sans Pro', sans-serif;
-    background-color: #0b0b0b; /* Dark background like the video */
-    color: #fff;
-    overflow-x: hidden;
+html, body {
+  width: 100%;
+  height: 100vh; /* Fixed height for app-like feel */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #000;
+  background-color: #fff; /* White background requested */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevents double scrollbars */
 }
 
 /* =========================================
-   2. HEADER & FOOTER (Matches Home)
+   2. HEADER & NAVIGATION (Matches Home)
    ========================================= */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background: transparent;
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
+  height: 90px;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2000;
+  background: #fff;
+  border-bottom: 1px solid #eeeeee;
 }
 
-.logo img {
-    height: 40px;
+header .logo img {
+  width: 100px;
+  height: auto;
+  margin-top: 35px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
 
 .nav-menu a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 30px;
-    font-weight: 400;
-    transition: 0.3s;
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
 }
 
-.nav-menu a:hover {
-    color: #e50914; /* Red accent */
-}
-
-footer {
-    padding: 40px 0;
-    text-align: center;
-    background: #0b0b0b;
-    border-top: 1px solid #333;
-}
-
-.social-links a {
-    color: #fff;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    display: inline-block;
-}
+.nav-menu a:hover { opacity: 0.5; }
 
 /* =========================================
-   3. PROJECTS HERO & SLIDER
+   3. PROJECT SLIDER SECTION
    ========================================= */
-.projects-hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 100px;
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #fff;
 }
 
 .projects-header {
-    text-align: center;
-    margin-bottom: 50px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .projects-header h1 {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-}
-
-.projects-header p {
-    font-size: 1.2rem;
-    color: #aaa;
+  font-family: 'Times New Roman', serif;
+  font-size: 3rem;
+  font-weight: normal;
+  font-style: italic;
 }
 
 /* SLIDER CONTAINER */
 .slider-container {
-    position: relative;
-    width: 100%;
-    max-width: 1400px;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    overflow: hidden; /* Clips the cards outside the view */
+  position: relative;
+  width: 95%;
+  max-width: 1400px;
+  height: 65vh; /* Large focused view */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider-track {
-    display: flex;
-    gap: 25px;
-    padding: 20px 50px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
+  display: flex;
+  gap: 40px;
+  padding: 20px 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  width: 100%;
 }
 
-.slider-track::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome/Safari */
-}
+.slider-track::-webkit-scrollbar { display: none; }
 
-/* INDIVIDUAL CARDS */
+/* LARGE PROJECT CARDS */
 .card {
-    flex: 0 0 400px; /* Fixed width for each card */
-    height: 450px;
-    background: #1a1a1a;
-    border-radius: 15px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  flex: 0 0 70%; /* Makes the card large and prominent */
+  height: 100%;
+  background: #f9f9f9;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
 }
 
+/* Shadow and lift on hover */
 .card:hover {
-    transform: scale(1.05); /* Slight zoom like the video */
-    z-index: 10;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.12);
 }
 
-/* CARD MEDIA (VIDEO/IMAGE) */
 .card-media {
-    width: 100%;
-    height: 100%;
-    position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .card-media video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* OVERLAY CONTENT */
+/* OVERLAY CONTENT (Clean Style) */
 .card-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 30px 20px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-    color: #fff;
-    transition: background 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.95) 70%);
+  color: #000;
 }
 
 .card-overlay h3 {
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+  font-family: 'Times New Roman', serif;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
 }
 
 .card-overlay p {
-    font-size: 0.95rem;
-    color: #ccc;
-    line-height: 1.4;
-    margin-bottom: 15px;
+  font-size: 1rem;
+  max-width: 600px;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 20px;
 }
 
 .view-link {
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    color: #e50914;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #000;
+  border-bottom: 2px solid #000;
+  padding-bottom: 4px;
 }
 
-/* NAVIGATION BUTTONS */
+/* NAVIGATION ARROWS */
 .nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 100;
-    transition: 0.3s;
-    backdrop-filter: blur(5px);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1px solid #eee;
+  color: #000;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 }
 
 .nav-btn:hover {
-    background: #e50914;
+  background: #000;
+  color: #fff;
 }
 
-.prev { left: 20px; }
-.next { right: 20px; }
+.prev { left: -30px; }
+.next { right: -30px; }
 
 /* =========================================
-   4. ANIMATIONS
+   4. FOOTER (Matches Home)
    ========================================= */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+footer {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  border-top: 1px solid #eeeeee;
+  background: #fff;
 }
 
-.animate-on-scroll.show {
-    opacity: 1;
-    transform: translateY(0);
+footer .social-links a {
+  color: #000 !important;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  transition: opacity 0.3s;
 }
 
-/* MOBILE RESPONSIVENESS */
+/* =========================================
+   5. MOBILE FIXES
+   ========================================= */
 @media (max-width: 768px) {
-    .card { flex: 0 0 300px; height: 350px; }
-    .projects-header h1 { font-size: 2.5rem; }
-    .nav-btn { display: none; } /* Use touch scroll on mobile */
+  .card { flex: 0 0 90%; }
+  .nav-btn { display: none; } /* Use swipe on mobile */
+  .projects-header h1 { font-size: 2rem; }
+  header { padding: 0 20px; }
 }
