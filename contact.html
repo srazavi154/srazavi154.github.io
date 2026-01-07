@@ -3,31 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
+  <title>Contact | Sara Razavi</title>
   <link rel="stylesheet" href="contact_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <header>
     <div class="logo">
-      <img src = "image/logo.png" alt="Logo" style="width: 100px; height: auto;">
-      
+      <img src="image/logo.png" alt="Logo">
     </div>
-   
-    <!-- Navigation Menu -->
-    <nav class="nav-menu" id="navMenu">
+
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    
+    <nav class="nav-menu">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <div class="dropdown">
-        <a href="projects.html" class="dropbtn">Projects</a>
-        <div class="dropdown-content">
-          <a href="bot-hockey.html">Bot Hockey</a>
-          <a href="snake-robot.html">Snake Robot Development</a>
-          <a href="transmission-gearbox.html">Transmission Gearbox</a>
-          <a href="robot-mirror-therapy.html">Robot Mirror Therapy</a>
-        </div>
-      </div>     
+      <a href="projects.html">Projects</a>
       <a href="playground.html">Playground</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -35,41 +30,44 @@
 
   <section id="contact-container">
     <div class="contact-info">
-      <h2><em class="Sara">Contact Info:</em></h2>
+      <h1><em class="Sara">Contact Info</em></h1>
       <p>If you have any questions or want to connect, feel free to reach out!</p>
-      <p><strong>Email:</strong> <a href="mailto:sararazavi154@gmail.com">sararazavi154@gmail.com</a></p>
+      <div class="email-link">
+        <strong>Email:</strong> <a href="mailto:sararazavi154@gmail.com">sararazavi154@gmail.com</a>
+      </div>
     </div>
 
-    <!-- Contact Form -->
     <div class="contact-form">
-      <h2><em class="Sara">Let's Chat:</em></h2>
+      <h2><em class="Sara">Let's Chat</em></h2>
       <form action="https://formspree.io/f/xdkkpzrq" method="POST">
-      <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required>
+        <div class="input-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" required>
+        </div>
 
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required>
+        <div class="input-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required>
+        </div>
 
-        <label for="message">Your Message:</label>
-        <textarea id="message" name="message" required></textarea>
+        <div class="input-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Say hello..." required></textarea>
+        </div>
 
-        <button type="submit">Send Message</button>
+        <button type="submit" class="submit-btn">Send Message</button>
       </form>
     </div>
   </section>
 
   <footer>
-  <div class="social-links">
-    <a href="https://www.linkedin.com/in/sara-razavi" target="_blank"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <p>© 2026 Sara Razavi. All Rights Reserved.</p>
-  <p>Coded by Yours Truly</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/sara-razavi" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <p>© 2026 Sara Razavi. All Rights Reserved.</p>
+    <p>Coded by Yours Truly</p>
   </footer>
-  
-  <script src="script.js"></script>
 
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
