@@ -96,12 +96,15 @@ function initCarousel() {
 
     if (slider && nextBtn && prevBtn) {
         nextBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: 400, behavior: 'smooth' });
-        });
-        prevBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -400, behavior: 'smooth' });
-        });
-    }
+             const scrollAmount = projectSlider.clientWidth * 0.75;
+             projectSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+         });
+         
+         prevBtn.addEventListener('click', () => {
+             const scrollAmount = projectSlider.clientWidth * 0.75;
+             projectSlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+         });
+             }
 
     cards.forEach(card => {
         const video = card.querySelector('video');
@@ -148,3 +151,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
