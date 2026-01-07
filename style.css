@@ -39,6 +39,7 @@ header {
 header .logo img {
   width: 100px;
   height: auto;
+  margin-top: 35px;
 }
 
 nav {
@@ -184,3 +185,4 @@ footer .social-links a:hover {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
