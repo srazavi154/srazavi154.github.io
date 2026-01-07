@@ -135,30 +135,32 @@ nav a:hover {
 }
 
 /* =========================================
-   4. FOOTER (Consistent Style)
+   7. FOOTER (LinkedIn Fix)
    ========================================= */
 footer {
-  padding: 40px 20px;
-  text-align: center;
-  font-size: 0.8rem;
-  color: #666;
-  background: #fff;
-  border-top: 1px solid #f0f0f0;
-  margin-top: auto; /* Ensures footer stays at the very bottom */
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  border-top: 1px solid #f9f9f9;
 }
 
+/* Forces LinkedIn icon to be black and slightly larger */
 footer .social-links a {
-  font-size: 1.5rem;
-  color: #000;
-  margin-bottom: 10px;
+  color: #000 !important; /* Forces black color */
+  text-decoration: none;
+  font-size: 1.2rem; 
+  transition: opacity 0.3s ease;
   display: inline-block;
-  transition: opacity 0.3s;
+  margin-bottom: 10px;
 }
 
 footer .social-links a:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
-
 /* =========================================
    5. RESPONSIVE DESIGN
    ========================================= */
@@ -185,4 +187,5 @@ footer .social-links a:hover {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 
