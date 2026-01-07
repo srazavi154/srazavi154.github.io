@@ -1,1 +1,197 @@
+/* =========================================
+   1. CORE RESET & BASE LAYOUT
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+html, body {
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #000;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto; /* Allow scrolling for the gallery */
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION (Synchronized with Home)
+   ========================================= */
+header {
+    height: 90px;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2000;
+    background: #fff;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+}
+
+header .logo img {
+    width: 100px;
+    height: auto;
+    margin-top: 35px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.nav-menu a:hover { opacity: 0.5; }
+
+.menu-toggle {
+    display: none; /* Shows on mobile via Media Query */
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 2100;
+}
+
+/* =========================================
+   3. HERO SECTION (Non-Bold Font Fix)
+   ========================================= */
+.hero {
+    padding: 80px 20px 40px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: 'Times New Roman', serif;
+    font-weight: normal; /* "Magic line" to remove bold */
+    font-size: 3.5rem;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.Sara {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: normal; 
+}
+
+.hero p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: #888;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   4. PLAYGROUND GRID (Pinterest / Masonry)
+   ========================================= */
+#playground {
+    padding: 20px 5% 80px;
+    flex: 1; /* Pushes footer down */
+}
+
+.playground-grid {
+    column-count: 4;
+    column-gap: 20px;
+    width: 100%;
+}
+
+.playground-item {
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 100%;
+    break-inside: avoid;
+    animation: floatIn 0.8s forwards;
+}
+
+.playground-item img,
+.playground-item video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease-in-out;
+}
+
+.playground-item:hover img,
+.playground-item:hover video {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   5. FOOTER (Synchronized)
+   ========================================= */
+footer {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #aaa;
+    border-top: 1px solid #f9f9f9;
+    background: #fff;
+}
+
+footer .social-links a {
+    color: #000 !important;
+    text-decoration: none;
+    font-size: 1.5rem; 
+    margin-bottom: 10px;
+    transition: opacity 0.3s;
+}
+
+footer .social-links a:hover { opacity: 0.6; }
+
+/* =========================================
+   6. RESPONSIVE DESIGN (Hamburger Menu)
+   ========================================= */
+@media (max-width: 1024px) {
+    header { padding: 0 20px; }
+    
+    .menu-toggle { display: block; }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; 
+        width: 80%;
+        height: 100vh;
+        background: #fff;
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.4s ease-in-out;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        z-index: 1500;
+    }
+
+    .nav-menu.active { right: 0; }
+    
+    .playground-grid { column-count: 2; }
+    .hero h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 600px) {
+    .playground-grid { column-count: 1; }
+    .hero { padding: 40px 20px; }
+}
+
+/* Animations */
+@keyframes floatIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
