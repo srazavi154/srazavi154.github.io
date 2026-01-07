@@ -9,17 +9,26 @@
 
 html, body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh; /* Changed from height to min-height */
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden; /* Prevent horizontal jitter */
+}
+
+/* On large desktops, keep it app-like and fixed. 
+   On laptops/tablets/phones, allow natural scrolling. */
+@media (min-width: 1025px) and (min-height: 800px) {
+  body { 
+    height: 100vh; 
+    overflow: hidden; 
+  }
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION (Matches Index)
+   2. HEADER & NAVIGATION
    ========================================= */
 header {
   height: 90px;
@@ -54,7 +63,12 @@ header .logo img {
 
 .nav-menu a:hover { opacity: 0.5; }
 
-.menu-toggle { display: none; }
+.menu-toggle {
+  display: none; /* Hidden on desktop */
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2100;
+}
 
 /* =========================================
    3. CENTERED NETFLIX SLIDER
@@ -63,14 +77,15 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertical Center Alignment */
+  justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 40px 0;
 }
 
 .projects-header {
   width: 100%;
-  padding: 0 5% 40px 5%; /* Padding prevents text/box collision */
+  padding: 0 5% 40px 5%;
   max-width: 1600px;
 }
 
@@ -89,7 +104,7 @@ main {
   letter-spacing: 2px;
 }
 
-/* CONTAINER */
+/* SLIDER CONTAINER */
 .slider-container {
   position: relative;
   width: 100%;
@@ -101,7 +116,7 @@ main {
 .slider-track {
   display: flex;
   gap: 25px;
-  padding: 40px 5%; /* Space for the scale effect */
+  padding: 40px 5%;
   overflow-x: scroll;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -123,14 +138,12 @@ main {
   transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
-/* 1. Zoom and Shadow effect */
 .card:hover {
   transform: scale(1.08);
   z-index: 10;
   box-shadow: 0 25px 50px rgba(0,0,0,0.2);
 }
 
-/* 2. Media Dimmer: Darkens video on hover for text contrast */
 .card:hover .card-media {
   filter: brightness(0.6);
   transition: filter 0.4s ease;
@@ -139,14 +152,13 @@ main {
 .card-media { width: 100%; height: 100%; }
 .card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
 
-/* 3. Text Overlay: Solid High-Contrast Plate */
 .card-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 30px;
-  background: rgba(255, 255, 255, 0.95); /* Semi-solid for perfect readability */
+  background: rgba(255, 255, 255, 0.95);
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -161,7 +173,6 @@ main {
   font-size: 1.5rem;
   font-weight: 700;
   color: #000;
-  margin-bottom: 5px;
 }
 
 .card-overlay p {
@@ -200,10 +211,10 @@ main {
 .next { right: 30px; }
 
 /* =========================================
-   4. FOOTER (Matches Index)
+   4. FOOTER
    ========================================= */
 footer {
-  height: 100px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -223,50 +234,54 @@ footer .social-links a {
   transition: opacity 0.3s;
 }
 
-footer .social-links a:hover { opacity: 0.6; }
-
 /* =========================================
-   5. MOBILE RESPONSIVENESS (Menu Logic)
+   5. MOBILE RESPONSIVENESS (Menu & Footer Fix)
    ========================================= */
 @media (max-width: 1024px) {
-  /* Show the toggle button */
   .menu-toggle { 
     display: block; 
-    font-size: 1.5rem; 
-    cursor: pointer;
-    z-index: 2100; /* Higher than the menu itself */
   }
 
   header { padding: 0 20px; }
-  
-  /* The Sidebar Menu */
+
+  /* Slide-out Menu Sync */
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -100%; /* Hidden off-screen to the right */
+    right: -100%; 
     width: 80%;
     height: 100vh;
     background: #fff;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Center links horizontally */
     transition: 0.4s ease-in-out;
     box-shadow: -10px 0 30px rgba(0,0,0,0.1);
     z-index: 2000;
   }
+
+  .nav-menu.active { right: 0; }
+  .nav-menu a { font-size: 1.5rem; margin: 15px 0; }
+
+  /* Content & Footer Fix */
+  main {
+    justify-content: flex-start; /* Don't force center on mobile */
+    padding-top: 20px;
+  }
+
+  .slider-container {
+    max-height: none; /* Allow cards to dictate height */
+  }
+
+  .card { 
+    flex: 0 0 85%; 
+  }
+
+  .nav-btn { display: none; } /* Use swipe on mobile */
   
-  /* When JS toggles .active */
-  .nav-menu.active { 
-    right: 0; 
-  }
-
-  .nav-menu a { 
-    font-size: 1.5rem; 
-    margin: 15px 0; /* Add space between vertical links */
-  }
-
-  /* Slider Adjustments for Mobile */
-  .card { flex: 0 0 85%; } 
-  .nav-btn { display: none; } 
   .projects-header h1 { font-size: 2.2rem; }
+
+  footer {
+    height: auto;
+    padding: 40px 20px;
+  }
 }
