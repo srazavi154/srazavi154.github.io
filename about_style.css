@@ -189,31 +189,31 @@ blockquote {
 }
 
 /* =========================================
-   5. FOOTER (Matches Index Style)
+   7. FOOTER (LinkedIn Fix)
    ========================================= */
 footer {
-    height: 100px;           /* Fixed height like index */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.7rem;
-    color: #aaa;             /* Slightly lighter gray to match */
-    border-top: 1px solid #f9f9f9;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  border-top: 1px solid #f9f9f9;
 }
 
 /* Forces LinkedIn icon to be black and slightly larger */
 footer .social-links a {
-    color: #000 !important; 
-    text-decoration: none;
-    font-size: 1.2rem;  
-    transition: opacity 0.3s ease;
-    display: inline-block;
-    margin-bottom: 10px;
+  color: #000 !important; /* Forces black color */
+  text-decoration: none;
+  font-size: 1.2rem; 
+  transition: opacity 0.3s ease;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 footer .social-links a:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 /* Tablets */
