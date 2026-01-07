@@ -77,7 +77,8 @@ function initAnimations() {
         });
     }, observerOptions);
 
-    const elementsToAnimate = document.querySelectorAll('.status-item, .resume-btn, .animate-on-scroll, section');
+    // ADDED '.projects-hero' to the selector so your projects page section triggers the animation
+    const elementsToAnimate = document.querySelectorAll('.status-item, .resume-btn, .animate-on-scroll, section, .projects-hero');
     
     elementsToAnimate.forEach((el) => {
         observer.observe(el);
@@ -91,7 +92,7 @@ function initCarousel() {
     const slider = document.getElementById('projectSlider');
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
-    const cards = document.querySelectorAll('.netflix-card');
+    const cards = document.querySelectorAll('.card'); // Matches the HTML class used in your projects.html
 
     if (slider && nextBtn && prevBtn) {
         nextBtn.addEventListener('click', () => {
