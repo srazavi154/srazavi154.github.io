@@ -18,7 +18,7 @@ html, body {
 }
 
 /* =========================================
-   2. SHARED HEADER & NAVIGATION (AS REQUESTED)
+   2. SHARED HEADER & NAVIGATION
    ========================================= */
 header {
   height: 90px;
@@ -57,15 +57,15 @@ header .logo img {
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
-  z-index: 1200;
+  z-index: 2100;
 }
 
 /* =========================================
-   3. 3D IMAGE SLIDER SECTION (REPLACES GLOBE)
+   3. 3D IMAGE SLIDER SECTION
    ========================================= */
 .banner {
     width: 100%;
-    height: 85vh; /* Adjusted to fit better with header */
+    height: 85vh;
     text-align: center;
     overflow: hidden;
     position: relative;
@@ -83,7 +83,7 @@ header .logo img {
     left: calc(50% - 100px);
     transform-style: preserve-3d;
     transform: perspective(1000px);
-    animation: autoRun 25s linear infinite;
+    animation: autoRun 20s linear infinite;
     z-index: 2;
 }
 
@@ -97,22 +97,22 @@ header .logo img {
     inset: 0 0 0 0;
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
-        translateZ(600px); /* Increased for 11 photos */
+        translateZ(550px); /* Desktop distance */
 }
 
-/* Add this to make your photos look uniform even if they are different sizes */
 .slider .item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
-    /* This adds a subtle reflection effect below the images */
-    -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0004);
+    /* Reflection removed */
+    transition: transform 0.4s ease;
 }
 
+/* Hover glow and scale removed as requested */
 .slider .item:hover img {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(54, 136, 224, 0.5); /* Blue glow on hover */
+    transform: none; 
+    box-shadow: none;
 }
 
 .item-desc {
@@ -126,12 +126,14 @@ header .logo img {
     letter-spacing: 1px;
 }
 
+/* Welcome to My World - Styled to match your Hero style */
 .content h1 {
-    font-size: 10rem;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 700;
-    color: transparent;
-    -webkit-text-stroke: 1px #eeeeee;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: normal; /* Removed bold */
+    font-size: 6rem;
+    color: #000;
+    opacity: 0.05; /* Faded like the marquee on home page */
     position: relative;
     z-index: 1;
 }
@@ -150,7 +152,9 @@ header .logo img {
 }
 
 .intro-block h1 {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: normal;
     font-size: 2.8rem;
     margin-bottom: 30px;
 }
@@ -165,7 +169,7 @@ header .logo img {
 .Sara {
     font-style: italic;
     color: #000;
-    border-bottom: 2px solid #3688e0; /* Subtle blue accent */
+    border-bottom: 1px solid #3688e0;
 }
 
 .quote-block {
@@ -184,58 +188,29 @@ blockquote {
 /* --- THE GLOWING SPHERE CORE --- */
 .content {
     position: absolute;
-    z-index: 1; /* Sits behind the front images, but in the center */
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .glowing-sphere {
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, #ffffff 0%, #3688e0 40%, #1a4a7e 100%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #ffffff 0%, #f0f0f0 40%, #e0e0e0 100%);
     border-radius: 50%;
-    /* Layered shadows create the "atmosphere" of the glow */
-    box-shadow: 
-        0 0 40px #3688e0, 
-        0 0 80px rgba(54, 136, 224, 0.6), 
-        0 0 120px rgba(54, 136, 224, 0.3);
+    box-shadow: 0 0 30px rgba(0,0,0,0.05);
     animation: spherePulse 4s ease-in-out infinite;
     position: relative;
 }
 
-/* Add a pseudo-element for a sharper "lens flare" effect */
-.glowing-sphere::after {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    width: 30%;
-    height: 30%;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    filter: blur(5px);
+@keyframes spherePulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
 }
 
-/* Pulsing Animation */
-@keyframes spherePulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 
-            0 0 40px #3688e0, 
-            0 0 80px rgba(54, 136, 224, 0.6), 
-            0 0 120px rgba(54, 136, 224, 0.3);
-    }
-    50% {
-        transform: scale(1.1); /* Subtle grow */
-        box-shadow: 
-            0 0 60px #3688e0, 
-            0 0 110px rgba(54, 136, 224, 0.8), 
-            0 0 160px rgba(54, 136, 224, 0.4);
-    }
-}
 /* =========================================
-   5. SHARED FOOTER (AS REQUESTED)
+   5. SHARED FOOTER
    ========================================= */
 footer {
   height: 100px;
@@ -249,21 +224,21 @@ footer {
   border-top: 1px solid #eeeeee;
 }
 
-footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
+footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; text-decoration: none; }
 
 /* =========================================
-   6. MOBILE RESPONSIVENESS (Menu Logic)
+   6. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 1024px) {
   .menu-toggle { 
     display: block; 
-    z-index: 2100; /* Match index page */
+    z-index: 2100; 
   }
 
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -100%; /* Hidden by default */
+    right: -100%; 
     width: 80%;
     height: 100vh;
     background: #fff;
@@ -271,29 +246,32 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; }
     justify-content: center;
     transition: 0.4s ease-in-out;
     box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-    z-index: 2000; /* Match index page */
+    z-index: 2000;
   }
 
-  /* When JS toggles .active */
   .nav-menu.active {
     right: 0;
   }
 
+  /* Matching your requested font size */
   .nav-menu a { font-size: 1.5rem; }
 
-  /* 3D Slider Mobile Adjustments */
-  .content h1 { font-size: 4rem; }
+  /* 3D Slider Mobile Adjustments - Smaller Scale */
+  .content h1 { font-size: 2.5rem; opacity: 0.1; }
+  
   .slider { 
-    width: 150px; 
-    height: 200px; 
-    top: 25%; /* Give header more room */
+    width: 120px;  /* Smaller width */
+    height: 160px; /* Smaller height */
+    top: 30%; 
+    left: calc(50% - 60px);
   }
   
-  /* Bring the items closer together on small screens */
+  /* Images closer together so they don't clip off screen */
   .slider .item { 
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(280px); 
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(240px); 
   }
   
-  .intro-block h1 { font-size: 2rem; }
-  blockquote { font-size: 1.5rem; }
+  .story-content { padding: 60px 10%; }
+  .intro-block h1 { font-size: 1.8rem; }
+  blockquote { font-size: 1.4rem; }
 }
