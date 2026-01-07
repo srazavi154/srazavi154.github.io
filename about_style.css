@@ -65,9 +65,8 @@ header .logo img {
    ========================================= */
 .banner {
     width: 100%;
-    height: 100vh; 
+    height: 700px; 
     text-align: center;
-    /* Changed to visible so 3D rotation doesn't get cut off */
     overflow: visible; 
     position: relative;
     background-color: #ffffff; 
@@ -270,6 +269,22 @@ footer .social-links a { color: #000; font-size: 1.2rem; margin-bottom: 8px; tex
     top: 30%; 
     left: calc(50% - 60px);
   }
+   /* =========================================
+   8. LARGE DESKTOP ADJUSTMENTS (Screens wider than 1440px)
+   ========================================= */
+@media (min-width: 1441px) {
+    .slider {
+        width: 250px;  /* Increased from 200px */
+        height: 320px; /* Increased from 250px */
+        top: 20%;      /* Adjust vertical positioning */
+    }
+
+    .slider .item {
+        /* Pushes the items further out to create a wider circle */
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) 
+                   translateZ(650px); 
+    }
+}
   
   .slider .item { 
     transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(240px); 
