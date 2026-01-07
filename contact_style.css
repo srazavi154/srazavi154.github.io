@@ -165,8 +165,7 @@ footer {
     align-items: center;
     font-size: 0.7rem;
     color: #aaa;
-    border-top: 1px solid #f9f9f9;
-    background: #fff;
+    border-top: 1px solid #eeeeee;
 }
 
 footer .social-links a {
