@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects</title>
+  <title>Projects | Sara Razavi</title>
   <link rel="stylesheet" href="projects_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
     <nav class="nav-menu">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
+      <a href="projects.html" style="font-weight: bold; border-bottom: 2px solid #000;">Projects</a>
       <a href="playground.html">Playground</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -29,73 +29,92 @@
     <section class="projects-hero animate-on-scroll">
       <div class="projects-header">
         <h1>Selected Works</h1>
-        <p>Hover to preview engineering in motion.</p>
+        <p>Engineering in motion. Hover to preview.</p>
       </div>
 
-      <div class="slider-wrapper">
-        <button class="handle handle-prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+      <div class="slider-container">
+        <button class="nav-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
         
-        <div class="netflix-slider" id="projectSlider">
-          
-          <div class="netflix-card" data-link="bot-hockey.html">
-            <div class="video-wrapper">
-              <video class="project-video" muted loop playsinline poster="image/bot-hockey/enforcer.png">
+        <div class="slider-track" id="projectSlider">
+          <div class="card" data-link="bot-hockey.html">
+            <div class="card-media">
+              <video muted loop playsinline poster="image/bot-hockey/enforcer.png">
                 <source src="video/bot-hockey.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="card-details">
-              <h3 class="card-title">Bot Hockey</h3>
-              <p class="card-meta"><span class="match">98% Match</span> Sep 2024 - March 2025</p>
-              <p class="card-desc">Advanced engineering for competitive robotic hockey gameplay.</p>
-              <button class="details-btn">View Project <i class="fas fa-chevron-right"></i></button>
+            <div class="card-overlay">
+              <h3>Bot Hockey</h3>
+              <p>Developing strategic robotic systems for competitive play.</p>
+              <span class="view-link">Explore Project <i class="fas fa-arrow-right"></i></span>
             </div>
           </div>
 
-          <div class="netflix-card" data-link="snake-robot.html">
-            <div class="video-wrapper">
-              <video class="project-video" muted loop playsinline poster="image/snake-robot/snake.png">
+          <div class="card" data-link="snake-robot.html">
+            <div class="card-media">
+              <video muted loop playsinline poster="image/snake-robot/snake.png">
                 <source src="video/snake-robot.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="card-details">
-              <h3 class="card-title">Snake Robot</h3>
-              <p class="card-meta"><span class="match">New</span> Nov - Dec 2024</p>
-              <p class="card-desc">Biologically inspired robotic navigation and obstacle avoidance.</p>
-              <button class="details-btn">View Project <i class="fas fa-chevron-right"></i></button>
+            <div class="card-overlay">
+              <h3>Snake Robot</h3>
+              <p>Biomimetic design for seamless navigation and obstacles.</p>
+              <span class="view-link">Explore Project <i class="fas fa-arrow-right"></i></span>
             </div>
           </div>
 
-          <div class="netflix-card" data-link="transmission-gearbox.html">
-            <div class="video-wrapper">
-              <video class="project-video" muted loop playsinline poster="image/transmission-gearbox/transmission.png">
+          <div class="card" data-link="transmission-gearbox.html">
+            <div class="card-media">
+              <video muted loop playsinline poster="image/transmission-gearbox/transmission.png">
                 <source src="video/gearbox.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="card-details">
-              <h3 class="card-title">Transmission Gearbox</h3>
-              <p class="card-meta"><span class="match">94% Match</span> May - June 2024</p>
-              <p class="card-desc">Efficient torque distribution for automotive applications.</p>
-              <button class="details-btn">View Project <i class="fas fa-chevron-right"></i></button>
+            <div class="card-overlay">
+              <h3>Gearbox Design</h3>
+              <p>Optimizing torque distribution for vehicle performance.</p>
+              <span class="view-link">Explore Project <i class="fas fa-arrow-right"></i></span>
             </div>
           </div>
 
-          <div class="netflix-card" data-link="robot-mirror-therapy.html">
-            <div class="video-wrapper">
-              <video class="project-video" muted loop playsinline poster="image/robot-mirror-therapy/robot.png">
+          <div class="card" data-link="robot-mirror-therapy.html">
+            <div class="card-media">
+              <video muted loop playsinline poster="image/robot-mirror-therapy/robot.png">
                 <source src="video/mirror-therapy.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="card-details">
-              <h3 class="card-title">Mirror Therapy</h3>
-              <p class="card-meta"><span class="match">Rehab Tech</span> June - Aug 2022</p>
-              <p class="card-desc">Lightweight exoskeleton for pediatric hemiplegic cerebral palsy.</p>
-              <button class="details-btn">View Project <i class="fas fa-chevron-right"></i></button>
+            <div class="card-overlay">
+              <h3>Mirror Therapy</h3>
+              <p>Lightweight exoskeleton for pediatric rehabilitation.</p>
+              <span class="view-link">Explore Project <i class="fas fa-arrow-right"></i></span>
             </div>
           </div>
-
         </div>
-
-        <button class="handle handle-next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        
+        <div class="card" data-link="linguistic-racism.html">
+          <div class="card-media">
+            <video muted loop playsinline poster="image/stip-racism-thumb.jpg">
+              <source src="video/linguistic-racism.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-overlay">
+            <h3>Linguistic Racism</h3>
+            <p>Quantifying anxiety in non-native speakers using E4 sensors and Muse EEG brainwaves.</p>
+            <span class="view-link">View Research <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+        
+        <div class="card" data-link="vr-intervention.html">
+          <div class="card-media">
+            <video muted loop playsinline poster="image/vr-intervention-thumb.jpg">
+              <source src="video/vr-intervention.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-overlay">
+            <h3>VR Intervention</h3>
+            <p>Personalized SUD recovery environments using Blender, Unity, and real-time heart rate signals.</p>
+            <span class="view-link">View Research <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+        <button class="nav-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
       </div>
     </section>
   </main>
@@ -111,5 +130,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
