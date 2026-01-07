@@ -1,0 +1,179 @@
+/* =========================================
+   1. CORE RESET & BASE STYLES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #000;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION (Consistent with Home)
+   ========================================= */
+header {
+    height: 90px;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+header .logo img {
+    width: 100px;
+    height: auto;
+    margin-top: 35px;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+nav a:hover { opacity: 0.5; }
+
+/* =========================================
+   3. CONTACT CONTAINER (The Fix)
+   ========================================= */
+#contact-container {
+    flex: 1; /* Pushes footer down */
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Makes both boxes same height */
+    gap: 40px;
+    padding: 80px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: floatIn 1s forwards;
+}
+
+.contact-info, .contact-form {
+    width: 48%;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.contact-info h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 3rem;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+.contact-info p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.contact-form h2 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   4. FORM ELEMENTS
+   ========================================= */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    background: #f9f9f9;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border: 1px solid #000;
+}
+
+button[type="submit"] {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   5. FOOTER (LinkedIn Fix)
+   ========================================= */
+footer {
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #aaa;
+    border-top: 1px solid #f9f9f9;
+}
+
+footer .social-links a {
+    color: #000 !important;
+    text-decoration: none;
+    font-size: 1.5rem; 
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   6. RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 900px) {
+    #contact-container {
+        flex-direction: column;
+        padding: 40px 5%;
+    }
+
+    .contact-info, .contact-form {
+        width: 100%;
+    }
+}
+
+@keyframes floatIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
