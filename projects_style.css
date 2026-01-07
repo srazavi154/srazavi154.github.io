@@ -240,6 +240,9 @@ footer .social-links a {
 @media (max-width: 1024px) {
   .menu-toggle { 
     display: block; 
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 2100;
   }
 
   header { padding: 0 20px; }
@@ -253,30 +256,44 @@ footer .social-links a {
     height: 100vh;
     background: #fff;
     flex-direction: column;
+    
+    /* Ensure links are perfectly centered */
     justify-content: center;
+    align-items: center; 
+    
+    /* This gap ensures consistent spacing between the words */
+    gap: 30px; 
+    
     transition: 0.4s ease-in-out;
     box-shadow: -10px 0 30px rgba(0,0,0,0.1);
     z-index: 2000;
   }
 
-  .nav-menu.active { right: 0; }
-  .nav-menu a { font-size: 1.5rem; margin: 15px 0; }
+  .nav-menu.active { 
+    right: 0; 
+  }
 
-  /* Content & Footer Fix */
+  .nav-menu a { 
+    font-size: 1.5rem; 
+    margin: 0; /* Remove manual margins to let 'gap' handle spacing */
+    text-transform: none; /* Keeps original casing */
+  }
+
+  /* Slider & Content Adjustments */
   main {
-    justify-content: flex-start; /* Don't force center on mobile */
+    justify-content: flex-start;
     padding-top: 20px;
   }
 
   .slider-container {
-    max-height: none; /* Allow cards to dictate height */
+    max-height: none; 
   }
 
   .card { 
     flex: 0 0 85%; 
   }
 
-  .nav-btn { display: none; } /* Use swipe on mobile */
+  .nav-btn { display: none; } 
   
   .projects-header h1 { font-size: 2.2rem; }
 
