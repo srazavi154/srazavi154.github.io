@@ -147,17 +147,14 @@ footer {
 }
 
 footer .social-links a {
-    color: #000 !important; 
+    color: #000 !important;
     text-decoration: none;
-    font-size: 1.2rem; 
-    transition: opacity 0.3s ease;
-    display: inline-block;
+    font-size: 1.2rem;
     margin-bottom: 10px;
+    transition: opacity 0.3s;
 }
 
-footer .social-links a:hover {
-    opacity: 0.6;
-}
+footer .social-links a:hover { opacity: 0.6; }
 
 /* =========================================
    6. RESPONSIVE DESIGN
