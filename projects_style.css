@@ -1,254 +1,222 @@
 /* =========================================
-   1. CORE RESET & BASE LAYOUT
+   1. GLOBAL STYLES & RESET
    ========================================= */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  min-height: 100%;
-  font-family: 'Source Sans Pro', sans-serif;
-  color: #000;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column; /* This allows the footer to stay at bottom */
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #0b0b0b; /* Dark background like the video */
+    color: #fff;
+    overflow-x: hidden;
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION (Matches Index)
+   2. HEADER & FOOTER (Matches Home)
    ========================================= */
 header {
-  height: 90px;
-  padding: 0 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 2000;
-  background: #fff;
-  border-bottom: 1px solid #eeeeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: transparent;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
 }
 
-header .logo img {
-  width: 100px;
-  height: auto;
-  margin-top: 35px;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 30px;
-  align-items: center;
+.logo img {
+    height: 40px;
 }
 
 .nav-menu a {
-  text-decoration: none;
-  color: #000;
-  font-size: 1rem;
-  transition: opacity 0.3s ease;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 400;
+    transition: 0.3s;
 }
 
-.nav-menu a:hover { opacity: 0.5; }
-
-.menu-toggle {
-  display: none; 
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 2100;
+.nav-menu a:hover {
+    color: #e50914; /* Red accent */
 }
 
-/* =========================================
-   3. MAIN CONTENT WRAPPER
-   ========================================= */
-main {
-  flex: 1; /* Pushes footer to the bottom */
-}
-
-.projects-hero {
-  width: 100%;
-  padding: 80px 0;
-  opacity: 0; /* Starts hidden for script.js animation */
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-}
-
-.projects-hero.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.projects-header {
-  padding: 0 50px;
-  margin-bottom: 40px;
-}
-
-.projects-header h1 {
-  font-family: 'Times New Roman', serif;
-  font-size: 2.8rem;
-  font-weight: normal;
-  letter-spacing: -1px;
-}
-
-.projects-header p {
-  color: #888;
-  margin-top: 10px;
-}
-
-/* =========================================
-   4. HORIZONTAL SLIDER
-   ========================================= */
-.slider-container {
-  position: relative;
-  width: 100%;
-  padding: 0 50px;
-  display: flex;
-  align-items: center;
-}
-
-.slider-track {
-  display: flex;
-  gap: 25px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 20px 0 40px 0;
-  scrollbar-width: none; /* Firefox */
-  -webkit-overflow-scrolling: touch;
-}
-
-.slider-track::-webkit-scrollbar { display: none; }
-
-/* The Project Card */
-.card {
-  min-width: 400px;
-  height: 260px;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  background: #f4f4f4;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-}
-
-.card-media {
-  width: 100%;
-  height: 100%;
-}
-
-.card-media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Hover Overlay */
-.card-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.card:hover .card-overlay {
-  opacity: 1;
-}
-
-.card-overlay h3 {
-  font-family: 'Times New Roman', serif;
-  font-size: 1.6rem;
-  color: #000;
-  margin-bottom: 12px;
-}
-
-.card-overlay p {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.view-link {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #000;
-  border-bottom: 2px solid #000;
-  padding-bottom: 2px;
-}
-
-/* Slider Nav Buttons */
-.nav-btn {
-  background: #fff;
-  border: 1px solid #eee;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  z-index: 10;
-  transition: all 0.3s;
-}
-
-.nav-btn:hover {
-  background: #000;
-  color: #fff;
-  border-color: #000;
-}
-
-.nav-btn.prev { position: absolute; left: 20px; }
-.nav-btn.next { position: absolute; right: 20px; }
-
-/* =========================================
-   5. FOOTER (Matches Index)
-   ========================================= */
 footer {
-    height: 100px;
+    padding: 40px 0;
+    text-align: center;
+    background: #0b0b0b;
+    border-top: 1px solid #333;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* =========================================
+   3. PROJECTS HERO & SLIDER
+   ========================================= */
+.projects-hero {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 0.7rem;
-    color: #aaa;
-    border-top: 1px solid #eeeeee;
-    background: #fff;
+    padding-top: 100px;
 }
 
-footer .social-links a {
-    color: #000 !important;
-    text-decoration: none;
-    font-size: 1.2rem;
+.projects-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.projects-header h1 {
+    font-size: 3.5rem;
     margin-bottom: 10px;
-    transition: opacity 0.3s;
 }
 
-footer .social-links a:hover { opacity: 0.6; }
+.projects-header p {
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+/* SLIDER CONTAINER */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Clips the cards outside the view */
+}
+
+.slider-track {
+    display: flex;
+    gap: 25px;
+    padding: 20px 50px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.slider-track::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+/* INDIVIDUAL CARDS */
+.card {
+    flex: 0 0 400px; /* Fixed width for each card */
+    height: 450px;
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight zoom like the video */
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+
+/* CARD MEDIA (VIDEO/IMAGE) */
+.card-media {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.card-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* OVERLAY CONTENT */
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: #fff;
+    transition: background 0.3s ease;
+}
+
+.card-overlay h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.card-overlay p {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.view-link {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: #e50914;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* NAVIGATION BUTTONS */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.nav-btn:hover {
+    background: #e50914;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
 
 /* =========================================
-   6. MOBILE RESPONSIVENESS
+   4. ANIMATIONS
    ========================================= */
-@media (max-width: 1024px) {
-  .menu-toggle { display: block; }
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
 
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
+.animate-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .card { flex: 0 0 300px; height: 350px; }
+    .projects-header h1 { font-size: 2.5rem; }
+    .nav-btn { display: none; } /* Use touch scroll on mobile */
+}
