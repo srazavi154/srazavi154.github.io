@@ -64,36 +64,32 @@ header .logo img {
 }
 
 /* =========================================
-   3. HERO SECTION
+   3. HERO SECTION (Updated to match Projects)
    ========================================= */
 .hero {
     padding: 80px 20px 40px;
     text-align: center;
 }
 
+/* The Main Title (e.g., Grounds for Play) */
 .hero h1 {
     font-family: 'Times New Roman', serif;
+    font-style: italic;     /* Matches the italic style of Projects */
     font-weight: normal; 
-    font-size: 2.8rem;
+    font-size: 2.8rem;      /* Exactly the same as Projects */
     color: #000;
     margin-bottom: 10px;
 }
 
-.Sara {
-    font-family: 'Times New Roman', serif;
-    font-style: italic;
-    font-weight: normal; 
-}
-
+/* The Subheader (The font you really like) */
 .hero p {
     font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 300;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    color: #888;
+    font-size: 0.9rem;      /* Matches Engineering in Motion */
+    font-weight: normal;    /* Matches Engineering in Motion */
+    color: #666;            /* Matches the gray color from Projects */
     text-transform: uppercase;
+    letter-spacing: 2px;    /* The specific spacing that creates the look */
 }
-
 /* =========================================
    4. PLAYGROUND GRID (Masonry)
    ========================================= */
