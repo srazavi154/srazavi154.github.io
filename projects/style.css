@@ -1,5 +1,5 @@
 /* =========================================
-   1. CORE RESET & BRANDING (Matched to Home)
+   1. CORE RESET & BASE LAYOUT (GLOBAL MATCH)
    ========================================= */
 * {
     margin: 0;
@@ -17,14 +17,14 @@ html, body {
     flex-direction: column;
 }
 
-/* Detail pages should always scroll naturally */
+/* Natural scroll everywhere */
 body {
     overflow-x: hidden;
     overflow-y: auto;
 }
 
 /* =========================================
-   2. HEADER & NAVIGATION (Exact Match)
+   2. HEADER & NAVIGATION (EXACT MATCH)
    ========================================= */
 header {
     height: 90px;
@@ -32,12 +32,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 2000;
     background: #fff;
     border-bottom: 1px solid #eeeeee;
-    position: fixed; /* Keep it fixed at the top */
+    position: fixed;
     top: 0;
     width: 100%;
+    z-index: 2000;
 }
 
 header .logo img {
@@ -59,16 +59,18 @@ header .logo img {
     transition: opacity 0.3s ease;
 }
 
-.nav-menu a:hover { opacity: 0.5; }
+.nav-menu a:hover {
+    opacity: 0.5;
+}
 
 /* =========================================
-   3. PROJECT CONTENT LAYOUT
+   3. PROJECT PAGE LAYOUT
    ========================================= */
 .container {
     flex: 1;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 140px 5% 80px 5%; /* 140px top padding to clear the fixed header */
+    padding: 140px 5% 80px; /* clears fixed header */
     width: 100%;
 }
 
@@ -78,54 +80,67 @@ header .logo img {
     font-size: 3.5rem;
     font-weight: normal;
     margin-bottom: 10px;
-    color: #000;
 }
 
 .project-subtitle {
-    font-size: 1rem;
+    font-size: 0.75rem;
     color: #666;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 40px;
 }
 
+/* =========================================
+   4. HERO MEDIA (RESPONSIVE FIX)
+   ========================================= */
 .hero-media {
     width: 100%;
+    max-height: 520px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     background: #f7f7f7;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
-.hero-media video, .hero-media img {
+.hero-media video,
+.hero-media img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
+/* =========================================
+   5. CONTENT GRID
+   ========================================= */
 .content-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 80px;
-    margin-top: 60px;
+    margin-top: 70px;
 }
 
 .main-content h2 {
-    font-size: 1.8rem;
-    margin: 40px 0 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
     font-family: 'Times New Roman', serif;
     font-style: italic;
+    font-size: 1.8rem;
     font-weight: normal;
+    margin: 50px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-.main-content p, .main-content li {
-    font-size: 1.1rem;
+.main-content p,
+.main-content li {
+    font-size: 1.05rem;
     color: #333;
     line-height: 1.8;
     margin-bottom: 20px;
 }
 
+/* =========================================
+   6. SIDEBAR
+   ========================================= */
 .sidebar-box {
     background: #fbfbfb;
     padding: 40px;
@@ -136,7 +151,7 @@ header .logo img {
 }
 
 .sidebar-box h4 {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-bottom: 15px;
@@ -148,22 +163,21 @@ header .logo img {
     flex-wrap: wrap;
     gap: 8px;
     list-style: none;
-    padding: 0;
 }
 
 .tag-list li {
     background: #000;
     color: #fff;
     padding: 6px 14px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     border-radius: 4px;
 }
 
 /* =========================================
-   4. FOOTER (Exact Match)
+   7. FOOTER (EXACT MATCH)
    ========================================= */
 footer {
-    height: 120px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -176,19 +190,49 @@ footer {
 }
 
 footer .social-links a {
-    color: #000 !important;
-    text-decoration: none;
+    color: #000;
     font-size: 1.2rem;
     margin-bottom: 10px;
     transition: opacity 0.3s;
 }
 
 /* =========================================
-   5. MOBILE RESPONSIVENESS
+   8. MOBILE RESPONSIVENESS (MATCHED)
    ========================================= */
 @media (max-width: 1024px) {
-    header { padding: 0 25px; }
-    .content-grid { grid-template-columns: 1fr; gap: 40px; }
-    .project-title { font-size: 2.5rem; }
-    .sidebar-box { position: static; }
+    header {
+        padding: 0 25px;
+    }
+
+    .project-title {
+        font-size: 2.4rem;
+    }
+
+    .hero-media {
+        max-height: 320px;
+        border-radius: 12px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .sidebar-box {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .project-title {
+        font-size: 2rem;
+    }
+
+    .project-subtitle {
+        font-size: 0.65rem;
+    }
+
+    .hero-media {
+        max-height: 260px;
+    }
 }
