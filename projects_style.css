@@ -168,18 +168,62 @@ main {
     transform: translateY(0);
 }
 
-.card-overlay h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff; /* Switched to white for dark gradient */
-}
 
 .card-overlay p {
     font-size: 0.95rem;
     color: #ddd; /* Switched to light gray for dark gradient */
     line-height: 1.4;
 }
+/* Container for Title and Buttons */
+.overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+}
 
+/* Button Grouping */
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Small Circle Buttons */
+.circle-btn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2); 
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.circle-btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.1);
+}
+
+/* Remove the old view-link */
+.view-link {
+  display: none !important;
+}
+
+.card-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  padding-right: 10px; /* Adds a tiny gap so text doesn't touch the buttons */
+  white-space: nowrap; /* Keeps the title on one line */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds "..." if the title is way too long */
+}
 /* NAVIGATION ARROWS */
 .nav-btn {
     position: absolute;
