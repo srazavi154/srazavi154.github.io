@@ -47,9 +47,9 @@ function initMobileMenu() {
             navMenu.classList.toggle('active');
             const icon = menuToggle.querySelector('i');
             if (navMenu.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
+                if (icon) icon.classList.replace('fa-bars', 'fa-times');
             } else {
-                icon.classList.replace('fa-times', 'fa-bars');
+                if (icon) icon.classList.replace('fa-times', 'fa-bars');
             }
         });
 
@@ -77,7 +77,7 @@ function initAnimations() {
         });
     }, observerOptions);
 
-    // ADDED '.projects-hero' to the selector so your projects page section triggers the animation
+    // Animates specific elements when they scroll into view
     const elementsToAnimate = document.querySelectorAll('.status-item, .resume-btn, .animate-on-scroll, section, .projects-hero');
     
     elementsToAnimate.forEach((el) => {
@@ -92,35 +92,48 @@ function initCarousel() {
     const slider = document.getElementById('projectSlider');
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
-    const cards = document.querySelectorAll('.card'); // Matches the HTML class used in your projects.html
+    const cards = document.querySelectorAll('.card');
 
+    // Arrow Navigation
     if (slider && nextBtn && prevBtn) {
         nextBtn.addEventListener('click', () => {
-             const scrollAmount = projectSlider.clientWidth * 0.75;
-             projectSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+             const scrollAmount = slider.clientWidth * 0.75;
+             slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
          });
          
-         prevBtn.addEventListener('click', () => {
-             const scrollAmount = projectSlider.clientWidth * 0.75;
-             projectSlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        prevBtn.addEventListener('click', () => {
+             const scrollAmount = slider.clientWidth * 0.75;
+             slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
          });
-             }
+    }
 
+    // Individual Card Behaviors
     cards.forEach(card => {
         const video = card.querySelector('video');
-        if (!video) return;
 
         // Video Play/Pause on hover
-        card.addEventListener('mouseenter', () => video.play());
-        card.addEventListener('mouseleave', () => {
-            video.pause();
-            video.currentTime = 0;
-        });
+        if (video) {
+            card.addEventListener('mouseenter', () => {
+                video.play().catch(error => console.log("Video play interrupted"));
+            });
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
 
-        // Click to navigate
-        card.addEventListener('click', () => {
+        // Click to navigate (Handles the "data-link" attribute)
+        card.addEventListener('click', (e) => {
+            // CRITICAL: If the user clicked a circle-btn (PDF or Video), 
+            // do not trigger the main card navigation.
+            if (e.target.closest('.circle-btn')) {
+                return; 
+            }
+
             const link = card.getAttribute('data-link');
-            if (link) window.location.href = link;
+            if (link) {
+                window.location.href = link;
+            }
         });
     });
 }
@@ -129,7 +142,7 @@ function initCarousel() {
    5. INITIALIZE ALL SCRIPTS (Single Entry Point)
    ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
-    // Start the typewriter loop
+    // Start typewriter if element exists
     type();
     
     // Initialize component functions
@@ -137,18 +150,17 @@ document.addEventListener("DOMContentLoaded", () => {
     initAnimations();
     initCarousel();
 
-    // Smooth scrolling for anchor links
+    // Smooth scrolling for anchor links (if any)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute("href");
             if (targetId === "#") return;
             
             const target = document.querySelector(targetId);
             if (target) {
+                e.preventDefault();
                 target.scrollIntoView({ behavior: "smooth" });
             }
         });
     });
 });
-
