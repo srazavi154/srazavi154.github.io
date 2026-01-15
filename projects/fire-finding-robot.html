@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire-Finding Robot | Sara Razavi</title>
+    <link rel="stylesheet" href="../projects_style.css">
+    <link rel="stylesheet" href="project-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="../index.html"><img src="../image/logo.png" alt="Logo"></a></div>
+        <nav class="nav-menu">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../projects.html">Projects</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+    </header>
 
+    <main class="container">
+        <div class="project-hero-section">
+            <h1 class="project-title">Fire-Finding Rescue Robot</h1>
+            <p class="project-subtitle">Autonomous Navigation & Path Planning | March 2025</p>
+            <div class="hero-media">
+                <video autoplay muted loop playsinline poster="../image/fire-bot/fire.png">
+                    <source src="../video/fire-robot-simulation.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <h2>Challenge</h2>
+                [cite_start]<p>Traditional path-planning algorithms often fail in dynamic environments[cite: 20]. [cite_start]This project required the implementation of an adaptive algorithm capable of real-time replanning while optimizing for dual objectives: rescuing a survivor and navigating to a fire location[cite: 20, 29].</p>
+
+                <h2>Technical Implementation</h2>
+                [cite_start]<p>At the core of the system is the <strong>D* Lite algorithm</strong>, which allows for efficient dynamic path planning via backward tree construction[cite: 23].</p>
+                                <ul>
+                    [cite_start]<li><strong>Algorithm Design:</strong> Utilized a Chebyshev distance heuristic optimized for 8-directional movement, allowing for realistic diagonal travel costs of $\sqrt{2}$[cite: 24, 30].</li>
+                    [cite_start]<li><strong>Environment Dynamics:</strong> The robot operated in a grid-based environment with randomly shuffled obstacles to simulate unpredictable disaster conditions[cite: 28].</li>
+                    [cite_start]<li><strong>Optimization:</strong> Managed complexity through priority queue sorting based on total cost ($cost2Reach + cost2Go$) and node status tracking to prevent redundant processing[cite: 32, 33].</li>
+                </ul>
+
+                <h2>Key Lessons & Results</h2>
+                [cite_start]<p>The project successfully demonstrated that D* Lite's recomputation efficiency is vastly superior to A* for dynamic environments[cite: 35, 37]. [cite_start]We found that algorithm sensitivity to heuristic choice and move costs significantly impacts path optimality[cite: 36].</p>
+            </div>
+            <aside class="sidebar">
+                <div class="sidebar-box">
+                    <h4>Tools</h4>
+                    <ul class="tag-list">
+                        <li>Python</li>
+                        <li>D* Lite</li>
+                        <li>Grid Navigation</li>
+                    </ul>
+                    <h4 style="margin-top:20px;">Performance</h4>
+                    [cite_start]<p>Consistent objective reach despite environment changes[cite: 37].</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/sara-razavi" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>© 2026 Sara Razavi. All Rights Reserved.</p>
+        <p>Coded by Yours Truly</p>
+    </footer>
+</body>
+</html>
