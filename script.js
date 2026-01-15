@@ -20,11 +20,10 @@ function type() {
         charIndex++;
     }
 
-    // Speed settings
     let typeSpeed = isDeleting ? 75 : 150;
 
     if (!isDeleting && charIndex === currentWord.length) {
-        typeSpeed = 2000; // Pause at end of word
+        typeSpeed = 2000; 
         isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
@@ -64,7 +63,7 @@ function initMobileMenu() {
 }
 
 /* =========================================
-   3. SCROLL ANIMATIONS (Intersection Observer)
+   3. SCROLL ANIMATIONS
    ========================================= */
 function initAnimations() {
     const observerOptions = { threshold: 0.15 };
@@ -77,16 +76,12 @@ function initAnimations() {
         });
     }, observerOptions);
 
-    // Animates specific elements when they scroll into view
     const elementsToAnimate = document.querySelectorAll('.status-item, .resume-btn, .animate-on-scroll, section, .projects-hero');
-    
-    elementsToAnimate.forEach((el) => {
-        observer.observe(el);
-    });
+    elementsToAnimate.forEach((el) => observer.observe(el));
 }
 
 /* =========================================
-   4. PROJECT CAROUSEL LOGIC
+   4. PROJECT CAROUSEL & CARD LOGIC
    ========================================= */
 function initCarousel() {
     const slider = document.getElementById('projectSlider');
@@ -107,14 +102,14 @@ function initCarousel() {
          });
     }
 
-    // Individual Card Behaviors
+    // Card Behaviors
     cards.forEach(card => {
         const video = card.querySelector('video');
 
-        // Video Play/Pause on hover
+        // Video Play/Pause (Desktop Hover)
         if (video) {
             card.addEventListener('mouseenter', () => {
-                video.play().catch(error => console.log("Video play interrupted"));
+                video.play().catch(e => {});
             });
             card.addEventListener('mouseleave', () => {
                 video.pause();
@@ -122,40 +117,52 @@ function initCarousel() {
             });
         }
 
-        // Click to navigate (Handles the "data-link" attribute)
-        card.addEventListener('click', (e) => {
-            // CRITICAL: If the user clicked a circle-btn (PDF or Video), 
-            // do not trigger the main card navigation.
-            if (e.target.closest('.circle-btn')) {
-                return; 
-            }
+        // MOBILE TOUCH BEHAVIOR
+        card.addEventListener('click', function(e) {
+            // If user clicked a button (PDF/Video), let it happen
+            if (e.target.closest('.circle-btn')) return;
 
-            const link = card.getAttribute('data-link');
-            if (link) {
-                window.location.href = link;
+            if (window.innerWidth <= 1024) {
+                // If not active yet, show overlay first
+                if (!this.classList.contains('active')) {
+                    e.preventDefault();
+                    cards.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Optional: Play video on touch
+                    if(video) video.play().catch(e => {});
+                } 
+                // If already active, the second tap follows the data-link (if any)
+            } else {
+                // Desktop Link handling
+                const link = card.getAttribute('data-link');
+                if (link) window.location.href = link;
             }
         });
+    });
+
+    // Close overlays when tapping outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.card')) {
+            cards.forEach(card => card.classList.remove('active'));
+        }
     });
 }
 
 /* =========================================
-   5. INITIALIZE ALL SCRIPTS (Single Entry Point)
+   5. INITIALIZE ALL SCRIPTS
    ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
-    // Start typewriter if element exists
     type();
-    
-    // Initialize component functions
     initMobileMenu();
     initAnimations();
     initCarousel();
 
-    // Smooth scrolling for anchor links (if any)
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             const targetId = this.getAttribute("href");
             if (targetId === "#") return;
-            
             const target = document.querySelector(targetId);
             if (target) {
                 e.preventDefault();
