@@ -27,25 +27,25 @@
         
         <h2>Kinematic Control</h2>
         <ul>
-          [cite_start]<li><strong>Undulation:</strong> Joint angles were calculated using $\theta_{i}(t)=A\cdot sin(2\pi ft+\varphi_{i})$ to create a wave propagation effect[cite: 100, 103].</li>
-          [cite_start]<li><strong>Secondary Task:</strong> Implemented real-time obstacle avoidance via repulsive force vectors ($F_{repulsion} \propto 1/distance$)[cite: 106, 108].</li>
-          [cite_start]<li><strong>Null-Space Projection:</strong> Primary locomotion and secondary avoidance were combined using null-space projection to prevent motion conflicts[cite: 113, 130].</li>
+          <li><strong>Undulation:</strong> Joint angles were calculated using $\theta_{i}(t)=A\cdot sin(2\pi ft+\varphi_{i})$ to create a wave propagation effect.</li>
+          <li><strong>Secondary Task:</strong> Implemented real-time obstacle avoidance via repulsive force vectors ($F_{repulsion} \propto 1/distance$).</li>
+          <li><strong>Null-Space Projection:</strong> Primary locomotion and secondary avoidance were combined using null-space projection to prevent motion conflicts.</li>
         </ul>
 
         <h2>Stability Monitoring</h2>
-        [cite_start]<p>To ensure smooth motion, I implemented real-time monitoring of the <strong>Jacobian condition number</strong>[cite: 116]. [cite_start]The periodic oscillation of this number indicated stable kinematic configurations throughout the motion cycle[cite: 121, 122].</p>
-        [cite_start]<p><strong>Result:</strong> Achieved smooth, biologically-realistic movement with controlled velocity magnitudes ($\pm0.04$ rad/s) and no observed instabilities[cite: 124, 125].</p>
+        <p>To ensure smooth motion, I implemented real-time monitoring of the <strong>Jacobian condition number</strong>. The periodic oscillation of this number indicated stable kinematic configurations throughout the motion cycle.</p>
+        <p><strong>Result:</strong> Achieved smooth, biologically-realistic movement with controlled velocity magnitudes ($\pm0.04$ rad/s) and no observed instabilities.</p>
       </div>
 
       <aside class="sidebar">
         <div class="sidebar-box">
           <h4>Framework</h4>
-          [cite_start]<p>ROS2 & RVIZ [cite: 137]</p>
+          <p>ROS2 & RVIZ</p>
           <h4 style="margin-top:20px;">Control Systems</h4>
           <ul class="tag-list">
-            [cite_start]<li>Jacobian Analysis [cite: 137]</li>
-            [cite_start]<li>URDF Modeling [cite: 137]</li>
-            [cite_start]<li>Trajectory Gen [cite: 94]</li>
+            <li>Jacobian Analysis</li>
+            <li>URDF Modeling</li>
+            <li>Trajectory Gen</li>
           </ul>
         </div>
       </aside>
