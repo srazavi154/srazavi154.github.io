@@ -174,19 +174,30 @@ main {
     color: #ddd; /* Switched to light gray for dark gradient */
     line-height: 1.4;
 }
-/* Container for Title and Buttons */
+/* 1. Change to 'column' so buttons don't squash the title */
 .overlay-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; /* Stack buttons under title if space is tight */
+  align-items: flex-start; 
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-/* Button Grouping */
+/* 2. Create a row for just the buttons */
 .card-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  margin-top: 5px; /* Add space between title and buttons */
+}
+
+/* 3. Allow the title to be seen clearly */
+.card-overlay h3 {
+  margin: 0;
+  font-size: 1.4rem; /* Restoring size for better visibility */
+  color: #fff;
+  white-space: normal; /* Allow text to wrap if it's too long */
+  overflow: visible;   /* Make sure it's not being hidden */
+  line-height: 1.2;
 }
 
 /* Small Circle Buttons */
@@ -216,14 +227,6 @@ main {
   display: none !important;
 }
 
-.card-overlay h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  padding-right: 10px; /* Adds a tiny gap so text doesn't touch the buttons */
-  white-space: nowrap; /* Keeps the title on one line */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Adds "..." if the title is way too long */
-}
 /* NAVIGATION ARROWS */
 .nav-btn {
     position: absolute;
