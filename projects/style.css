@@ -1,15 +1,75 @@
 /* =========================================
-   PROJECT DETAIL LAYOUT
+   1. CORE RESET & BRANDING (Matched to Home)
    ========================================= */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 120px 5% 80px 5%;
-    background-color: #fff;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.project-hero-section {
-    margin-bottom: 60px;
+html, body {
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #000;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Detail pages should always scroll naturally */
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION (Exact Match)
+   ========================================= */
+header {
+    height: 90px;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2000;
+    background: #fff;
+    border-bottom: 1px solid #eeeeee;
+    position: fixed; /* Keep it fixed at the top */
+    top: 0;
+    width: 100%;
+}
+
+header .logo img {
+    width: 100px;
+    height: auto;
+    margin-top: 35px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.nav-menu a:hover { opacity: 0.5; }
+
+/* =========================================
+   3. PROJECT CONTENT LAYOUT
+   ========================================= */
+.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 140px 5% 80px 5%; /* 140px top padding to clear the fixed header */
+    width: 100%;
 }
 
 .project-title {
@@ -54,6 +114,9 @@
     margin: 40px 0 20px;
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: normal;
 }
 
 .main-content p, .main-content li {
@@ -94,11 +157,38 @@
     padding: 6px 14px;
     font-size: 0.8rem;
     border-radius: 4px;
-    margin: 0;
 }
 
-@media (max-width: 900px) {
-    .content-grid { grid-template-columns: 1fr; }
+/* =========================================
+   4. FOOTER (Exact Match)
+   ========================================= */
+footer {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #aaa;
+    border-top: 1px solid #eeeeee;
+    background: #fff;
+    margin-top: auto;
+}
+
+footer .social-links a {
+    color: #000 !important;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    transition: opacity 0.3s;
+}
+
+/* =========================================
+   5. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 1024px) {
+    header { padding: 0 25px; }
+    .content-grid { grid-template-columns: 1fr; gap: 40px; }
     .project-title { font-size: 2.5rem; }
-    .container { padding-top: 100px; }
+    .sidebar-box { position: static; }
 }
