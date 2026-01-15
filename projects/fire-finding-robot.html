@@ -33,18 +33,18 @@
         <div class="content-grid">
             <div class="main-content">
                 <h2>Challenge</h2>
-                [cite_start]<p>Traditional path-planning algorithms often fail in dynamic environments[cite: 20]. [cite_start]This project required the implementation of an adaptive algorithm capable of real-time replanning while optimizing for dual objectives: rescuing a survivor and navigating to a fire location[cite: 20, 29].</p>
+                <p>Traditional path-planning algorithms often fail in dynamic environments. This project required the implementation of an adaptive algorithm capable of real-time replanning while optimizing for dual objectives: rescuing a survivor and navigating to a fire location.</p>
 
                 <h2>Technical Implementation</h2>
-                [cite_start]<p>At the core of the system is the <strong>D* Lite algorithm</strong>, which allows for efficient dynamic path planning via backward tree construction[cite: 23].</p>
+                <p>At the core of the system is the <strong>D* Lite algorithm</strong>, which allows for efficient dynamic path planning via backward tree construction.</p>
                                 <ul>
-                    [cite_start]<li><strong>Algorithm Design:</strong> Utilized a Chebyshev distance heuristic optimized for 8-directional movement, allowing for realistic diagonal travel costs of $\sqrt{2}$[cite: 24, 30].</li>
-                    [cite_start]<li><strong>Environment Dynamics:</strong> The robot operated in a grid-based environment with randomly shuffled obstacles to simulate unpredictable disaster conditions[cite: 28].</li>
-                    [cite_start]<li><strong>Optimization:</strong> Managed complexity through priority queue sorting based on total cost ($cost2Reach + cost2Go$) and node status tracking to prevent redundant processing[cite: 32, 33].</li>
+                    <li><strong>Algorithm Design:</strong> Utilized a Chebyshev distance heuristic optimized for 8-directional movement, allowing for realistic diagonal travel costs of $\sqrt{2}$.</li>
+                    <li><strong>Environment Dynamics:</strong> The robot operated in a grid-based environment with randomly shuffled obstacles to simulate unpredictable disaster conditions.</li>
+                    <li><strong>Optimization:</strong> Managed complexity through priority queue sorting based on total cost ($cost2Reach + cost2Go$) and node status tracking to prevent redundant processing.</li>
                 </ul>
 
                 <h2>Key Lessons & Results</h2>
-                [cite_start]<p>The project successfully demonstrated that D* Lite's recomputation efficiency is vastly superior to A* for dynamic environments[cite: 35, 37]. [cite_start]We found that algorithm sensitivity to heuristic choice and move costs significantly impacts path optimality[cite: 36].</p>
+                <p>The project successfully demonstrated that D* Lite's recomputation efficiency is vastly superior to A* for dynamic environments. We found that algorithm sensitivity to heuristic choice and move costs significantly impacts path optimality.</p>
             </div>
             <aside class="sidebar">
                 <div class="sidebar-box">
@@ -55,7 +55,7 @@
                         <li>Grid Navigation</li>
                     </ul>
                     <h4 style="margin-top:20px;">Performance</h4>
-                    [cite_start]<p>Consistent objective reach despite environment changes[cite: 37].</p>
+                    <p>Consistent objective reach despite environment changes.</p>
                 </div>
             </aside>
         </div>
